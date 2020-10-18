@@ -1,4 +1,4 @@
-'use strict';
+
 
 const fs = require('fs');
 const path = require('path');
@@ -502,6 +502,9 @@ module.exports = function(webpackEnv) {
                   loader: "less-loader",
                   options: {
                     sourceMap: false,
+                    lessOptions: {
+                      paths: [path.resolve('src')]
+                    }
                   }
                 }
               ]
