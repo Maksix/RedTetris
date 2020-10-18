@@ -1,12 +1,11 @@
 import React from 'react';
-import './App.css';
+import './App.module.css';
+import MainScreen from "./MainScreen/MainScreen"
 
-function App() {
-  return (
-    <div className="App">
-      here
-    </div>
-  );
-}
+const App = () => (
+  <>
+    <MainScreen/>
+  </>
+)
 
 export default App;

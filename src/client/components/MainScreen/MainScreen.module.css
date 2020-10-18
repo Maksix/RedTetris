@@ -1,0 +1,41 @@
+.boxContainer {
+  position: absolute;
+  top: -140px;
+  display: flex;
+  flex-direction: column;
+  animation-name: fallTetramino;
+  animation-duration: 7s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.redBox {
+  width: 40px;
+  height: 40px;
+  background-color: #C72907;
+}
+
+.darkRedBox {
+  width: 40px;
+  height: 40px;
+  background-color: #9B2424;
+}
+
+.redShadow {
+  width: 80px;
+  height: 60px;
+  background: linear-gradient(0, #631111, black);
+}
+
+.row {
+  display: flex;
+}
+
+@keyframes fallTetramino {
+  from {
+    top: -140px;
+  }
+  to {
+    top: 100%;
+  }
+}
