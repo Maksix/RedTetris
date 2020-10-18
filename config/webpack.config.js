@@ -494,7 +494,7 @@ module.exports = function(webpackEnv) {
                   options: {
                     sourceMap: false,
                     modules: {
-                      localIdentName: "[name]__[local]--[hash:base64:5]"
+                      localIdentName: '[path][local]--[hash:base64:5]',
                     }
                   }
                 },
