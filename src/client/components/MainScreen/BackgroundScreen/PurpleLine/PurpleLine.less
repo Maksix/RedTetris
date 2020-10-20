@@ -1,0 +1,63 @@
+.makeRandom(@min: 0, @max: @min+1, @int: 0) {
+  .checkInt() {
+    @getNum: `Math.random() * (@{max} - @{min} + @{int})`;
+    @base: unit(`@{int} == 1 ? Math.floor(@{getNum}) : @{getNum}`);
+  }
+  .checkInt();
+  @random-number: @base + @min;
+}
+
+.random-number(@min, @max) {
+  @random-number: floor(`Math.random() * @{max} + @{min}`);
+}
+
+.boxContainer {
+  .random-number(2, 10);
+  .makeRandom();
+  z-index: -1;
+  position: absolute;
+  top: 240px;
+  left: 80%;
+  display: flex;
+  flex-direction: column;
+  animation-name: fallTetramino;
+  animation-duration: unit(@random-number, s);
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.emptyBox {
+  width: 40px;
+  height: 40px;
+}
+
+.purpleBox {
+  width: 40px;
+  height: 40px;
+  background-color: #5A0FB9;
+}
+
+.darkPurpleBox {
+  width: 40px;
+  height: 40px;
+  background-color: #481567;
+}
+
+.purpleShadow {
+  width: 160px;
+  height: 60px;
+  background: linear-gradient(0, #7119a7, black);
+}
+
+.row {
+  display: flex;
+}
+
+@keyframes fallTetramino {
+  from {
+    top: -140px;
+  }
+  to {
+    top: 100%;
+  }
+}

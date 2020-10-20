@@ -503,6 +503,7 @@ module.exports = function(webpackEnv) {
                   options: {
                     sourceMap: false,
                     lessOptions: {
+                      javascriptEnabled: true,
                       paths: [path.resolve('src')]
                     }
                   }
