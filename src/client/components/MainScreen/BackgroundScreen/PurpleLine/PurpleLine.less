@@ -12,8 +12,9 @@
 }
 
 .boxContainer {
-  .random-number(2, 10);
+  .random-number(4, 10);
   .makeRandom();
+  cursor: pointer;
   z-index: -1;
   position: absolute;
   top: 240px;
@@ -26,6 +27,10 @@
   animation-timing-function: linear;
 }
 
+.resetAnimation {
+  animation-name: none;
+}
+
 .emptyBox {
   width: 40px;
   height: 40px;
@@ -34,19 +39,19 @@
 .purpleBox {
   width: 40px;
   height: 40px;
-  background-color: #5A0FB9;
+  background-color: #7119a7;
 }
 
 .darkPurpleBox {
   width: 40px;
   height: 40px;
-  background-color: #481567;
+  background-color: #5d0692;
 }
 
 .purpleShadow {
   width: 160px;
   height: 60px;
-  background: linear-gradient(0, #7119a7, black);
+  background: linear-gradient(0, #481567, black);
 }
 
 .row {
