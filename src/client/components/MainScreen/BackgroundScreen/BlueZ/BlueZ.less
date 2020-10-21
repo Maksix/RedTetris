@@ -1,3 +1,5 @@
+@import "../../../../styles/colors.less";
+
 .boxContainer {
   z-index: -1;
   position: absolute;
@@ -19,19 +21,19 @@
 .blueBox {
   width: 40px;
   height: 40px;
-  background-color: #1E45D0;
+  background-color: @blue;
 }
 
 .darkBlueBox {
   width: 40px;
   height: 40px;
-  background-color: #082BA7;
+  background-color: @darkBlue;
 }
 
 .blueShadow {
   width: 80px;
   height: 60px;
-  background: linear-gradient(0, #001e75, black);
+  background: linear-gradient(0, @blueShadow, black);
 }
 
 .row {

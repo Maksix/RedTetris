@@ -1,23 +1,24 @@
 import React from 'react'
-import styles from './GreenVerticalZ.less'
+import styles from '../BackgroundScreen.less'
 
 const GreenVerticalZ = () => {
+  console.log(styles.darkBlue)
   return (
-    <div className={styles.boxContainer}>
+    <div className={`${styles.boxContainer} ${styles.left30}`}>
       <div className={styles.row}>
-        <div className={styles.emptyBox} />
-        <div className={styles.greenShadow}/>
+        <div className={styles.box} />
+        <div className={`${styles.box} ${styles.greenShadow}`}/>
       </div>
       <div className={styles.row}>
-        <div className={styles.emptyBox} />
-        <div className={styles.darkGreenBox}/>
+        <div className={styles.box} />
+        <div className={`${styles.box} ${styles.darkGreen}`}/>
       </div>
       <div className={styles.row}>
-        <div className={styles.darkGreenBox}/>
-        <div className={styles.greenBox}/>
+        <div className={`${styles.box} ${styles.darkGreen}`}/>
+        <div className={`${styles.box} ${styles.green}`}/>
       </div>
       <div className={styles.row}>
-        <div className={styles.greenBox}/>
+        <div className={`${styles.box} ${styles.green}`}/>
       </div>
     </div>
   )
