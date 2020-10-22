@@ -10,11 +10,11 @@ const GreenVerticalZ = () => {
       </div>
       <div className={styles.row}>
         <div className={styles.box} />
-        <div className={`${styles.box} ${styles.darkGreen}`}/>
+        <div className={`${styles.box} ${styles.dark_green}`}/>
       </div>
       <div className={styles.row}>
-        <div className={`${styles.box} ${styles.darkGreen}`}/>
-        <div className={`${styles.box} ${styles['@green']}`}/>
+        <div className={`${styles.box} ${styles.dark_green}`}/>
+        <div className={`${styles.box} ${styles.green}`}/>
       </div>
       <div className={styles.row}>
         <div className={`${styles.box} ${styles.green}`}/>
