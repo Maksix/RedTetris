@@ -11,12 +11,12 @@
 // Tetramino colors
 
 @tetramino-colors: {
-  @purple: #7119a7;
-  @green: #48B116;
-  @orange: #FDA420;
-  @red: #C72907;
-  @yellow: #E3DA07;
-  @blue: #1E45D0;
+  purple: #7119a7;
+  green: #48B116;
+  orange: #FDA420;
+  red: #C72907;
+  yellow: #E3DA07;
+  blue: #1E45D0;
 }
 
 each(@tetramino-colors {
@@ -24,7 +24,7 @@ each(@tetramino-colors {
     background-color: @value;
   }
 
-  .dark-@{key} {
+  .dark_@{key} {
     background-color: darken(@value, 20%);
   }
 });
