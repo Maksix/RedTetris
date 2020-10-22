@@ -3,18 +3,19 @@ import RedSquare from "./RedSquare/RedSquare"
 import BlueZ from "./BlueZ/BlueZ"
 import YellowColumn from "./YellowColumn/YellowColumn"
 import GreenVerticalZ from "./GreenVerticalZ/GreenVerticalZ"
+import styles from '../../../styles/colors.less'
 import OrangeG from "./OrangeG/OrangeG"
 import PurpleLine from "./PurpleLine/PurpleLine"
 
 const BackgroundScreen = () => {
   return (
     <>
-      <RedSquare/>
-      <BlueZ/>
-      <YellowColumn/>
+      {/*<RedSquare/>*/}
+      {/*<BlueZ/>*/}
+      {/*<YellowColumn/>*/}
       <GreenVerticalZ/>
-      <OrangeG/>
-      <PurpleLine/>
+      {/*<OrangeG/>*/}
+      {/*<PurpleLine/>*/}
     </>
   )
 }

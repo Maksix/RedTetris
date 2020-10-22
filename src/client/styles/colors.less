@@ -10,98 +10,39 @@
 
 // Tetramino colors
 
-@purple: #7119a7;
-@darkPurple: #5d0692;
-@purpleShadow: #481567;
-
-@green: #48B116;
-@darkGreen: #0B8E00;
-@greenShadow: #04500a;
-
-@orange: #FDA420;
-@darkOrange: #D88A16;
-@orangeShadow: #9c6124;
-
-@red: #C72907;
-@darkRed: #9B2424;
-@redShadow: #631111;
-
-@yellow: #E3DA07;
-@darkYellow: #C7C015;
-@yellowShadow: #7b7d0f;
-
-@blue: #1E45D0;
-@darkBlue: #082BA7;
-@blueShadow: #001e75;
-
-.purple {
+@tetramino-colors: {
   @purple: #7119a7;
-}
-
-.darkPurple {
-  @darkPurple: #5d0692;
-}
-
-.purpleShadow {
-  @purpleShadow: #481567;
-}
-
-.green {
   @green: #48B116;
-}
-
-.darkGreen {
-  @darkGreen: #0B8E00;
-}
-
-.greenShadow {
-  @greenShadow: #04500a;
-}
-
-.orange {
   @orange: #FDA420;
-}
-
-.darkOrange {
-  @darkOrange: #D88A16;
-}
-
-.orangeShadow {
-  @orangeShadow: #9c6124;
-}
-
-.red {
   @red: #C72907;
-}
-
-.darkRed {
-  @darkRed: #9B2424;
-}
-
-.redShadow {
-  @redShadow: #631111;
-}
-
-.yellow {
   @yellow: #E3DA07;
-}
-
-.darkYellow {
-  @darkYellow: #C7C015;
-}
-
-.yellowShadow {
-  @yellowShadow: #7b7d0f;
-}
-
-.blue {
   @blue: #1E45D0;
 }
 
-.darkBlue {
-  @darkBlue: #082BA7;
-}
+each(@tetramino-colors {
+  .@{key} {
+    background-color: @value;
+  }
 
-.blueShadow {
-  @blueShadow: #001e75;
-}
+  .dark-@{key} {
+    background-color: darken(@value, 20%);
+  }
+});
+
+//@darkPurple: #5d0692;
+//@purpleShadow: #481567;
+//
+//@darkGreen: #0B8E00;
+//@greenShadow: #04500a;
+//
+//@darkOrange: #D88A16;
+//@orangeShadow: #9c6124;
+//
+//@darkRed: #9B2424;
+//@redShadow: #631111;
+//
+//@darkYellow: #C7C015;
+//@yellowShadow: #7b7d0f;
+//
+//@darkBlue: #082BA7;
+//@blueShadow: #001e75;
