@@ -1,30 +1,14 @@
 @import "../../../styles/colors.less";
 
-.makeRandom(@min: 0, @max: @min+1, @int: 0) {
-  .checkInt() {
-    @getNum: `Math.random() * (@{max} - @{min} + @{int})`;
-    @base: unit(`@{int} == 1 ? Math.floor(@{getNum}) : @{getNum}`);
-  }
-  .checkInt();
-  @random-number: @base + @min;
-}
-
-.random-number(@min, @max) {
-  @random-number: floor(`Math.random() * @{max} + @{min}`);
-}
-
 .boxContainer {
-  .random-number(4, 10);
-  .makeRandom();
   cursor: pointer;
   z-index: -1;
   position: absolute;
-  //top: 240px;
+  top: 240px;
   display: flex;
   flex-direction: column;
-  //animation-delay: unit(@random-number, s);
   animation-name: fallTetramino;
-  animation-duration: unit(@random-number, s);
+  animation-duration: var(--duration);
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
@@ -75,7 +59,7 @@
   left: 60%;
 }
 
-.left60 {
+.left70 {
   left: 70%;
 }
 

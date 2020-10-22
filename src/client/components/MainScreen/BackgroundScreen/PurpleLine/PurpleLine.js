@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
-import styles from './PurpleLine.less'
+import {getRandomNbr} from "../BackgroundScreen"
+import styles from '../BackgroundScreen.less'
 
 const PurpleLine = () => {
   const [resetAnimation, setResetAnimation] = useState(false)
@@ -10,15 +11,18 @@ const PurpleLine = () => {
     }, 0)
   }
   return (
-    <div className={`${styles.boxContainer} ${resetAnimation ? styles.resetAnimation : ''}`} onClick={handleResetAnimation}>
+    <div style={{'--duration': `${getRandomNbr()}s`}} className={`${styles.boxContainer} ${styles.left80} ${resetAnimation ? styles.resetAnimation : ''}`} onClick={handleResetAnimation}>
       <div className={styles.row}>
-        <div className={styles.purpleShadow}/>
+        <div className={`${styles.box} ${styles.purpleShadow}`}/>
+        <div className={`${styles.box} ${styles.purpleShadow}`}/>
+        <div className={`${styles.box} ${styles.purpleShadow}`}/>
+        <div className={`${styles.box} ${styles.purpleShadow}`}/>
       </div>
       <div className={styles.row}>
-        <div className={styles.darkPurpleBox}/>
-        <div className={styles.purpleBox}/>
-        <div className={styles.darkPurpleBox}/>
-        <div className={styles.purpleBox}/>
+        <div className={`${styles.box} ${styles.dark_purple}`}/>
+        <div className={`${styles.box} ${styles.purple}`}/>
+        <div className={`${styles.box} ${styles.dark_purple}`}/>
+        <div className={`${styles.box} ${styles.purple}`}/>
       </div>
     </div>
   )
