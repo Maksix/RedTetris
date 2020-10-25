@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
-import {getRandomNbr} from "../BackgroundScreen"
+import {getAnimationSpeed, getAnimationDelay} from "../BackgroundScreen"
+import cn from 'classnames'
 import styles from '../BackgroundScreen.less'
 
 const BlueZ = () => {
@@ -11,20 +12,24 @@ const BlueZ = () => {
     }, 0)
   }
   return (
-    <div style={{'--duration': `${getRandomNbr()}s`}} className={`${styles.boxContainer} ${styles.left10} ${resetAnimation ? styles.resetAnimation : ''}`} onClick={handleResetAnimation}>
-      <div className={styles.row}>
-        <div className={styles.box} />
-        <div className={`${styles.box} ${styles.blueShadow}`}/>
-        <div className={`${styles.box} ${styles.blueShadow}`}/>
+    <div
+      style={{'--duration': `${getAnimationSpeed()}s`, '--delay': `${getAnimationDelay()}s`}}
+      className={cn(styles.boxContainer, styles.left5, resetAnimation ? styles.resetAnimation : '')}
+      onClick={handleResetAnimation}
+    >
+      <div className={cn(styles.row)}>
+        <div className={cn(styles.box)} />
+        <div className={cn(styles.box, styles.blueShadow)}/>
+        <div className={cn(styles.box, styles.blueShadow)}/>
       </div>
       <div className={styles.row}>
         <div className={styles.box} />
-        <div className={`${styles.box} ${styles.dark_blue}`}/>
-        <div className={`${styles.box} ${styles.blue}`}/>
+        <div className={cn(styles.box, styles.dark_blue)}/>
+        <div className={cn(styles.box, styles.blue)}/>
       </div>
       <div className={styles.row}>
-        <div className={`${styles.box} ${styles.dark_blue}`}/>
-        <div className={`${styles.box} ${styles.blue}`}/>
+        <div className={cn(styles.box, styles.dark_blue)}/>
+        <div className={cn(styles.box, styles.blue)}/>
       </div>
     </div>
   )

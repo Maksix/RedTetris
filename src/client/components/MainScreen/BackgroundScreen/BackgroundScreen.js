@@ -6,7 +6,8 @@ import GreenVerticalZ from "./GreenVerticalZ/GreenVerticalZ"
 import OrangeG from "./OrangeG/OrangeG"
 import PurpleLine from "./PurpleLine/PurpleLine"
 
-export const getRandomNbr = () => Math.floor(Math.random() * 3) + 2;
+export const getAnimationSpeed = () => Math.floor(Math.random() * 3) + 6;
+export const getAnimationDelay = () => Math.floor(Math.random() * 3) + 2;
 
 const BackgroundScreen = () => {
   return (

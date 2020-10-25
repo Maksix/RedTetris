@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
-import {getRandomNbr} from "../BackgroundScreen"
+import {getAnimationDelay, getAnimationSpeed} from "../BackgroundScreen"
 import styles from '../BackgroundScreen.less'
+import cn from "classnames"
 
 const RedSquare = () => {
   const [resetAnimation, setResetAnimation] = useState(false)
@@ -11,18 +12,22 @@ const RedSquare = () => {
     }, 0)
   }
   return (
-    <div style={{'--duration': `${getRandomNbr()}s`}} className={`${styles.boxContainer} ${styles.left20} ${resetAnimation ? styles.resetAnimation : ''}`} onClick={handleResetAnimation}>
-      <div className={styles.row}>
-        <div className={styles.redShadow}/>
-        <div className={styles.redShadow}/>
+    <div
+      style={{'--duration': `${getAnimationSpeed()}s`, '--delay': `${getAnimationDelay()}s`}}
+      className={cn(styles.boxContainer, styles.left20, resetAnimation ? styles.resetAnimation : '')}
+      onClick={handleResetAnimation}
+    >
+      <div className={cn(styles.row)}>
+        <div className={cn(styles.redShadow)}/>
+        <div className={cn(styles.redShadow)}/>
       </div>
-      <div className={styles.row}>
-        <div className={`${styles.box} ${styles.red}`}/>
-        <div className={`${styles.box} ${styles.dark_red}`}/>
+      <div className={cn(styles.row)}>
+        <div className={cn(styles.box, styles.red)}/>
+        <div className={cn(styles.box, styles.dark_red)}/>
       </div>
-      <div className={styles.row}>
-        <div className={`${styles.box} ${styles.dark_red}`}/>
-        <div className={`${styles.box} ${styles.red}`}/>
+      <div className={cn(styles.row)}>
+        <div className={cn(styles.box, styles.dark_red)}/>
+        <div className={cn(styles.box, styles.red)}/>
       </div>
     </div>
   )

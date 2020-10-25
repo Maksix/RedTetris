@@ -4,10 +4,11 @@
   cursor: pointer;
   z-index: -1;
   position: absolute;
-  top: 240px;
+  top: -200px;
   display: flex;
   flex-direction: column;
   animation-name: fallTetramino;
+  animation-delay: var(--delay);
   animation-duration: var(--duration);
   animation-iteration-count: infinite;
   animation-timing-function: linear;
@@ -33,6 +34,10 @@
   to {
     top: 100%;
   }
+}
+
+.left5 {
+  left: 5%;
 }
 
 .left10 {
