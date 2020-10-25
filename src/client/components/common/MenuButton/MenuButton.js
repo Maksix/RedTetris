@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from "react";
 import cn from 'classnames';
-import styles from './styles.less';
+import styles from './MenuButton.less';
 
-export const Button = ({text, onClick, theme}) => {
+export const MenuButton = ({text, onClick, theme}) => {
   return (
     <div role={'button'} onClick={onClick} className={cn(styles.button, styles[theme])}>
       <div className={styles.text}>{text}</div>
@@ -11,12 +11,12 @@ export const Button = ({text, onClick, theme}) => {
   );
 }
 
-Button.propTypes = {
+MenuButton.propTypes = {
   text: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  theme: PropTypes.oneOf(['dark, light'])
+  theme: PropTypes.oneOf(['dark', 'light'])
 }
 
-Button.defaultProps = {
+MenuButton.defaultProps = {
+  onClick: () => {},
   theme: 'dark'
 }
