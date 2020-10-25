@@ -17,6 +17,5 @@ MenuButton.propTypes = {
 }
 
 MenuButton.defaultProps = {
-  onClick: () => {},
   theme: 'dark'
 }
