@@ -8,9 +8,6 @@ i18n
     .init({
       lng: 'ru-RU',
       fallbackLng: 'ru-RU',
-      react: {
-        useSuspense: false,
-      }
     });
 
 export default i18n;
