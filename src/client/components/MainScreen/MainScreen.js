@@ -13,8 +13,10 @@ const MainScreen = () => {
       <div className={cn(styles.mainMenu)}>
         <div className={cn(styles.logoRow)}>
           <Logo/>
-          <div className={cn(styles.switcherBox)}>
+          <div className={cn(styles.colorSwitcherBox)}>
             <ColorSwitcher/>
+          </div>
+          <div className={cn(styles.langSwitcherBox)}>
             <LangSwitcher/>
           </div>
         </div>

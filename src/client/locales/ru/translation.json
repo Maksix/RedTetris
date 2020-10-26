@@ -1,0 +1,8 @@
+{
+  "lang": "RU",
+  "main": {
+    "startGame": "Начать игру",
+    "joinRoom": "Войти в комнату",
+    "leaderboard": "Топ игроков"
+  }
+}
