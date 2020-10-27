@@ -14,7 +14,7 @@ const YellowColumn = () => {
   return (
     <div
       style={{'--duration': `${getAnimationSpeed()}s`, '--delay': `${getAnimationDelay()}s`}}
-      className={cn(styles.boxContainer, styles.left70, resetAnimation ? styles.resetAnimation : '')}
+      className={cn(styles.boxContainer, styles.left60, resetAnimation ? styles.resetAnimation : '')}
       onClick={handleResetAnimation}
     >
       <div className={cn(styles.row)}>

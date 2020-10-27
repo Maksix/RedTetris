@@ -14,7 +14,7 @@ const OrangeG = () => {
   return (
     <div
       style={{'--duration': `${getAnimationSpeed()}s`, '--delay': `${getAnimationDelay() + 2}s`}}
-      className={cn(styles.boxContainer, styles.left80, resetAnimation ? styles.resetAnimation : '')}
+      className={cn(styles.boxContainer, styles.left70, resetAnimation ? styles.resetAnimation : '')}
       onClick={handleResetAnimation}
     >
       <div className={cn(styles.row)}>

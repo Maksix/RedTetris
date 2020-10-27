@@ -14,7 +14,7 @@ const PurpleLine = () => {
   return (
     <div
       style={{'--duration': `${getAnimationSpeed()}s`, '--delay': `${getAnimationDelay() + 4}s`}}
-      className={cn(styles.boxContainer, styles.left90, resetAnimation ? styles.resetAnimation : '')}
+      className={cn(styles.boxContainer, styles.left85, resetAnimation ? styles.resetAnimation : '')}
       onClick={handleResetAnimation}
     >
       <div className={cn(styles.row)}>
