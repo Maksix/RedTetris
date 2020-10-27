@@ -3,6 +3,7 @@
   "main": {
     "startGame": "New game",
     "joinRoom": "Join room",
+    "joinRoomPlaceholder": "Enter room name",
     "leaderboard": "Leaderboard"
   }
 }

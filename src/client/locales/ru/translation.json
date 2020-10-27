@@ -3,6 +3,7 @@
   "main": {
     "startGame": "Начать игру",
     "joinRoom": "Войти в комнату",
+    "joinRoomPlaceholder": "Введите имя комнаты",
     "leaderboard": "Топ игроков"
   }
 }

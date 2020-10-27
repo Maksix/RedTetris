@@ -4,6 +4,7 @@ import styles from './Menu.module.less'
 import {useTranslation} from 'react-i18next'
 import {MenuButton} from "../../common/MenuButton/MenuButton"
 import Leaderboard from "./Leaderboard/Leaderboard"
+import JoinRoom from "./JoinRoom/JoinRoom"
 
 const Menu = () => {
   const {t} = useTranslation()
@@ -11,7 +12,7 @@ const Menu = () => {
   return (
     <div className={cn(styles.menuBlock)}>
       <MenuButton text={t('main.startGame')}/>
-      <MenuButton text={t('main.joinRoom')}/>
+      <JoinRoom/>
       <Leaderboard/>
     </div>
   )
