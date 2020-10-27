@@ -13,7 +13,7 @@ const GreenVerticalZ = () => {
   }
   return (
     <div
-      style={{'--duration': `${getAnimationSpeed()}s`, '--delay': `${getAnimationDelay()}s`}}
+      style={{'--duration': `${getAnimationSpeed()}s`, '--delay': `${getAnimationDelay() + 6}s`}}
       className={cn(styles.boxContainer, styles.left30, resetAnimation ? styles.resetAnimation : '')}
       onClick={handleResetAnimation}
     >

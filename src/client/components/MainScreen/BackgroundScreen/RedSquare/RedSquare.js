@@ -13,7 +13,7 @@ const RedSquare = () => {
   }
   return (
     <div
-      style={{'--duration': `${getAnimationSpeed()}s`, '--delay': `${getAnimationDelay()}s`}}
+      style={{'--duration': `${getAnimationSpeed()}s`, '--delay': `${getAnimationDelay() + 2}s`}}
       className={cn(styles.boxContainer, styles.left20, resetAnimation ? styles.resetAnimation : '')}
       onClick={handleResetAnimation}
     >

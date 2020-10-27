@@ -13,7 +13,7 @@ const BlueZ = () => {
   }
   return (
     <div
-      style={{'--duration': `${getAnimationSpeed()}s`, '--delay': `${getAnimationDelay()}s`}}
+      style={{'--duration': `${getAnimationSpeed()}s`, '--delay': `${getAnimationDelay() + 4}s`}}
       className={cn(styles.boxContainer, styles.left5, resetAnimation ? styles.resetAnimation : '')}
       onClick={handleResetAnimation}
     >
