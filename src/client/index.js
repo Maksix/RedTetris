@@ -1,6 +1,7 @@
-import React, {Suspense} from 'react';
+/* eslint-disable */
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import './i18n'
+import './i18n';
 import App from './components/App';
 
 ReactDOM.render(
@@ -9,5 +10,5 @@ ReactDOM.render(
       <App />
     </Suspense>
   </React.StrictMode>,
-  document.getElementById('tetris')
+  document.getElementById('tetris'),
 );
