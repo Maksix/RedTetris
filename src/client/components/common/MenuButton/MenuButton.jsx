@@ -8,7 +8,9 @@ const MenuButton = ({ text, onClick, theme }) => (
     tabIndex={0}
     role="button"
     onClick={onClick}
-    onKeyDown={onClick}
+    onKeyDown={(e) => {
+      if (e.keyCode === 13) onClick();
+    }}
     className={cn(styles.button, styles[theme])}
   >
     <div className={styles.text}>{text}</div>

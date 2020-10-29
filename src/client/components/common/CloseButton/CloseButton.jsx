@@ -9,9 +9,7 @@ const CloseButton = ({ onClick }) => (
     tabIndex={0}
     onClick={onClick}
     onKeyDown={(e) => {
-      if (e.keyCode === 13) {
-        onClick();
-      }
+      if (e.keyCode === 13) onClick();
     }}
     className={cn(styles.buttonBox)}
   >

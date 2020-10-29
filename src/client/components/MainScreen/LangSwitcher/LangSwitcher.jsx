@@ -10,7 +10,9 @@ const LangSwitcher = () => {
     <div
       tabIndex={0}
       role="button"
-      onKeyDown={changeLang}
+      onKeyDown={(e) => {
+        if (e.keyCode === 13) changeLang();
+      }}
       className={cn(styles.switcherBox)}
       onClick={changeLang}
     >

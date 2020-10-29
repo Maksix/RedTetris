@@ -13,9 +13,11 @@ const OrangeG = () => {
   };
   return (
     <div
-      tabIndex={0}
+      tabIndex={-1}
       role="button"
-      onKeyDown={handleResetAnimation}
+      onKeyDown={(e) => {
+        if (e.keyCode === 13) handleResetAnimation();
+      }}
       style={{ '--duration': `${getAnimationSpeed()}s`, '--delay': `${getAnimationDelay() + 2}s` }}
       className={cn(styles.boxContainer, styles.left70, resetAnimation ? styles.resetAnimation : '')}
       onClick={handleResetAnimation}
