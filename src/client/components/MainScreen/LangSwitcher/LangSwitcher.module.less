@@ -8,8 +8,17 @@
   width: 80px;
   height: 80px;
   font-size: @menuFontSize;
-  background-color: @purpleDark;
-  color: white;
+  transition: 1s;
+
+  &.dark {
+    background-color: @purpleDark;
+    color: @textColorDark;
+  }
+
+  &.light {
+    background-color: @purpleLight;
+    color: @textColorLight;
+  }
 
   .text {
     margin: auto;
@@ -17,6 +26,6 @@
 }
 
 .switcherBox:focus {
-  background-color: lighten(@purpleDark, 15%)
+  outline: 1px solid @logoColor;
 }
 

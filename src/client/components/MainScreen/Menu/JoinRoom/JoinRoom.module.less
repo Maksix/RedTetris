@@ -9,29 +9,38 @@
   display: flex;
   font-size: @menuFontSize;
   margin: 50px 0;
-  background-color: @purpleDark;
+  transition: 1s;
 
   .input {
-    background-color: @purpleDark;
     width: 440px;
     height: 75px;
     border: none;
     outline: none;
     font-family: @tetrisFont;
     font-size: @menuFontSize;
-    color: white;
     margin: auto;
+    transition: 1s;
   }
 
   .input::placeholder {
+    color: inherit;
     text-align: center;
     font-family: @tetrisFont;
     word-spacing: 10px;
-    color: white;
     font-size: @menuFontSize;
   }
 
   .input:focus::placeholder {
     font-size: 28px;
   }
+}
+
+&.dark {
+  background-color: @purpleDark;
+  color: @textColorDark;
+}
+
+&.light {
+  background-color: @purpleLight;
+  color: @textColorLight;
 }

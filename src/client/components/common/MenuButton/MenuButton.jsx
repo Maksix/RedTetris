@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import cn from 'classnames';
+import { connect } from 'react-redux';
 import styles from './MenuButton.less';
 
 const MenuButton = ({ text, onClick, theme }) => (
@@ -20,12 +21,15 @@ const MenuButton = ({ text, onClick, theme }) => (
 MenuButton.propTypes = {
   onClick: PropTypes.func,
   text: PropTypes.string.isRequired,
-  theme: PropTypes.oneOf(['dark', 'light']),
+  theme: PropTypes.oneOf(['dark', 'light']).isRequired,
 };
 
 MenuButton.defaultProps = {
   onClick: () => {},
-  theme: 'dark',
 };
 
-export default MenuButton;
+const mapStateToProps = (state) => ({
+  theme: state.theme.theme,
+});
+
+export default connect(mapStateToProps)(MenuButton);

@@ -1,13 +1,11 @@
-/* eslint-disable */
+import { SWITCH_THEME } from './types';
 
-import { SWITCH_THEME } from "./types"
-
-const initialState = {theme: 'dark'};
+const initialState = { theme: 'dark' };
 
 const themeReducer = (state = initialState, action) => {
   switch (action.type) {
     case SWITCH_THEME:
-      return { ...state, theme: action.payload }
+      return { ...state, theme: action.payload };
     default: return state;
   }
 };
