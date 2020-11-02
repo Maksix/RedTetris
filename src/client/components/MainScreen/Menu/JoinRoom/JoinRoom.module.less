@@ -1,37 +1,56 @@
 @import '../../../../styles/fonts';
 @import '../../../../styles/colors';
 
-.inputBox {
-  word-spacing: 10px;
-  width: 480px;
-  height: 100px;
-  max-width: 100%;
-  display: flex;
-  font-size: @menuFontSize;
-  margin: 50px 0;
-  transition: 1s;
+.joinBox {
+  position: relative;
 
-  .input {
-    width: 440px;
-    height: 75px;
-    border: none;
-    outline: none;
-    font-family: @tetrisFont;
-    font-size: @menuFontSize;
-    margin: auto;
-    transition: 1s;
-  }
-
-  .input::placeholder {
-    color: inherit;
-    text-align: center;
-    font-family: @tetrisFont;
+  .inputBox {
     word-spacing: 10px;
+    width: 480px;
+    height: 100px;
+    max-width: 100%;
+    display: flex;
     font-size: @menuFontSize;
+    margin: 50px 0;
+    transition: 1s;
+
+    .input {
+      width: 440px;
+      height: 75px;
+      border: none;
+      outline: none;
+      font-family: @tetrisFont;
+      font-size: @menuFontSize;
+      margin: auto;
+      transition: 1s;
+    }
+
+    .input::placeholder {
+      color: inherit;
+      text-align: center;
+      font-family: @tetrisFont;
+      word-spacing: 10px;
+      font-size: @menuFontSize;
+    }
+
+    .input:focus::placeholder {
+      font-size: 28px;
+    }
   }
 
-  .input:focus::placeholder {
-    font-size: 28px;
+  .joinButton {
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 520px;
+    height: 100px;
+    width: 100px;
+
+    .joinIcon {
+      margin: auto;
+      font-size: 60px;
+    }
   }
 }
 
