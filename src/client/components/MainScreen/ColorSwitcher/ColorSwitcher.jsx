@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
+import { switchTheme } from 'actions/themeAction';
+import useComponentDidUpdate from 'hooks/useComponentDidUpdate';
 import styles from './ColorSwitcher.module.less';
-import { switchTheme } from '../../../actions/themeAction';
-import useComponentDidUpdate from '../../../hooks/useComponentDidUpdate';
 
 const ColorSwitcher = ({ theme, switchThemeAction }) => {
   useComponentDidUpdate(() => {

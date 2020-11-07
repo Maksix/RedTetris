@@ -6,6 +6,7 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
+    'plugin:react-hooks/recommended',
   ],
   globals: {
     Atomics: 'readonly',
@@ -26,5 +27,12 @@ module.exports = {
     'react/jsx-filename-extension': 0,
     'react/no-array-index-key': 0,
     'import/no-extraneous-dependencies': 0,
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        moduleDirectory: ['node_modules', 'src/client/'],
+      },
+    },
   },
 };

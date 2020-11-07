@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
-import { getAnimationDelay, getAnimationSpeed } from '../../../../helpers/helpers';
+import { getAnimationDelay, getAnimationSpeed } from 'helpers/helpers';
 import styles from '../BackgroundScreen.less';
 
 const RedSquare = () => {

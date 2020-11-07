@@ -3,9 +3,9 @@ import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import CloseButton from 'components/common/CloseButton/CloseButton';
+import MenuButton from 'components/common/MenuButton/MenuButton';
 import styles from './Leaderboard.module.less';
-import CloseButton from '../../../common/CloseButton/CloseButton';
-import MenuButton from '../../../common/MenuButton/MenuButton';
 
 const Leaderboard = ({ theme }) => {
   const { t } = useTranslation();
