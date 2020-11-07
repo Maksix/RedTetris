@@ -34,6 +34,7 @@ const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
 
 const isExtendingEslintConfig = process.env.EXTEND_ESLINT === 'true';
+// const ESLintPlugin = require('eslint-webpack-plugin');
 
 const imageInlineSizeLimit = parseInt(
   process.env.IMAGE_INLINE_SIZE_LIMIT || '10000',
@@ -273,7 +274,7 @@ module.exports = function (webpackEnv) {
       // We placed these paths second because we want `node_modules` to "win"
       // if there are any conflicts. This matches Node resolution mechanism.
       // https://github.com/facebook/create-react-app/issues/253
-      modules: ['node_modules', 'src/client', paths.appNodeModules].concat(
+      modules: ['node_modules', 'src/client', 'src', paths.appNodeModules].concat(
         modules.additionalModulePaths || [],
       ),
       // These are the reasonable defaults supported by the Node ecosystem.
@@ -327,13 +328,13 @@ module.exports = function (webpackEnv) {
           test: /\.(js|mjs|jsx|ts|tsx)$/,
           enforce: 'pre',
           use: [
+            'babel-loader',
             {
               options: {
-                cache: true,
+                cache: false,
                 formatter: require.resolve('react-dev-utils/eslintFormatter'),
                 eslintPath: require.resolve('eslint'),
                 resolvePluginsRelativeTo: __dirname,
-
               },
               loader: require.resolve('eslint-loader'),
             },
