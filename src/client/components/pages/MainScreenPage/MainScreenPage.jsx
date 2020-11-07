@@ -7,7 +7,7 @@ import styles from './MainScreen.module.less';
 import ColorSwitcher from './ColorSwitcher/ColorSwitcher';
 import LangSwitcher from './LangSwitcher/LangSwitcher';
 
-const MainScreen = () => (
+export const MainScreenPage = () => (
   <>
     <div className={cn(styles.mainMenu)}>
       <div className={cn(styles.logoRow)}>
@@ -24,5 +24,3 @@ const MainScreen = () => (
     <BackgroundScreen />
   </>
 );
-
-export default MainScreen;

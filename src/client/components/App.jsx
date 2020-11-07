@@ -1,11 +1,24 @@
 import React from 'react';
 import './App.less';
-import MainScreen from './MainScreen/MainScreen';
+import { Route, Switch } from 'react-router-dom';
+import { Routes } from 'constants/routes';
 
 function App() {
   return (
     <>
-      <MainScreen />
+      <Switch>
+        {Routes.map(({
+          path, Component, exact,
+        }) => (
+          <Route
+            key={path}
+            path={path}
+            exact={exact}
+            render={(props) => <Component {...props} />}
+          />
+        ))}
+        <Route component={() => <div> not found</div>} />
+      </Switch>
     </>
   );
 }

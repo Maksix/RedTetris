@@ -6,13 +6,16 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux'
 import App from './components/App';
 import rootReducer from './reducers/rootReducer';
+import {BrowserRouter} from "react-router-dom";
 
 const store = createStore(rootReducer);
 ReactDOM.render(
   <React.StrictMode>
     <Suspense fallback={<div>loading</div>}>
       <Provider store={store}>
-        <App />
+          <BrowserRouter>
+              <App />
+          </BrowserRouter>
       </Provider>
     </Suspense>
   </React.StrictMode>,

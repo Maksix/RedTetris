@@ -27,6 +27,9 @@ module.exports = {
     'react/jsx-filename-extension': 0,
     'react/no-array-index-key': 0,
     'import/no-extraneous-dependencies': 0,
+    'import/prefer-default-export': 0,
+    'react/jsx-props-no-spreading': 0,
+    'import/named': 0,
   },
   settings: {
     'import/resolver': {
@@ -35,4 +38,5 @@ module.exports = {
       },
     },
   },
+  parser: 'babel-eslint',
 };
