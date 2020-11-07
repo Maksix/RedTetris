@@ -4,6 +4,7 @@
     "startGame": "New game",
     "joinRoom": "Join room",
     "joinRoomPlaceholder": "Enter room name",
-    "leaderboard": "Leaderboard"
+    "leaderboard": "Leaderboard",
+    "enterUsername": "Please enter your username"
   }
 }

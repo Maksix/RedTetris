@@ -13,7 +13,6 @@ const JoinRoom = ({ theme }) => {
   const onFocus = (e) => (e.target.placeholder = t('main.joinRoomPlaceholder'));
   const onRoomNameChange = (e) => {
     setShowButton(e.target.value.length >= 5);
-    console.log(e.target.value.length);
     if (e.target.value.length <= 5) setRoomName(e.target.value);
   };
 
