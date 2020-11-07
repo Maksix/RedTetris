@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
+    'jest/globals': true,
   },
   extends: [
     'plugin:react/recommended',
@@ -21,6 +22,7 @@ module.exports = {
   },
   plugins: [
     'react',
+    'jest',
   ],
   rules: {
     'no-return-assign': 0,
