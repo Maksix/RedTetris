@@ -19,25 +19,23 @@ const UsernameModal = ({ theme, username, setUsernameAction }) => {
   };
 
   return (
-    <div className={cn(styles.modalBox, styles[theme])}>
-      <div className={cn(styles.modalWindow, styles[theme])}>
-        <div className={cn(styles.inputBox, styles[theme])}>
-          <input
-            type="text"
-            className={cn(styles.input, styles[theme])}
-            onChange={(e) => onInputChange(e)}
-            onFocus={(e) => onFocus(e)}
-            onBlur={(e) => onFocusOut(e)}
-            value={inputUsername}
-            placeholder={t('main.enterUsername')}
-          />
-        </div>
-        <button onClick={() => setUsernameAction(inputUsername)} type="button" disabled={disableButton} className={cn(styles.enterButton, styles[theme])}>
-          <span className={cn('material-icons', styles.enterIcon)}>
-            play_arrow
-          </span>
-        </button>
+    <div className={cn(styles.modalWindow, styles[theme])}>
+      <div className={cn(styles.inputBox, styles[theme])}>
+        <input
+          type="text"
+          className={cn(styles.input, styles[theme])}
+          onChange={(e) => onInputChange(e)}
+          onFocus={(e) => onFocus(e)}
+          onBlur={(e) => onFocusOut(e)}
+          value={inputUsername}
+          placeholder={t('main.enterUsername')}
+        />
       </div>
+      <button onClick={() => setUsernameAction(inputUsername)} type="button" disabled={disableButton} className={cn(styles.enterButton, styles[theme])}>
+        <span className={cn('material-icons', styles.enterIcon)}>
+          play_arrow
+        </span>
+      </button>
     </div>
   );
 };
