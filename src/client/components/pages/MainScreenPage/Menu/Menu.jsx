@@ -17,16 +17,16 @@ const Menu = ({ username }) => {
   const handleStartGame = useCallback(() => history.push(paths.game), [history]);
 
   return (
-    <div className={cn(styles.menuBlock)}>
+    <>
       {username
         ? (
-          <>
+          <div className={cn(styles.menuBlock)}>
             <MenuButton text={t('main.startGame')} onClick={handleStartGame} />
             <JoinRoom />
             <Leaderboard />
-          </>
+          </div>
         ) : <UsernameModal /> }
-    </div>
+    </>
   );
 };
 

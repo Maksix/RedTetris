@@ -19,7 +19,7 @@ const UsernameModal = ({ theme, username, setUsernameAction }) => {
   };
 
   return (
-    <div className={cn(styles.modalWindow, styles[theme])}>
+    <>
       <div className={cn(styles.inputBox, styles[theme])}>
         <input
           type="text"
@@ -36,7 +36,7 @@ const UsernameModal = ({ theme, username, setUsernameAction }) => {
           play_arrow
         </span>
       </button>
-    </div>
+    </>
   );
 };
 
