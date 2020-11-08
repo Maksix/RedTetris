@@ -1,4 +1,4 @@
 export const paths = {
   mainScreen: '/',
-  game: '/game',
+  game: '/#:room[:name]',
 };

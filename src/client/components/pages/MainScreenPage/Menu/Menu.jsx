@@ -3,18 +3,21 @@ import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
 import MenuButton from 'components/common/MenuButton/MenuButton';
 import { useHistory } from 'react-router-dom';
-import { paths } from 'constants/paths';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './Menu.module.less';
 import Leaderboard from './Leaderboard/Leaderboard';
 import JoinRoom from './JoinRoom/JoinRoom';
 import UsernameModal from '../UsernameModal/UsernameModal';
+import { getRandomRoomName } from '../../../../helpers/helpers';
 
 const Menu = ({ username }) => {
   const { t } = useTranslation();
   const history = useHistory();
-  const handleStartGame = useCallback(() => history.push(paths.game), [history]);
+  const handleStartGame = useCallback(() => {
+    const roomName = getRandomRoomName();
+    history.push(`/#${roomName}[${username}]`);
+  }, [history, username]);
 
   return (
     <>

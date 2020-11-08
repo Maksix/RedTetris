@@ -12,6 +12,7 @@ const Routes = [
   },
   {
     path: paths.game,
+    exact: false,
     Component: GamePage,
   },
 ];
