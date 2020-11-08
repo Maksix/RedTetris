@@ -3,7 +3,6 @@ import './App.less';
 import io from 'socket.io-client';
 import { Route, Switch } from 'react-router-dom';
 import { Routes } from 'constants/routes';
-import GamePage from './pages/GamePage';
 
 function App() {
   io('localhost:8000', {
@@ -15,9 +14,6 @@ function App() {
   return (
     <>
       <Switch>
-        <Route path="/#:room[:name]">
-          <GamePage />
-        </Route>
         {Routes.map(({
           path, Component, exact,
         }) => (

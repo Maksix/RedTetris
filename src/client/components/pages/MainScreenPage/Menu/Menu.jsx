@@ -16,7 +16,7 @@ const Menu = ({ username }) => {
   const history = useHistory();
   const handleStartGame = useCallback(() => {
     const roomName = getRandomRoomName();
-    history.push(`/#${roomName}[${username}]`);
+    history.push(`/${roomName}[${username}]`);
   }, [history, username]);
 
   return (
