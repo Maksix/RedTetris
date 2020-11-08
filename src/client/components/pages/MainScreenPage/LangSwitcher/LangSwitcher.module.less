@@ -1,0 +1,31 @@
+@import 'styles/colors';
+@import 'styles/fonts';
+
+.switcherBox {
+  outline: none;
+  display: flex;
+  cursor: pointer;
+  width: 80px;
+  height: 80px;
+  font-size: @menuFontSize;
+  transition: 1s;
+
+  &.dark {
+    background-color: @purpleDark;
+    color: @textColorDark;
+  }
+
+  &.light {
+    background-color: @purpleLight;
+    color: @textColorLight;
+  }
+
+  .text {
+    margin: auto;
+  }
+}
+
+.switcherBox:focus {
+  outline: 1px solid @logoColor;
+}
+

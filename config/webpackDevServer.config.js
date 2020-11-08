@@ -1,5 +1,3 @@
-'use strict';
-
 const fs = require('fs');
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware');
@@ -14,7 +12,7 @@ const sockHost = process.env.WDS_SOCKET_HOST;
 const sockPath = process.env.WDS_SOCKET_PATH; // default: '/sockjs-node'
 const sockPort = process.env.WDS_SOCKET_PORT;
 
-module.exports = function(proxy, allowedHost) {
+module.exports = function (proxy, allowedHost) {
   return {
     // WebpackDevServer 2.4.3 introduced a security fix that prevents remote
     // websites from potentially accessing local content through DNS rebinding:
@@ -65,10 +63,10 @@ module.exports = function(proxy, allowedHost) {
     hot: true,
     // Use 'ws' instead of 'sockjs-node' on server since we're using native
     // websockets in `webpackHotDevClient`.
-    transportMode: 'ws',
+    // transportMode: 'ws', // TODO
     // Prevent a WS client from getting injected as we're already including
     // `webpackHotDevClient`.
-    injectClient: false,
+    // injectClient: false,//TODO
     // Enable custom sockjs pathname for websocket connection to hot reloading server.
     // Enable custom sockjs hostname, pathname and port for websocket connection
     // to hot reloading server.

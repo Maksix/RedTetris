@@ -1,0 +1,32 @@
+@import 'styles/colors';
+
+.colorBox {
+  outline: none;
+  display: flex;
+  cursor: pointer;
+  width: 80px;
+  height: 80px;
+  transition: 1s;
+
+  .icon {
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+  }
+}
+
+.dark {
+  color: @sunColor;
+  background-color: @backgroundSunColor;
+}
+
+.light {
+  color: @moonColor;
+  background-color: @backgroundMoonColor;
+}
+
+.colorBox:focus {
+  outline: 1px solid @logoColor;
+}
+
