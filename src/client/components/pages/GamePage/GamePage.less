@@ -1,9 +1,11 @@
 @import "styles/colors";
+@import "styles/vars";
 
 .container {
   display: flex;
   justify-content: space-between;
   height: 100%;
+  padding: @appPaddingSize;
 
   &.dark {
     color: @textColorDark;
@@ -17,7 +19,6 @@
 .section {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .title {

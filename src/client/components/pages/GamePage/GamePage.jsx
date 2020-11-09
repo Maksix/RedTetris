@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import styles from './GamePage.less';
+import { Board } from './Board';
 
 export const GamePage = ({ theme }) => {
   const playersContent = useMemo(() => {
@@ -18,7 +19,7 @@ export const GamePage = ({ theme }) => {
         <div className={styles.title}>Игроки:</div>
         <div>{playersContent}</div>
       </div>
-      <div>BOARD</div>
+      <Board />
       <div>
         <div className={styles.title}>Очки: 1515</div>
         <div className={styles.title}>Уровень: 6</div>

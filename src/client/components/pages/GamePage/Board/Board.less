@@ -1,0 +1,13 @@
+@import "styles/vars";
+@cellCountVertical: 20;
+@cellSize: calc((100vh / @cellCountVertical - (@appPaddingSize * 2 / @cellCountVertical)));
+
+.row {
+  display: flex;
+}
+
+.cell {
+  width: @cellSize;
+  height: @cellSize;
+  border: 1px solid white;
+}

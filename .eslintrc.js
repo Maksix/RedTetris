@@ -32,6 +32,9 @@ module.exports = {
     'import/prefer-default-export': 0,
     'react/jsx-props-no-spreading': 0,
     'import/named': 0,
+    'react-hooks/exhaustive-deps': ['warn', {
+      additionalHooks: '(useComponentDidUpdate)',
+    }],
   },
   settings: {
     'import/resolver': {
