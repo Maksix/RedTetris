@@ -7,7 +7,8 @@ import { Routes } from 'constants/routes';
 function App() {
   io('localhost:8000', {
     query: {
-      message: 'hello',
+      playerName: 'test',
+      roomName: 'newRoom',
     },
   });
 
