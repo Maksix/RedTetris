@@ -9,7 +9,7 @@ import styles from './Menu.module.less';
 import Leaderboard from './Leaderboard/Leaderboard';
 import JoinRoom from './JoinRoom/JoinRoom';
 import UsernameModal from '../UsernameModal/UsernameModal';
-import { getRandomRoomName } from '../../../../helpers/helpers';
+import { getRandomRoomName } from 'helpers/helpers';
 
 const Menu = ({ username }) => {
   const { t } = useTranslation();
