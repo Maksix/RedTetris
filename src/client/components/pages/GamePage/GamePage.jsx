@@ -1,21 +1,35 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
+import io from 'socket.io-client';
 import styles from './GamePage.less';
 import { Board } from './Board';
 
-export const GamePage = ({ theme }) => {
+export const GamePage = ({ theme, match }) => {
+  const { room, name } = match.params;
   const playersContent = useMemo(() => {
     const players = ['jlesch', 'wjeyne-d', 'gmors-um'];
     return (
       players.map((player) => <div className={styles.text} key={player}>{player}</div>)
     );
   }, []);
+  useEffect(() => {
+    io('localhost:8000', {
+      query: {
+        playerName: name,
+        roomName: room,
+      },
+    });
+  }, [name, room]);
 
   return (
     <div className={cn(styles.container, styles[theme])}>
       <div className={styles.section}>
-        <div className={styles.title}>Комната  4</div>
+        <div className={styles.title}>
+          Комната
+          &nbsp;
+          {room}
+        </div>
         <div className={styles.title}>Игроки:</div>
         <div>{playersContent}</div>
       </div>
@@ -32,5 +46,7 @@ export const GamePage = ({ theme }) => {
 };
 
 GamePage.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  match: PropTypes.any.isRequired,
   theme: PropTypes.oneOf(['dark', 'light']).isRequired,
 };

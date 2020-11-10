@@ -10,10 +10,6 @@ const server = http.createServer(app);
 const io = sock(server);
 const rooms = [];
 
-// testing data
-const testingPlayer = new Player('player', 'testId');
-rooms['newRoom'] = new Room('roomName', testingPlayer);
-
 io.on('connection', async (socket) => {
   const { roomName, playerName } = socket.handshake.query;
   if (!rooms[roomName]) {
@@ -21,13 +17,14 @@ io.on('connection', async (socket) => {
   } else {
     rooms[roomName].addPlayer(new Player(playerName, socket.id));
   }
+  console.log(`player ${playerName} joined ${roomName}`);
   socket.join(roomName);
 
   socket.on('disconnecting', () => {
     const socketRooms = Object.keys(socket.rooms);
     console.log(socketRooms);
   });
-  console.log('rooms are', rooms);
+  // console.log('rooms are', rooms);
 });
 
 server.listen(port, () => {
