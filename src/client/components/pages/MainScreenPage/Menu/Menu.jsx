@@ -5,11 +5,11 @@ import MenuButton from 'components/common/MenuButton/MenuButton';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { getRandomRoomName } from 'helpers/helpers';
 import styles from './Menu.module.less';
 import Leaderboard from './Leaderboard/Leaderboard';
 import JoinRoom from './JoinRoom/JoinRoom';
 import UsernameModal from '../UsernameModal/UsernameModal';
-import { getRandomRoomName } from 'helpers/helpers';
 
 const Menu = ({ username }) => {
   const { t } = useTranslation();
