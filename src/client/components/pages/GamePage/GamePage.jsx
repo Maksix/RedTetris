@@ -14,12 +14,14 @@ export const GamePage = ({ theme, match }) => {
     );
   }, []);
   useEffect(() => {
-    io('localhost:8000', {
+    const socket = io('localhost:8000', {
       query: {
         playerName: name,
         roomName: room,
       },
     });
+    socket.on('test', (data) => console.log(data));
+    socket.emit('here', 'qwerty');
   }, [name, room]);
 
   return (

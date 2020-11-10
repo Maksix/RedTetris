@@ -1,21 +1,21 @@
-/* eslint-disable */
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './i18n';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux'
-import App from './components/App';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import thunk from 'redux-thunk';
 import rootReducer from './reducers/rootReducer';
-import {BrowserRouter} from "react-router-dom";
+import App from './components/App';
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 ReactDOM.render(
   <React.StrictMode>
     <Suspense fallback={<div>loading</div>}>
       <Provider store={store}>
-          <BrowserRouter>
-              <App />
-          </BrowserRouter>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </Provider>
     </Suspense>
   </React.StrictMode>,
