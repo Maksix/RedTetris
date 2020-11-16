@@ -1,8 +1,13 @@
 import { connect } from 'react-redux';
 import { GamePage } from './GamePage';
+import { joinRoom } from '../../../actions/joinRoomAction';
 
 const mapStateToProps = (state) => ({
   theme: state.theme.theme,
 });
 
-export default connect(mapStateToProps)(GamePage);
+const mapDispatchToProps = {
+  joinRoomAction: joinRoom,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(GamePage);

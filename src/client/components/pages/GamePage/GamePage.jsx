@@ -1,17 +1,20 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import styles from './GamePage.less';
 import { Board } from './Board';
 
-export const GamePage = ({ theme, match }) => {
-  const { room } = match.params;
+export const GamePage = ({ theme, match, joinRoomAction }) => {
+  const { room, name } = match.params;
   const playersContent = useMemo(() => {
     const players = ['jlesch', 'wjeyne-d', 'gmors-um'];
     return (
       players.map((player) => <div className={styles.text} key={player}>{player}</div>)
     );
   }, []);
+  useEffect(() => {
+    joinRoomAction(name, room);
+  }, [room, name, joinRoomAction]);
 
   return (
     <div className={cn(styles.container, styles[theme])}>
@@ -39,5 +42,6 @@ export const GamePage = ({ theme, match }) => {
 GamePage.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   match: PropTypes.any.isRequired,
+  joinRoomAction: PropTypes.func.isRequired,
   theme: PropTypes.oneOf(['dark', 'light']).isRequired,
 };
