@@ -2,11 +2,13 @@ import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import io from 'socket.io-client';
+import { useSelector } from 'react-redux';
 import styles from './GamePage.less';
 import { Board } from './Board';
 
-export const GamePage = ({ theme, match }) => {
+export const GamePage = ({ match }) => {
   const { room, name } = match.params;
+  const theme = useSelector((state) => state.theme.theme);
   const playersContent = useMemo(() => {
     const players = ['jlesch', 'wjeyne-d', 'gmors-um'];
     return (
@@ -48,5 +50,4 @@ export const GamePage = ({ theme, match }) => {
 GamePage.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   match: PropTypes.any.isRequired,
-  theme: PropTypes.oneOf(['dark', 'light']).isRequired,
 };

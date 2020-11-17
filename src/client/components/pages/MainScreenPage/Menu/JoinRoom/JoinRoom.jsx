@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import styles from './JoinRoom.module.less';
 
-const JoinRoom = ({ theme }) => {
+const JoinRoom = () => {
+  const theme = useSelector((state) => state.theme.theme);
   const { t } = useTranslation();
   const [roomName, setRoomName] = useState('');
   const [showButton, setShowButton] = useState(false);
@@ -40,12 +40,4 @@ const JoinRoom = ({ theme }) => {
   );
 };
 
-JoinRoom.propTypes = {
-  theme: PropTypes.oneOf(['dark', 'light']).isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  theme: state.theme.theme,
-});
-
-export default connect(mapStateToProps)(JoinRoom);
+export default JoinRoom;

@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUsername } from 'actions/usernameAction';
 import styles from './UsernameModal.module.less';
 
-const UsernameModal = ({ theme, username, setUsernameAction }) => {
+const UsernameModal = () => {
+  const dispatch = useDispatch();
+  const theme = useSelector((state) => state.theme.theme);
+  const username = useSelector((state) => state.username.username);
   const { t } = useTranslation();
   const [inputUsername, setInputUsername] = useState(username);
   const [disableButton, setDisableButton] = useState(true);
@@ -31,7 +33,7 @@ const UsernameModal = ({ theme, username, setUsernameAction }) => {
           placeholder={t('main.enterUsername')}
         />
       </div>
-      <button onClick={() => setUsernameAction(inputUsername)} type="button" disabled={disableButton} className={cn(styles.enterButton, styles[theme])}>
+      <button onClick={() => dispatch(setUsername(inputUsername))} type="button" disabled={disableButton} className={cn(styles.enterButton, styles[theme])}>
         <span className={cn('material-icons', styles.enterIcon)}>
           play_arrow
         </span>
@@ -40,19 +42,4 @@ const UsernameModal = ({ theme, username, setUsernameAction }) => {
   );
 };
 
-const mapDispatchToProps = {
-  setUsernameAction: setUsername,
-};
-
-UsernameModal.propTypes = {
-  theme: PropTypes.oneOf(['dark', 'light']).isRequired,
-  username: PropTypes.string.isRequired,
-  setUsernameAction: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  theme: state.theme.theme,
-  username: state.username.username,
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsernameModal);
+export default UsernameModal;
