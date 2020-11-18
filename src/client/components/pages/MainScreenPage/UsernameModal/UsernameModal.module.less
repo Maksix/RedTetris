@@ -1,85 +1,70 @@
 @import 'styles/colors';
 @import 'styles/fonts';
 
-.modalBox {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+&.dark {
+  background-color: @darkModal;
+}
+
+&.light {
+  background-color: @lightModal;
+}
+
+.inputBox {
+  z-index: 10;
+  width: 480px;
+  height: 100px;
+  max-width: 100%;
+  margin: auto;
+  display: flex;
+
+  .input {
+    word-spacing: 10px;
+    margin: auto;
+    width: 440px;
+    height: 100px;
+    border: none;
+    outline: none;
+    font-family: @tetrisFont;
+    font-size: 20px;
+  }
+
+  .input::placeholder {
+    color: inherit;
+    text-align: center;
+    font-family: @tetrisFont;
+    word-spacing: 10px;
+    font-size: 20px;
+  }
+}
+
+.enterButton {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  height: 100px;
+  width: 100px;
+  transition: 1s;
+  margin: 50px auto auto;
+
+  .enterIcon {
+    margin: auto;
+    font-size: 60px;
+  }
+}
+
+  .enterButton:disabled {
+    cursor: auto;
+    background-color: grey;
+  }
 
   &.dark {
-    background-color: @darkModal;
+    background-color: @bgColorDark;
   }
 
   &.light {
-    background-color: @lightModal;
+    background-color: @bgColorLight;
   }
-
-  .modalWindow {
-    z-index: 5;
-    margin: 250px auto auto;
-    width: 800px;
-    height: 500px;
-    padding: 100px;
-
-    .inputBox {
-      width: 600px;
-      height: 100px;
-      max-width: 100%;
-      margin-bottom: 50px;
-
-      .input {
-        word-spacing: 10px;
-        margin-left: 20px;
-        padding: 0;
-        width: 500px;
-        height: 100px;
-        border: none;
-        outline: none;
-        font-family: @tetrisFont;
-        font-size: 24px;
-      }
-
-      .input::placeholder {
-        color: inherit;
-        text-align: center;
-        font-family: @tetrisFont;
-        word-spacing: 10px;
-        font-size: 24px;
-      }
-    }
-
-    .enterButton {
-      outline: none;
-      border: none;
-      margin: auto;
-      cursor: pointer;
-      display: flex;
-      height: 100px;
-      width: 100px;
-      transition: 0.5s;
-
-      .enterIcon {
-        margin: auto;
-        font-size: 60px;
-      }
-    }
-
-    .enterButton:disabled {
-      cursor: auto;
-      background-color: grey;
-    }
-
-    &.dark {
-      background-color: @bgColorDark;
-    }
-
-    &.light {
-      background-color: @bgColorLight;
-    }
-  }
-}
 
 &.dark {
   background-color: @purpleDark;
