@@ -5,6 +5,7 @@
     "joinRoom": "Войти в комнату",
     "joinRoomPlaceholder": "Введите имя комнаты",
     "leaderboard": "Топ игроков",
-    "enterUsername": "Введите никнейм"
+    "enterUsername": "Введите никнейм",
+    "usernameHint": "Разрешены символы a-z, A-Z, 0-9"
   }
 }

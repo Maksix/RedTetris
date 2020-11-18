@@ -10,12 +10,14 @@
 }
 
 .inputBox {
+  position: relative;
   z-index: 10;
   width: 480px;
   height: 100px;
   max-width: 100%;
   margin: auto;
   display: flex;
+  flex-direction: column;
 
   .input {
     word-spacing: 10px;
@@ -34,6 +36,14 @@
     font-family: @tetrisFont;
     word-spacing: 10px;
     font-size: 20px;
+  }
+
+  .inputRules {
+    left: 100px;
+    top: 75px;
+    position: absolute;
+    word-spacing: 5px;
+    font-size: 10px;
   }
 }
 
