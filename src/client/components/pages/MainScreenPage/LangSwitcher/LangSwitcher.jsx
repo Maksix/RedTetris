@@ -1,12 +1,12 @@
 import React from 'react';
 import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import styles from './LangSwitcher.module.less';
 
-const LangSwitcher = ({ theme }) => {
+const LangSwitcher = () => {
   const { t, i18n } = useTranslation();
+  const theme = useSelector((state) => state.theme.theme);
   const changeLang = () => i18n.changeLanguage(i18n.language === 'ru-RU' ? 'en-US' : 'ru-RU');
   return (
     <div
@@ -23,12 +23,4 @@ const LangSwitcher = ({ theme }) => {
   );
 };
 
-LangSwitcher.propTypes = {
-  theme: PropTypes.oneOf(['dark', 'light']).isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  theme: state.theme.theme,
-});
-
-export default connect(mapStateToProps)(LangSwitcher);
+export default LangSwitcher;

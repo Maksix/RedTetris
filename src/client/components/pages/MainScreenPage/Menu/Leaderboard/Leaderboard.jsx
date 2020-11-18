@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import CloseButton from 'components/common/CloseButton/CloseButton';
 import MenuButton from 'components/common/MenuButton/MenuButton';
 import styles from './Leaderboard.module.less';
 
-const Leaderboard = ({ theme }) => {
+const Leaderboard = () => {
+  const theme = useSelector((state) => state.theme.theme);
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
 
@@ -56,12 +56,4 @@ const Leaderboard = ({ theme }) => {
   );
 };
 
-Leaderboard.propTypes = {
-  theme: PropTypes.oneOf(['dark', 'light']).isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  theme: state.theme.theme,
-});
-
-export default connect(mapStateToProps)(Leaderboard);
+export default Leaderboard;
