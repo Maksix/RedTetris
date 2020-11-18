@@ -1,6 +1,12 @@
 @import "styles/vars";
+@import "styles/colors";
+
 @cellCountVertical: 20;
 @cellSize: calc((100vh / @cellCountVertical - (@appPaddingSize * 2 / @cellCountVertical)));
+
+.container {
+  background-color: @greyColor;
+}
 
 .row {
   display: flex;
