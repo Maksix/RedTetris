@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { useSelector } from 'react-redux';
 import styles from './GamePage.less';
+import { joinRoom } from '../../../actions/joinRoomAction';
 import { Board } from './Board';
 
 export const GamePage = ({ match }) => {
@@ -15,8 +16,8 @@ export const GamePage = ({ match }) => {
     );
   }, []);
   useEffect(() => {
-    joinRoomAction(name, room);
-  }, [room, name, joinRoomAction]);
+    joinRoom(name, room);
+  }, [room, name]);
 
   return (
     <div className={cn(styles.container, styles[theme])}>
