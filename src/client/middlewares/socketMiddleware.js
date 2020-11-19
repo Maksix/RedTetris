@@ -1,18 +1,18 @@
 /* eslint-disable */
-import {OUT_JOIN_ROOM} from "../reducers/types"
+import { OUT_JOIN_ROOM, UPDATE_PLAYER_LIST } from '../reducers/types';
+import { updatePlayerList } from '../actions/updatePlayerListAction';
 
-export const socketMiddleware = socket => store => next => action => {
+export const socketMiddleware = (socket) => (store) => (next) => (action) => {
   console.log(`action ${action.type} invoked`);
-  console.log(`store is`, store.getState());
-  socket.on('UPDATE_PLAYER_LIST', (data) => {
-    console.log(data)
-  })
+  console.log('store is', store.getState());
+  socket.on(UPDATE_PLAYER_LIST, (players) => {
+    store.dispatch(updatePlayerList(players));
+  });
   switch (action.type) {
     case OUT_JOIN_ROOM: {
       const { playerName, roomName } = action.payload;
-      console.log('emitting join room');
-      socket.emit(OUT_JOIN_ROOM, {playerName, roomName})
+      socket.emit(OUT_JOIN_ROOM, { playerName, roomName });
     }
   }
   return next(action);
-}
+};
