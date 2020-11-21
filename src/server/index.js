@@ -21,7 +21,8 @@ const socketService = (socket) => {
     } else if (currentRoom.canJoin()) {
       currentRoom.addPlayer(new Player(playerName, socket.id));
     } else {
-      socket.emit('JOIN_ROOM_ERROR', {error: 'full'})
+      const errorMessage = 'full';
+      socket.emit('JOIN_ROOM_ERROR', errorMessage);
     }
     socket.join(roomName);
     io.in(roomName).emit('UPDATE_PLAYER_LIST', currentRoom.players);
@@ -30,6 +31,7 @@ const socketService = (socket) => {
     const foundRoom = rooms.find((room) => room.players.find((player) => player.id === socket.id));
     if (foundRoom) {
       const newPlayers = foundRoom.players.filter(player => player.id !== socket.id);
+      foundRoom.players = newPlayers;
       io.in(foundRoom.name).emit('UPDATE_PLAYER_LIST', newPlayers);
     }
   });
