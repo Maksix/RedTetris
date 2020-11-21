@@ -1,3 +1,4 @@
+/* eslint-disable */
 const express = require('express');
 const http = require('http');
 const sock = require('socket.io');
@@ -11,21 +12,26 @@ const io = sock(server);
 
 const rooms = [];
 
-const socketService = (client) => {
-  client.on('OUT_JOIN_ROOM', ({ playerName, roomName }) => {
-    if (!rooms[roomName]) {
-      rooms[roomName] = new Room(roomName, new Player(playerName, client.id, 'leader'));
-    } else if (rooms[roomName].canJoin()) {
-      rooms[roomName].addPlayer(new Player(playerName, client.id));
+const socketService = (socket) => {
+  socket.on('OUT_JOIN_ROOM', ({ playerName, roomName }) => {
+    let currentRoom = rooms.find(room => room.name === roomName);
+    if (!currentRoom) {
+      currentRoom = new Room(roomName, new Player(playerName, socket.id, 'leader'));
+      rooms.push(currentRoom);
+    } else if (currentRoom.canJoin()) {
+      currentRoom.addPlayer(new Player(playerName, socket.id));
+    } else {
+      socket.emit('JOIN_ROOM_ERROR', {error: 'full'})
     }
-    console.log(`player ${playerName} joined ${roomName}`);
-    client.join(roomName);
-    io.in(roomName).emit('UPDATE_PLAYER_LIST', rooms[roomName].players);
+    socket.join(roomName);
+    io.in(roomName).emit('UPDATE_PLAYER_LIST', currentRoom.players);
   });
-  client.on('disconnecting', () => {
-    // eslint-disable-next-line no-shadow
-    const rooms = Object.keys(client.rooms);
-    console.log(rooms);
+  socket.on('disconnect', () => {
+    const foundRoom = rooms.find((room) => room.players.find((player) => player.id === socket.id));
+    if (foundRoom) {
+      const newPlayers = foundRoom.players.filter(player => player.id !== socket.id);
+      io.in(foundRoom.name).emit('UPDATE_PLAYER_LIST', newPlayers);
+    }
   });
 };
 
