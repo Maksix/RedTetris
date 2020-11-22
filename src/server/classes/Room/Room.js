@@ -11,11 +11,13 @@ module.exports = class {
 
   removePlayer(playerId) {
     const removePlayer = this.players.find((player) => player.id === playerId);
-    if (removePlayer.role === 'leader' && this.players.length > 1) {
-      const newLeader = this.players.find((player) => player.id !== playerId);
-      newLeader.updateRole('leader');
+    if (removePlayer) {
+      if (removePlayer.role === 'leader' && this.players.length > 1) {
+        const newLeader = this.players.find((player) => player.id !== playerId);
+        newLeader.updateRole('leader');
+      }
+      this.players = this.players.filter((player) => player.id !== playerId);
     }
-    this.players = this.players.filter((player) => player.id !== playerId);
   }
 
   canJoin() {
