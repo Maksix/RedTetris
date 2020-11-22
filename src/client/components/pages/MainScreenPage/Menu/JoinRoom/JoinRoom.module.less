@@ -48,8 +48,19 @@
     width: 100px;
 
     .joinIcon {
+      cursor: pointer;
       margin: auto;
       font-size: 60px;
+    }
+
+    &.dark {
+      background-color: @purpleDark;
+      color: @textColorDark;
+    }
+
+    &.light {
+      background-color: @purpleLight;
+      color: @textColorLight;
     }
   }
 }
