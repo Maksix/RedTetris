@@ -1,28 +1,22 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import io from 'socket.io-client';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './GamePage.less';
+import { joinRoom, leaveRoom } from '../../../actions/roomActions';
 import { Board } from './Board';
 
 export const GamePage = ({ match }) => {
   const { room, name } = match.params;
   const theme = useSelector((state) => state.theme.theme);
-  const playersContent = useMemo(() => {
-    const players = ['jlesch', 'wjeyne-d', 'gmors-um'];
-    return (
-      players.map((player) => <div className={styles.text} key={player}>{player}</div>)
-    );
-  }, []);
+  const dispatch = useDispatch();
+  const players = useSelector((state) => state.playerList.playerList);
   useEffect(() => {
-    io('localhost:8000', {
-      query: {
-        playerName: name,
-        roomName: room,
-      },
-    });
-  }, [name, room]);
+    dispatch(joinRoom(name, room));
+    return () => {
+      dispatch(leaveRoom(name, room));
+    };
+  }, [room, name, dispatch]);
 
   return (
     <div className={cn(styles.container, styles[theme])}>
@@ -33,7 +27,11 @@ export const GamePage = ({ match }) => {
           {room}
         </div>
         <div className={styles.title}>Игроки:</div>
-        <div>{playersContent}</div>
+        <div>
+          {players.map((player) => (
+            <div className={styles.text} key={player.id}>{player.name}</div>
+          ))}
+        </div>
       </div>
       <Board />
       <div>

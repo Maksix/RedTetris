@@ -5,6 +5,7 @@
     "joinRoom": "Join room",
     "joinRoomPlaceholder": "Enter room name",
     "leaderboard": "Leaderboard",
-    "enterUsername": "Please enter your username"
+    "enterUsername": "Please enter your username",
+    "usernameHint": "Only a-z, A-Z, 0-9 symbols allowed"
   }
 }

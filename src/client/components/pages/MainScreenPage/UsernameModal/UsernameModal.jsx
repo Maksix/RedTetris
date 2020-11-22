@@ -12,33 +12,42 @@ const UsernameModal = () => {
   const { t } = useTranslation();
   const [inputUsername, setInputUsername] = useState(username);
   const [disableButton, setDisableButton] = useState(true);
+  const [showHint, setShowHint] = useState(false);
   const onFocus = (e) => (e.target.placeholder = '');
   const onFocusOut = (e) => (e.target.placeholder = t('main.enterUsername'));
   const onInputChange = (e) => {
     const input = e.target.value.trim().slice(0, 12);
-    setDisableButton(input.length < 4);
-    setInputUsername(input);
+    if (!input || /[A-Za-z0-9]/.test(input)) {
+      setShowHint(false);
+      setDisableButton(input.length < 4);
+      setInputUsername(input);
+    } else {
+      setShowHint(true);
+    }
   };
 
   return (
-    <>
-      <div className={cn(styles.inputBox, styles[theme])}>
-        <input
-          type="text"
-          className={cn(styles.input, styles[theme])}
-          onChange={(e) => onInputChange(e)}
-          onFocus={(e) => onFocus(e)}
-          onBlur={(e) => onFocusOut(e)}
-          value={inputUsername}
-          placeholder={t('main.enterUsername')}
-        />
-      </div>
-      <button onClick={() => dispatch(setUsername(inputUsername))} type="button" disabled={disableButton} className={cn(styles.enterButton, styles[theme])}>
-        <span className={cn('material-icons', styles.enterIcon)}>
-          play_arrow
-        </span>
-      </button>
-    </>
+    <form onSubmit={() => dispatch(setUsername(inputUsername))}>
+      <>
+        <div className={cn(styles.inputBox, styles[theme])}>
+          <input
+            type="text"
+            className={cn(styles.input, styles[theme])}
+            onChange={(e) => onInputChange(e)}
+            onFocus={(e) => onFocus(e)}
+            onBlur={(e) => onFocusOut(e)}
+            value={inputUsername}
+            placeholder={t('main.enterUsername')}
+          />
+          {showHint && <span className={cn(styles.inputRules)}>{t('main.usernameHint')}</span>}
+        </div>
+        <button type="submit" disabled={disableButton} className={cn(styles.enterButton, styles[theme])}>
+          <span className={cn('material-icons', styles.enterIcon)}>
+            play_arrow
+          </span>
+        </button>
+      </>
+    </form>
   );
 };
 
