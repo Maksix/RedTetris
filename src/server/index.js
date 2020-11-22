@@ -23,16 +23,24 @@ const socketService = (socket) => {
     } else {
       const errorMessage = 'full';
       socket.emit('JOIN_ROOM_ERROR', errorMessage);
+      return ;
     }
     socket.join(roomName);
     io.in(roomName).emit('UPDATE_PLAYER_LIST', currentRoom.players);
   });
+  socket.on('OUT_LEAVE_ROOM', ({ roomName }) => {
+    const currentRoom = rooms.find(room => room.name === roomName);
+    if (currentRoom) {
+      currentRoom.removePlayer(socket.id);
+      socket.leave(roomName);
+      io.in(roomName).emit('UPDATE_PLAYER_LIST', currentRoom.players);
+    }
+  });
   socket.on('disconnect', () => {
-    const foundRoom = rooms.find((room) => room.players.find((player) => player.id === socket.id));
-    if (foundRoom) {
-      const newPlayers = foundRoom.players.filter(player => player.id !== socket.id);
-      foundRoom.players = newPlayers;
-      io.in(foundRoom.name).emit('UPDATE_PLAYER_LIST', newPlayers);
+    const currentRoom = rooms.find((room) => room.players.find((player) => player.id === socket.id));
+    if (currentRoom) {
+      currentRoom.removePlayer(socket.id);
+      io.in(currentRoom.name).emit('UPDATE_PLAYER_LIST', currentRoom.players);
     }
   });
 };

@@ -24,28 +24,26 @@ const JoinRoom = () => {
 
   return (
     <div className={cn(styles.joinBox)}>
-      <div className={cn(styles.inputBox, styles[theme])}>
-        <input
-          type="text"
-          className={cn(styles.input, styles[theme])}
-          onChange={(e) => onRoomNameChange(e)}
-          value={roomName}
-          placeholder={t('main.joinRoom')}
-          onBlur={(e) => onFocusOut(e)}
-          onFocus={(e) => onFocus(e)}
-        />
-      </div>
-      {showButton && (
+      <form onSubmit={() => joinRoom()}>
+        <div className={cn(styles.inputBox, styles[theme])}>
+          <input
+            type="text"
+            className={cn(styles.input, styles[theme])}
+            onChange={(e) => onRoomNameChange(e)}
+            value={roomName}
+            placeholder={t('main.joinRoom')}
+            onBlur={(e) => onFocusOut(e)}
+            onFocus={(e) => onFocus(e)}
+          />
+        </div>
+        {showButton && (
         <div className={cn(styles.joinButton, styles[theme])}>
-          <button
-            type="button"
-            onClick={() => joinRoom()}
-            className={cn('material-icons', styles.joinIcon, styles[theme])}
-          >
+          <button type="submit" className={cn('material-icons', styles.joinIcon, styles[theme])}>
             play_arrow
           </button>
         </div>
-      )}
+        )}
+      </form>
     </div>
   );
 };

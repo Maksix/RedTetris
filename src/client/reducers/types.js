@@ -3,3 +3,4 @@ export const SET_USERNAME = 'SET_USERNAME';
 export const OUT_JOIN_ROOM = 'OUT_JOIN_ROOM';
 export const UPDATE_PLAYER_LIST = 'UPDATE_PLAYER_LIST';
 export const JOIN_ROOM_ERROR = 'JOIN_ROOM_ERROR';
+export const OUT_LEAVE_ROOM = 'OUT_LEAVE_ROOM';

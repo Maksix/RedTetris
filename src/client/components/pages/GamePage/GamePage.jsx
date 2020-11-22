@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './GamePage.less';
-import { joinRoom } from '../../../actions/joinRoomAction';
+import { joinRoom, leaveRoom } from '../../../actions/roomActions';
 import { Board } from './Board';
 
 export const GamePage = ({ match }) => {
@@ -13,6 +13,9 @@ export const GamePage = ({ match }) => {
   const players = useSelector((state) => state.playerList.playerList);
   useEffect(() => {
     dispatch(joinRoom(name, room));
+    return () => {
+      dispatch(leaveRoom(name, room));
+    };
   }, [room, name, dispatch]);
 
   return (
