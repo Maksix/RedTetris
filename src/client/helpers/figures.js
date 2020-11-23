@@ -1,26 +1,51 @@
-export const figureG = [
-  [{}, { color: 'orange' }, { color: 'dark_orange' }, {}],
-  [{}, { color: 'dark_orange' }, {}, {}],
-  [{}, { color: 'orange' }, {}, {}],
-  [{}, {}, {}, {}],
+export const figure0 = [
+  ['blue', 'dark_blue', null],
+  ['dark_blue', null, null],
+  ['blue', null, null],
 ];
 
-export const figureI = [
-  [{}, {}, { color: 'yellow' }, {}],
-  [{}, {}, { color: 'dark_yellow' }, {}],
-  [{}, {}, { color: 'yellow' }, {}],
-  [{}, {}, { color: 'dark_yellow' }, {}],
+export const figure1 = [
+  [null, null, 'yellow', null],
+  [null, null, 'dark_yellow', null],
+  [null, null, 'yellow', null],
+  [null, null, 'dark_yellow', null],
 ];
 
-export const testSquare = [
-  [{}, { color: 'red' }, { color: 'dark_red' }, {}],
-  [{}, { color: 'dark_red' }, { color: 'red' }, {}, {}],
-  [{}, {}, {}, {}],
-  [{}, {}, {}, {}],
+export const figure2 = [
+  ['red', 'dark_red'],
+  ['dark_red', 'red'],
+];
+
+export const figure3 = [
+  ['orange', null, null],
+  ['dark_orange', null, null],
+  ['orange', 'dark_orange', null],
+];
+
+export const figure4 = [
+  [null, 'green', 'dark_green'],
+  ['green', 'dark_green', null],
+  [null, null, null],
+];
+
+export const figure5 = [
+  ['green', 'dark_green', null],
+  [null, 'green', 'dark_green'],
+  [null, null, null],
+];
+
+export const figure6 = [
+  [null, 'purple', null],
+  ['purple', 'dark_purple', 'purple', null],
+  [null, null, null],
 ];
 
 export const figures = [
-  figureI,
-  figureG,
-  testSquare,
+  figure0,
+  figure1,
+  figure2,
+  figure3,
+  figure4,
+  figure5,
+  figure6,
 ];
