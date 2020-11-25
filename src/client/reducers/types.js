@@ -5,3 +5,5 @@ export const UPDATE_PLAYER_LIST = 'UPDATE_PLAYER_LIST';
 export const JOIN_ROOM_ERROR = 'JOIN_ROOM_ERROR';
 export const OUT_LEAVE_ROOM = 'OUT_LEAVE_ROOM';
 export const UPDATE_ROLE = 'UPDATE_ROLE';
+export const START_GAME = 'START_GAME';
+export const OUT_START_GAME = 'OUT_START_GAME';
