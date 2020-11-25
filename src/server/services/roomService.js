@@ -1,7 +1,7 @@
 const Room = require('../classes/Room/Room');
 const Player = require('../classes/Player/Player');
 const {
-  OUT_JOIN_ROOM, JOIN_ROOM_ERROR, UPDATE_PLAYER_LIST, OUT_LEAVE_ROOM,
+  OUT_JOIN_ROOM, JOIN_ROOM_ERROR, UPDATE_PLAYER_LIST, OUT_LEAVE_ROOM, UPDATE_ROLE,
 } = require('./types');
 
 const onJoinRoom = (socket, io, rooms) => {
@@ -10,6 +10,7 @@ const onJoinRoom = (socket, io, rooms) => {
     if (!currentRoom) {
       currentRoom = new Room(roomName, new Player(playerName, socket.id, 'leader'));
       rooms.push(currentRoom);
+      socket.emit(UPDATE_ROLE, 'leader');
     } else if (currentRoom.canJoin()) {
       currentRoom.addPlayer(new Player(playerName, socket.id));
     } else {
@@ -27,8 +28,13 @@ const onLeaveRoom = (socket, io, rooms) => {
     const currentRoom = rooms.find((room) => room.name === roomName);
     if (currentRoom) {
       currentRoom.removePlayer(socket.id);
+      const newLeader = currentRoom?.players?.find((player) => player.role === 'leader');
       socket.leave(roomName);
-      io.in(roomName).emit(UPDATE_PLAYER_LIST, currentRoom.players);
+      if (newLeader?.id) {
+        io.to(newLeader.id).emit(UPDATE_ROLE, 'leader');
+      }
+      socket.emit(UPDATE_ROLE, 'player');
+      io.in(roomName).emit(UPDATE_PLAYER_LIST, currentRoom?.players);
     }
   });
 };
