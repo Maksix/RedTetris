@@ -38,7 +38,7 @@ export const socketMiddleware = (socket) => (store) => (next) => (action) => {
       break;
     }
     case OUT_START_GAME: {
-      const { options, roomName} = action.payload;
+      const { options, roomName } = action.payload;
       socket.emit(OUT_START_GAME, { roomName, options })
       break;
     }
