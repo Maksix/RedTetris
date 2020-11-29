@@ -8,11 +8,9 @@ const {
 const onJoinRoom = (socket, io, rooms) => {
   socket.on(OUT_JOIN_ROOM, ({ playerName, roomName }) => {
     let currentRoom = rooms.find((room) => room.name === roomName);
-    console.log(currentRoom);
     if (!currentRoom) {
       currentRoom = new Room(roomName, new Player(playerName, socket.id, 'leader'));
       rooms.push(currentRoom);
-      console.log('here');
       socket.emit(UPDATE_ROLE, 'leader');
     } else if (currentRoom.canJoin()) {
       currentRoom.addPlayer(new Player(playerName, socket.id));

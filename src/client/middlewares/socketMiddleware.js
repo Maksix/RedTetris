@@ -11,9 +11,7 @@ import { joinRoomError } from '../actions/roomActions';
 import { updateRole } from '../actions/updateRoleAction';
 import { startGame } from '../actions/gameActions';
 
-export const socketMiddleware = (socket) => (store) => (next) => (action) => {
-  console.log(`action ${action.type} invoked`);
-  console.log('store is', store.getState());
+export const socketMiddleware = (socket) => (store) => {
   socket.on(UPDATE_PLAYER_LIST, (players) => {
     store.dispatch(updatePlayerList(players));
   });
@@ -26,22 +24,28 @@ export const socketMiddleware = (socket) => (store) => (next) => (action) => {
   socket.on(START_GAME, (options) => {
     store.dispatch(startGame(options));
   });
-  switch (action.type) {
-    case OUT_JOIN_ROOM: {
-      const { playerName, roomName } = action.payload;
-      socket.emit(OUT_JOIN_ROOM, { playerName, roomName });
-      break;
+  return next => action => {
+    console.log(`action ${action.type} invoked`);
+    console.log('store is', store.getState());
+    switch (action.type) {
+      case OUT_JOIN_ROOM: {
+        const { playerName, roomName } = action.payload;
+        socket.emit(OUT_JOIN_ROOM, { playerName, roomName });
+        break;
+      }
+      case OUT_LEAVE_ROOM: {
+        const { playerName, roomName } = action.payload;
+        socket.emit(OUT_LEAVE_ROOM, { playerName, roomName });
+        break;
+      }
+      case OUT_START_GAME: {
+        const { options, roomName } = action.payload;
+        socket.emit(OUT_START_GAME, { roomName, options })
+        break;
+      }
     }
-    case OUT_LEAVE_ROOM: {
-      const { playerName, roomName } = action.payload;
-      socket.emit(OUT_LEAVE_ROOM, { playerName, roomName });
-      break;
-    }
-    case OUT_START_GAME: {
-      const { options, roomName } = action.payload;
-      socket.emit(OUT_START_GAME, { roomName, options })
-      break;
-    }
-  }
-  return next(action);
-};
+    return next(action);
+  };
+}
+
+
