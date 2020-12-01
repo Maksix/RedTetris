@@ -7,3 +7,5 @@ export const OUT_LEAVE_ROOM = 'OUT_LEAVE_ROOM';
 export const UPDATE_ROLE = 'UPDATE_ROLE';
 export const START_GAME = 'START_GAME';
 export const OUT_START_GAME = 'OUT_START_GAME';
+export const OUT_GET_PIECES = 'OUT_GET_PIECES';
+export const GET_PIECES = 'GET_PIECES';
