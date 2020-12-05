@@ -4,12 +4,13 @@ import {
   OUT_JOIN_ROOM, OUT_LEAVE_ROOM,
   UPDATE_PLAYER_LIST,
   UPDATE_ROLE,
-  START_GAME, OUT_START_GAME,
+  START_GAME, OUT_START_GAME, OUT_GET_PIECES, GET_PIECES,
 } from '../reducers/types';
 import { updatePlayerList } from '../actions/updatePlayerListAction';
 import { joinRoomError } from '../actions/roomActions';
 import { updateRole } from '../actions/updateRoleAction';
 import { startGame } from '../actions/gameActions';
+import { getPieces } from '../actions/pieceActions';
 
 export const socketMiddleware = (socket) => (store) => {
   socket.on(UPDATE_PLAYER_LIST, (players) => {
@@ -23,6 +24,9 @@ export const socketMiddleware = (socket) => (store) => {
   });
   socket.on(START_GAME, (options) => {
     store.dispatch(startGame(options));
+  });
+  socket.on(GET_PIECES, (pieces) => {
+    store.dispatch(getPieces(pieces));
   });
   return (next) => (action) => {
     console.log(`action ${action.type} invoked`);
@@ -41,6 +45,11 @@ export const socketMiddleware = (socket) => (store) => {
       case OUT_START_GAME: {
         const { options, roomName } = action.payload;
         socket.emit(OUT_START_GAME, { roomName, options });
+        break;
+      }
+      case OUT_GET_PIECES: {
+        const { roomName } = action.payload;
+        socket.emit(OUT_GET_PIECES, { roomName });
         break;
       }
     }

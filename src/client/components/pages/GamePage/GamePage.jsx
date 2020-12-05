@@ -7,6 +7,7 @@ import styles from './GamePage.less';
 import { joinRoom, leaveRoom } from '../../../actions/roomActions';
 import { handleStartGame } from '../../../actions/gameActions';
 import { Board } from './Board';
+import { getNewPieces } from '../../../actions/pieceActions';
 
 export const GamePage = ({ match }) => {
   const { room, name } = match.params;
@@ -16,6 +17,7 @@ export const GamePage = ({ match }) => {
   const options = useSelector((state) => state.game.game.options);
   const role = useSelector((state) => state.role.role);
   const startGame = useCallback(() => dispatch(handleStartGame(options, room)), [options, room]);
+  const getPieces = useCallback(() => dispatch(getNewPieces(room)), [room]);
   useEffect(() => {
     dispatch(joinRoom(name, room));
     return () => {
@@ -45,9 +47,18 @@ export const GamePage = ({ match }) => {
         <div className={styles.text}>Следующая фигура:</div>
         <div className={styles.text}>Поворот фигуры</div>
         <div className={styles.text}>Движения</div>
-        {role === 'leader' &&
-          <div className={styles.title} onClick={() => startGame()}>Start game</div>
-        }
+        {role === 'leader'
+          && (
+          <div
+            className={styles.title}
+            onClick={() => {
+              startGame();
+              getPieces();
+            }}
+          >
+            Start game
+          </div>
+          )}
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ const initialState = { pieces: [] };
 const pieceReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_PIECES:
-      return { ...state, pieces: action.payload };
+      return { ...state, pieces: [...state.pieces, ...action.payload] };
     default: return state;
   }
 };

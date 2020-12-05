@@ -3,6 +3,7 @@ module.exports = class {
     this.name = roomName;
     this.players = [player];
     this.status = 'waiting';
+    this.piecesBlock = [];
   }
 
   addPlayer(player) {
@@ -10,7 +11,7 @@ module.exports = class {
   }
 
   removePlayer(playerId) {
-    const removePlayer = this.players.find((player) => player.id === playerId);
+    const removePlayer = this.findPlayer(playerId);
     if (removePlayer) {
       if (removePlayer.role === 'leader' && this.players.length > 1) {
         const newLeader = this.players.find((player) => player.id !== playerId);
@@ -18,6 +19,10 @@ module.exports = class {
       }
       this.players = this.players.filter((player) => player.id !== playerId);
     }
+  }
+
+  findPlayer(playerId) {
+    return this.players.find((player) => player.id === playerId);
   }
 
   canJoin() {

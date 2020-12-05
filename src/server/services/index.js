@@ -1,6 +1,6 @@
 const { onJoinRoom, onLeaveRoom } = require('./roomService');
 const { onDisconnect } = require('./connectService');
-const { onStartGame } = require('./gameService');
+const { onStartGame, onGetPieces } = require('./gameService');
 
 module.exports = (io) => {
   const rooms = [];
@@ -10,6 +10,7 @@ module.exports = (io) => {
     onLeaveRoom(socket, io, rooms);
     onDisconnect(socket, io, rooms);
     onStartGame(socket, io, rooms);
+    onGetPieces(socket, io, rooms);
   };
 
   io.on('connection', socketService);
