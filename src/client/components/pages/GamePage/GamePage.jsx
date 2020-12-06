@@ -8,6 +8,8 @@ import { joinRoom, leaveRoom } from '../../../actions/roomActions';
 import { handleStartGame } from '../../../actions/gameActions';
 import { Board } from './Board';
 import { getNewPieces } from '../../../actions/pieceActions';
+import LangSwitcher from '../MainScreenPage/LangSwitcher/LangSwitcher';
+import ColorSwitcher from '../MainScreenPage/ColorSwitcher/ColorSwitcher';
 
 export const GamePage = ({ match }) => {
   const { room, name } = match.params;
@@ -27,7 +29,7 @@ export const GamePage = ({ match }) => {
 
   return (
     <div className={cn(styles.container, styles[theme])}>
-      <div className={styles.section}>
+      <div className={styles.leftSection}>
         <div className={styles.title}>
           Комната
           &nbsp;
@@ -40,13 +42,19 @@ export const GamePage = ({ match }) => {
           ))}
         </div>
       </div>
-      <Board />
-      <div>
-        <div className={styles.title}>Очки: 1515</div>
-        <div className={styles.title}>Уровень: 6</div>
-        <div className={styles.text}>Следующая фигура:</div>
-        <div className={styles.text}>Поворот фигуры</div>
-        <div className={styles.text}>Движения</div>
+      <div className={styles.boardSection}>
+        <Board />
+      </div>
+      <div className={cn(styles.optionSection)}>
+        <ColorSwitcher />
+        <LangSwitcher />
+      </div>
+      <div className={cn(styles.rightSection)}>
+        <span className={styles.title}>Очки: 1515</span>
+        <span className={styles.title}>Уровень: 6</span>
+        <span className={styles.text}>Следующая фигура:</span>
+        <span className={styles.text}>Поворот фигуры</span>
+        <span className={styles.text}>Движения</span>
         {role === 'leader'
           && (
           <div
