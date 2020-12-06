@@ -13,7 +13,9 @@ const onJoinRoom = (socket, io, rooms) => {
       rooms.push(currentRoom);
       socket.emit(UPDATE_ROLE, 'leader');
     } else if (currentRoom.canJoin()) {
-      currentRoom.addPlayer(new Player(playerName, socket.id));
+      const role = currentRoom.hasLeader() ? 'player' : 'leader';
+      if (role === 'leader') socket.emit(UPDATE_ROLE, 'leader');
+      currentRoom.addPlayer(new Player(playerName, socket.id, role));
     } else {
       const errorMessage = 'full';
       socket.emit(JOIN_ROOM_ERROR, errorMessage);

@@ -28,4 +28,8 @@ module.exports = class {
   canJoin() {
     return this.status === 'waiting' && this.players.length < 4;
   }
+
+  hasLeader() {
+    return this.players.find((player) => player.role === 'leader');
+  }
 };
