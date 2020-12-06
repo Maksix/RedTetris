@@ -5,6 +5,7 @@ module.exports = class {
     this.name = name;
     this.role = role;
     this.id = id;
+    this.pieceOrder = null;
   }
 
   updateRole(newRole) {

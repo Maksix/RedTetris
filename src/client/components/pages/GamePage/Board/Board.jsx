@@ -34,6 +34,6 @@ export const Board = () => {
   }), []);
 
   return (
-    <div>{boardContent}</div>
+    <div className={styles.container}>{boardContent}</div>
   );
 };

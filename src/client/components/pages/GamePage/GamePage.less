@@ -3,7 +3,6 @@
 
 .container {
   display: flex;
-  justify-content: space-between;
   height: 100%;
   padding: @appPaddingSize;
 
@@ -16,9 +15,39 @@
   }
 }
 
-.section {
+.boardSection {
+  display: flex;
+  width: 40%;
+}
+
+.rightSection {
   display: flex;
   flex-direction: column;
+  text-align: right;
+  width: 25%;
+}
+
+.leftSection {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+.optionSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 10%;
+  min-width: 165px;
+}
+
+@media screen and (max-width: 1700px) {
+  .optionSection {
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 5%;
+    min-width: 80px;
+  }
 }
 
 .title {
