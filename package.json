@@ -71,13 +71,17 @@
     "webpack-manifest-plugin": "2.2.0",
     "workbox-webpack-plugin": "4.3.1"
   },
+  "pre-commit": [
+    "test"
+  ],
   "scripts": {
     "server": "npx nodemon src/server/index.js",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "test:coverage:full": "jest --coverage --collectCoverageFrom='src/**/*.(js|jsx)'"
   },
   "babel": {
     "presets": [

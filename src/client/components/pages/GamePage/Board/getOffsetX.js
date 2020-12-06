@@ -10,15 +10,15 @@ const getMinMax = ([min, max], item, ind) => {
   return [newMin, newMax];
 };
 
-export const getOffsetX = (keyCode) => (board, figure) => ([prevOffsetX, prevOffsetY]) => {
+export const getOffsetX = (keyCode) => (board, figure) => ([prevOffsetX, offsetY]) => {
   const offsetX = prevOffsetX + directions[keyCode];
   const isEmpty = board.every((rowItem, rowInd) => {
-    if (rowInd < prevOffsetY) { // выше фигурки
+    if (rowInd < offsetY) { // борда выше фигурки
       return true;
     }
 
-    if (rowInd < prevOffsetY + figure.length) { // фигурка
-      const figureRowIndex = rowInd - prevOffsetY;
+    if (rowInd < offsetY + figure.length) { // борда в пределах фигурки
+      const figureRowIndex = rowInd - offsetY;
       const minMax = figure[figureRowIndex].reduce(getMinMax, [undefined, undefined]);
       const [min, max] = minMax;
 
@@ -37,12 +37,12 @@ export const getOffsetX = (keyCode) => (board, figure) => ([prevOffsetX, prevOff
       });
     }
 
-    return true; // ниже фигурки
+    return true; // борда ниже фигурки
   });
 
   if (isEmpty) {
-    return [offsetX, prevOffsetY];
+    return [offsetX, offsetY];
   }
 
-  return [prevOffsetX, prevOffsetY];
+  return [prevOffsetX, offsetY];
 };

@@ -1,24 +1,25 @@
-export const getOffsetY = (board, figure, setBoard) => ([prevOffsetX, prevOffsetY]) => {
+export const getOffsetY = (board, figure, setBoard) => ([offsetX, prevOffsetY]) => {
   const offsetY = prevOffsetY + 1;
 
   const isEmpty = board.every((rowItem, rowInd) => {
-    if (rowInd < offsetY) { // выше фигурки
+    if (rowInd < offsetY) { // борда выше фигурки
       return true;
     }
 
-    if (rowInd < offsetY + figure.length) { // фигурка
+    if (rowInd < offsetY + figure.length) { // борда в пределах фигурки
       return rowItem.every((cellItem, cellInd) => {
-        const figureCellIndex = cellInd - prevOffsetX;
+        const figureCellIndex = cellInd - offsetX;
         const figureRowIndex = rowInd - offsetY;
+        console.log(cellItem);
         return !cellItem || !figure[figureRowIndex]?.[figureCellIndex];
       });
     }
 
-    return true; // ниже фигурки
+    return true; // борда ниже фигурки
   });
 
   if (isEmpty) {
-    return [prevOffsetX, offsetY];
+    return [offsetX, offsetY];
   }
 
   // если не поместилось
@@ -29,7 +30,7 @@ export const getOffsetY = (board, figure, setBoard) => ([prevOffsetX, prevOffset
 
     if (rowInd < offsetY + figure.length) { // фигурка
       return rowItem.map((cellItem, cellInd) => {
-        const figureCellIndex = cellInd - prevOffsetX;
+        const figureCellIndex = cellInd - offsetX;
         const figureRowIndex = rowInd - offsetY;
         return figure[figureRowIndex]?.[figureCellIndex] || cellItem;
       });
