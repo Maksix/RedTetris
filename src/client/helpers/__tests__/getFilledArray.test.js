@@ -14,7 +14,7 @@ describe(
     test.each(cases)('Массив из %s с длиной %s',
       (length, expectedLength, expectedArray) => {
         expect(getFilledArray(length)).toHaveLength(expectedLength);
-        expect(getFilledArray(length)).toStrictEqual(expectedArray + 8);
+        expect(getFilledArray(length)).toStrictEqual(expectedArray);
       });
   },
 );
