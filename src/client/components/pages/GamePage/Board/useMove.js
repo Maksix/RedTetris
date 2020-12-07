@@ -18,7 +18,7 @@ export const useMove = (speed = 1000, board, setBoard, figure) => {
 
   useEffect(() => {
     document.addEventListener('keydown', moveX);
-    return () => window.removeEventListener('keydown', moveX);
+    return () => document.removeEventListener('keydown', moveX);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {

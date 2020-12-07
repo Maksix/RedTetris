@@ -29,7 +29,7 @@ module.exports = {
   coveragePathIgnorePatterns: [
     '/node_modules/',
     '^.+\\.jsx\\.snap$',
-    '\\.(css|scss)$',
+    // '\\.(css|scss)$',
     '<rootDir>/src/test_utils/',
     '^(.*)\\/__tests__\\/(.*)$',
   ],

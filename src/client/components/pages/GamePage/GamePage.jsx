@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
+import { joinRoom, leaveRoom } from 'actions/roomActions';
 import styles from './GamePage.less';
-import { joinRoom, leaveRoom } from '../../../actions/roomActions';
 import { Board } from './Board';
 
 export const GamePage = ({ match }) => {
@@ -11,6 +11,7 @@ export const GamePage = ({ match }) => {
   const theme = useSelector((state) => state.theme.theme);
   const dispatch = useDispatch();
   const players = useSelector((state) => state.playerList.playerList);
+
   useEffect(() => {
     dispatch(joinRoom(name, room));
     return () => {

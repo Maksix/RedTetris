@@ -10,7 +10,6 @@ export const getOffsetY = (board, figure, setBoard) => ([offsetX, prevOffsetY]) 
       return rowItem.every((cellItem, cellInd) => {
         const figureCellIndex = cellInd - offsetX;
         const figureRowIndex = rowInd - offsetY;
-        console.log(cellItem);
         return !cellItem || !figure[figureRowIndex]?.[figureCellIndex];
       });
     }
