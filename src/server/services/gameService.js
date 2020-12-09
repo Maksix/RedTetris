@@ -1,5 +1,6 @@
 const {
   OUT_START_GAME, START_GAME, OUT_GET_PIECES, GET_PIECES,
+  BLOCK_ROW, OUT_BLOCK_ROW,
 } = require('./types');
 const Piece = require('../classes/Piece/Piece');
 
@@ -16,6 +17,15 @@ const onStartGame = (socket, io, rooms) => {
     const currentRoom = rooms.find((room) => room.name === roomName);
     if (currentRoom) {
       io.in(roomName).emit(START_GAME, options);
+    }
+  });
+};
+
+const onBLockRow = (socket, io, rooms) => {
+  socket.on(OUT_BLOCK_ROW, ({ roomName }) => {
+    const currentRoom = rooms.find((room) => room.name === roomName);
+    if (currentRoom) {
+      socket.to(roomName).emit(BLOCK_ROW);
     }
   });
 };
@@ -38,4 +48,5 @@ const onGetPieces = (socket, io, rooms) => {
 module.exports = {
   onStartGame,
   onGetPieces,
+  onBLockRow,
 };
