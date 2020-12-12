@@ -2,13 +2,20 @@ import {
   START_GAME,
   OUT_START_GAME,
   BLOCK_ROW,
-  OUT_BLOCK_ROW,
+  OUT_BLOCK_ROW, OUT_CHANGE_MAP,
 } from '../reducers/types';
 
 export function handleStartGame(options, roomName) {
   return {
     type: OUT_START_GAME,
     payload: { options, roomName },
+  };
+}
+
+export function startGame(options) {
+  return {
+    type: START_GAME,
+    payload: options,
   };
 }
 
@@ -25,9 +32,9 @@ export function handleBlockRow(roomName) {
   };
 }
 
-export function startGame(options) {
+export function changeMap(roomName, map) {
   return {
-    type: START_GAME,
-    payload: options,
+    type: OUT_CHANGE_MAP,
+    payload: { roomName, map },
   };
 }

@@ -10,12 +10,12 @@ import {
   OUT_GET_PIECES,
   GET_PIECES,
   BLOCK_ROW,
-  OUT_BLOCK_ROW
-} from '../reducers/types'
+  OUT_BLOCK_ROW, OUT_CHANGE_MAP, CHANGE_MAP,
+} from '../reducers/types';
 import { updatePlayerList } from '../actions/updatePlayerListAction';
 import { joinRoomError } from '../actions/roomActions';
 import { updateRole } from '../actions/updateRoleAction';
-import { startGame, blockRow } from '../actions/gameActions';
+import { startGame, blockRow, handleChangeMap } from '../actions/gameActions';
 import { getPieces } from '../actions/pieceActions';
 
 export const socketMiddleware = (socket) => (store) => {
@@ -35,35 +35,34 @@ export const socketMiddleware = (socket) => (store) => {
     store.dispatch(getPieces(pieces));
   });
   socket.on(BLOCK_ROW, () => {
-    store.dispatch(blockRow())
+    store.dispatch(blockRow());
   });
   return (next) => (action) => {
     console.log(`action ${action.type} invoked`);
     console.log('store is', store.getState());
     switch (action.type) {
       case OUT_JOIN_ROOM: {
-        const { playerName, roomName } = action.payload;
-        socket.emit(OUT_JOIN_ROOM, { playerName, roomName });
+        socket.emit(OUT_JOIN_ROOM, action.payload);
         break;
       }
       case OUT_LEAVE_ROOM: {
-        const { playerName, roomName } = action.payload;
-        socket.emit(OUT_LEAVE_ROOM, { playerName, roomName });
+        socket.emit(OUT_LEAVE_ROOM, action.payload);
         break;
       }
       case OUT_START_GAME: {
-        const { options, roomName } = action.payload;
-        socket.emit(OUT_START_GAME, { roomName, options });
+        socket.emit(OUT_START_GAME, action.payload);
         break;
       }
       case OUT_BLOCK_ROW: {
-        const roomName = action.payload;
-        socket.emit(OUT_BLOCK_ROW, { roomName })
+        socket.emit(OUT_BLOCK_ROW, action.payload);
         break;
       }
       case OUT_GET_PIECES: {
-        const { roomName } = action.payload;
-        socket.emit(OUT_GET_PIECES, { roomName });
+        socket.emit(OUT_GET_PIECES, action.payload);
+        break;
+      }
+      case OUT_CHANGE_MAP: {
+        socket.emit(OUT_CHANGE_MAP, action.payload);
         break;
       }
     }

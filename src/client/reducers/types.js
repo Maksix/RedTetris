@@ -11,3 +11,4 @@ export const OUT_GET_PIECES = 'OUT_GET_PIECES';
 export const GET_PIECES = 'GET_PIECES';
 export const BLOCK_ROW = 'BLOCK_ROW';
 export const OUT_BLOCK_ROW = 'OUT_BLOCK_ROW';
+export const OUT_CHANGE_MAP = 'OUT_CHANGE_MAP';

@@ -1,6 +1,7 @@
 const {
   OUT_START_GAME, START_GAME, OUT_GET_PIECES, GET_PIECES,
-  BLOCK_ROW, OUT_BLOCK_ROW,
+  BLOCK_ROW, OUT_BLOCK_ROW, OUT_CHANGE_MAP,
+  UPDATE_PLAYER_LIST,
 } = require('./types');
 const Piece = require('../classes/Piece/Piece');
 
@@ -45,8 +46,20 @@ const onGetPieces = (socket, io, rooms) => {
   });
 };
 
+const onChangeMap = (socket, io, rooms) => {
+  socket.on(OUT_CHANGE_MAP, ({ roomName, map }) => {
+    const currentRoom = rooms.find((room) => room.name === roomName);
+    if (currentRoom) {
+      const player = currentRoom.findPlayer(socket.id);
+      player.updateMap(map);
+      io.in(roomName).emit(UPDATE_PLAYER_LIST, currentRoom?.players);
+    }
+  });
+};
+
 module.exports = {
   onStartGame,
   onGetPieces,
   onBLockRow,
+  onChangeMap,
 };

@@ -5,7 +5,7 @@ import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './GamePage.less';
 import { joinRoom, leaveRoom } from '../../../actions/roomActions';
-import { handleStartGame } from '../../../actions/gameActions'
+import {changeMap, handleStartGame} from '../../../actions/gameActions'
 import { Board } from './Board';
 import { getNewPieces } from '../../../actions/pieceActions';
 import LangSwitcher from '../MainScreenPage/LangSwitcher/LangSwitcher';
@@ -55,6 +55,7 @@ export const GamePage = ({ match }) => {
         <span className={styles.text}>Следующая фигура:</span>
         <span className={styles.text}>Поворот фигуры</span>
         <span className={styles.text}>Движения</span>
+        <div onClick={() => dispatch(changeMap(room, ['test', 'keke', name]))}>UPDATE MAP</div>
         {role === 'leader'
           && (
           <div
