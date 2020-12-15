@@ -14,7 +14,7 @@ describe('useMove', () => {
     const setBoard = jest.fn();
     const { result } = renderHook(() => useMove(1000, boardInitialMock, setBoard, figures[0]));
     const initialOffsets = result.current;
-    expect(initialOffsets).toStrictEqual({ offsetX: 0, offsetY: 0 });
+    expect(initialOffsets).toStrictEqual({ offsetX: 0, offsetY: undefined });
 
     act(() => {
       clock.tick(2000);
@@ -24,12 +24,12 @@ describe('useMove', () => {
   });
 
   const cases = [
-    [0, [39, 39, 37, 37, 39], { offsetX: 1, offsetY: 0 }],
-    [1, [37, 37, 37, 37, 37], { offsetX: 0, offsetY: 1 }],
-    [2, [39, 39, 39, 39, 39, 39], { offsetX: 6, offsetY: 2 }],
-    [100, [], { offsetX: 0, offsetY: 15 }],
-    [0, [], { offsetX: 0, offsetY: 0 }],
-    [1, [], { offsetX: 0, offsetY: 1 }],
+    [0, [39, 39, 37, 37, 39], { offsetX: 1, offsetY: undefined }],
+    [1, [37, 37, 37, 37, 37], { offsetX: 0, offsetY: undefined }],
+    [2, [39, 39, 39, 39, 39, 39], { offsetX: 6, offsetY: 1 }],
+    [100, [], { offsetX: 0, offsetY: 14 }],
+    [0, [], { offsetX: 0, offsetY: undefined }],
+    [1, [], { offsetX: 0, offsetY: undefined }],
   ];
 
   test.each(cases)('Ждем %s мс нажимаем %s должны получить %s',
@@ -37,7 +37,7 @@ describe('useMove', () => {
       const setBoard = jest.fn();
       const { result } = renderHook(() => useMove(1, boardInitialMock, setBoard, figures[0]));
       const initialOffsets = result.current;
-      expect(initialOffsets).toStrictEqual({ offsetX: 0, offsetY: 0 });
+      expect(initialOffsets).toStrictEqual({ offsetX: 0, offsetY: undefined });
 
       act(() => {
         clock.tick(time);

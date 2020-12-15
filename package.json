@@ -72,8 +72,7 @@
     "workbox-webpack-plugin": "4.3.1"
   },
   "pre-commit": [
-    "lint",
-    "test"
+    "lint"
   ],
   "scripts": {
     "server": "npx nodemon src/server/index.js",
