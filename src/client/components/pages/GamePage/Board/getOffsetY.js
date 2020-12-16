@@ -18,20 +18,18 @@ export const getOffsetY = (offsetYConfig) => ([offsetX, prevOffsetY]) => {
 
   // если не поместилось
   if (offsetY <= 0 && !isOver) {
-  //   let gameOverOffset = offsetY - 1;
-  //   let isAvailableUpper = false;
-  //   // eslint-disable-next-line no-plusplus
-  //   while (!isAvailableUpper) {
-  //     console.log('HERE', isAvailableUpper, gameOverOffset);
-  //     isAvailableUpper = checkIsMoveAvailable({
-  //       board, figure, offsetX, offsetY: gameOverOffset,
-  //     });
-  //     gameOverOffset -= 1;
-  //   }
+    // let gameOverOffset = offsetY - 1;
+    // let isAvailableUpper = false;
+    // while (!isAvailableUpper) {
+    //   isAvailableUpper = checkIsMoveAvailable({
+    //     board, figure, offsetX, offsetY: gameOverOffset,
+    //   });
+    //   gameOverOffset -= 1;
+    // }
     setIsOver(true);
-    console.log('game over');
+    console.log('send action game over');
 
-  // return [offsetX, gameOverOffset];
+    // return [offsetX, gameOverOffset];
   }
 
   setBoard((prevBoard) => (prevBoard.map((rowItem, rowInd) => {
@@ -51,7 +49,6 @@ export const getOffsetY = (offsetYConfig) => ([offsetX, prevOffsetY]) => {
   })));
 
   setFigure(figures[getRandomInt(7)]);
-
-  console.log('DONE'); // отправлять событие, менять фигуру
+  console.log('set action figure done'); // отправлять событие, менять фигуру
   return [0, undefined];
 };
