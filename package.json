@@ -7,7 +7,7 @@
     "@svgr/webpack": "4.3.3",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
+    "@testing-library/user-event": "^12.5.0",
     "@typescript-eslint/eslint-plugin": "^2.10.0",
     "@typescript-eslint/parser": "^2.10.0",
     "babel-eslint": "10.1.0",
@@ -73,13 +73,18 @@
     "webpack-manifest-plugin": "2.2.0",
     "workbox-webpack-plugin": "4.3.1"
   },
+  "pre-commit": [
+    "lint"
+  ],
   "scripts": {
     "server": "npx nodemon src/server/index.js",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "test:coverage:full": "jest --coverage --collectCoverageFrom='src/**/*.(js|jsx)'",
+    "lint": "eslint src/**"
   },
   "babel": {
     "presets": [
@@ -100,6 +105,7 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.12.1",
+    "@testing-library/react-hooks": "^3.5.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.4.4",
@@ -111,6 +117,8 @@
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-webpack-plugin": "^2.2.1",
-    "prop-types": "^15.7.2"
+    "pre-commit": "^1.2.2",
+    "prop-types": "^15.7.2",
+    "sinon": "^9.2.1"
   }
 }

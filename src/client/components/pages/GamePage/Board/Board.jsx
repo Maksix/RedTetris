@@ -1,39 +1,15 @@
-import React, { useMemo } from 'react';
-import { getFilledArray } from 'helpers/getFilledArray';
+import React from 'react';
+import { useInitialFocus } from 'components/pages/GamePage/Board/useInitialFocus';
+import { useBoard } from 'components/pages/GamePage/Board/useBoard';
 import styles from './Board.less';
 
-const rows = getFilledArray(20);
-const row = getFilledArray(10).map(() => ({
-  backgroundColor: 'grey',
-}));
-const board = rows.fill(row);
-
-const test = [{ backgroundColor: 'red' },
-  { backgroundColor: 'green' },
-  { backgroundColor: 'blue' },
-  { backgroundColor: 'red' },
-  { backgroundColor: 'green' },
-  { backgroundColor: 'blue' },
-  { backgroundColor: 'red' },
-  { backgroundColor: 'red' },
-  { backgroundColor: 'green' },
-  { backgroundColor: 'blue' }];
-board[19] = test;
-
 export const Board = () => {
-  const boardContent = useMemo(() => board.map((rowItem, rowInd) => {
-    const rowContent = rowItem.map(({ backgroundColor }, cellInd) => (
-      <div className={styles.cell} style={{ backgroundColor }} key={cellInd} />
-    ));
+  /* Чтобы изначально работали все клавиши несмотря ни на что */
+  const containerRef = useInitialFocus();
 
-    return (
-      <div key={rowInd}>
-        <div className={styles.row}>{rowContent}</div>
-      </div>
-    );
-  }), []);
+  const board = useBoard();
 
   return (
-    <div className={styles.container}>{boardContent}</div>
+    <div className={styles.container} ref={containerRef}>{board}</div>
   );
 };

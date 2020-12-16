@@ -3,8 +3,8 @@ import React, { useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
+import { joinRoom, leaveRoom } from 'actions/roomActions';
 import styles from './GamePage.less';
-import { joinRoom, leaveRoom } from '../../../actions/roomActions';
 import {changeMap, handleStartGame} from '../../../actions/gameActions'
 import { Board } from './Board';
 import { getNewPieces } from '../../../actions/pieceActions';
@@ -20,6 +20,7 @@ export const GamePage = ({ match }) => {
   const role = useSelector((state) => state.role.role);
   const startGame = useCallback(() => dispatch(handleStartGame(options, room)), [options, room]);
   const getPieces = useCallback(() => dispatch(getNewPieces(room)), [room]);
+
   useEffect(() => {
     dispatch(joinRoom(name, room));
     return () => {

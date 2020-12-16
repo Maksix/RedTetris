@@ -1,1 +1,1 @@
-export const getFilledArray = (length) => Array.from(Array(length).keys());
+export const getFilledArray = (length) => (length ? Array.from(Array(length).keys()) : []);
