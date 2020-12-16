@@ -17,7 +17,7 @@ const UsernameModal = () => {
   const onFocusOut = (e) => (e.target.placeholder = t('main.enterUsername'));
   const onInputChange = (e) => {
     const input = e.target.value.trim().slice(0, 12);
-    if (!input || /[A-Za-z0-9]/.test(input)) {
+    if (!input || /^[A-Za-z0-9]+$/.test(input)) {
       setShowHint(false);
       setDisableButton(input.length < 4);
       setInputUsername(input);

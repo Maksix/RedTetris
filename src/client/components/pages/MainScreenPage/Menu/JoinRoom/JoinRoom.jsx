@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
@@ -11,40 +12,50 @@ const JoinRoom = () => {
   const { t } = useTranslation();
   const [roomName, setRoomName] = useState('');
   const [showButton, setShowButton] = useState(false);
+  const [showHint, setShowHint] = useState(false);
   const history = useHistory();
   const onFocusOut = (e) => (e.target.placeholder = t('main.joinRoom'));
   const onFocus = (e) => (e.target.placeholder = t('main.joinRoomPlaceholder'));
   const onRoomNameChange = (e) => {
-    setShowButton(e.target.value.length >= 5);
-    if (e.target.value.length <= 5) setRoomName(e.target.value);
+    const input = e.target.value.trim().slice(0, 5);
+    if (!input || /^[A-Za-z0-9]+$/.test(input)) {
+      setShowHint(false);
+      setShowButton(input.length === 5);
+      setRoomName(input);
+    } else {
+      setShowHint(true);
+    }
   };
   const joinRoom = useCallback(() => {
     history.push(`/${roomName}[${username}]`);
   }, [history, username, roomName]);
 
   return (
-    <div className={cn(styles.joinBox)}>
-      <form onSubmit={() => joinRoom()}>
-        <div className={cn(styles.inputBox, styles[theme])}>
-          <input
-            type="text"
-            className={cn(styles.input, styles[theme])}
-            onChange={(e) => onRoomNameChange(e)}
-            value={roomName}
-            placeholder={t('main.joinRoom')}
-            onBlur={(e) => onFocusOut(e)}
-            onFocus={(e) => onFocus(e)}
-          />
-        </div>
-        {showButton && (
-        <div className={cn(styles.joinButton, styles[theme])}>
-          <button type="submit" className={cn('material-icons', styles.joinIcon, styles[theme])}>
-            play_arrow
-          </button>
-        </div>
-        )}
-      </form>
-    </div>
+    <>
+      <div className={cn(styles.joinBox)}>
+        <form onSubmit={() => joinRoom()}>
+          <div className={cn(styles.inputBox, styles[theme])}>
+            <input
+              type="text"
+              className={cn(styles.input, styles[theme])}
+              onChange={(e) => onRoomNameChange(e)}
+              value={roomName}
+              placeholder={t('main.joinRoom')}
+              onBlur={(e) => onFocusOut(e)}
+              onFocus={(e) => onFocus(e)}
+            />
+            {showHint && <div className={styles.inputTip}>{t('main.usernameHint')}</div>}
+          </div>
+          {showButton && (
+          <div className={cn(styles.joinButton, styles[theme])}>
+            <button type="submit" className={cn('material-icons', styles.joinIcon, styles[theme])}>
+              play_arrow
+            </button>
+          </div>
+          )}
+        </form>
+      </div>
+    </>
   );
 };
 
