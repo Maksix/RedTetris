@@ -27,6 +27,7 @@ module.exports = {
   rules: {
     'no-return-assign': 0,
     'react/jsx-filename-extension': 0,
+    'jsx-a11y/click-events-have-key-events': 0,
     'react/no-array-index-key': 0,
     'import/no-extraneous-dependencies': 0,
     'import/prefer-default-export': 0,
