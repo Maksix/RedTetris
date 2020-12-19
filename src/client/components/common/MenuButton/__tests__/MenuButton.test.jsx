@@ -21,23 +21,17 @@ describe('<MenuButton />', () => {
     expect(component.find('.text').text()).toBe('test');
   });
 
-  // test('должно сработать событие при клике', async () => {
-  //   const handleClick = jest.fn();
-  //
-  //   const rendered = mount(
-  //     <MenuButton onClick={handleClick} />,
-  //   );
-  //   rendered.find('[role="button"]').simulate('click');
-  //   expect(handleClick).toHaveBeenCalled();
-  // });
-  //
-  // test('должно сработать событие при нажатии на Enter', async () => {
-  //   const handleClick = jest.fn();
-  //
-  //   const rendered = mount(
-  //     <MenuButton onClick={handleClick} />,
-  //   );
-  //   rendered.find('[role="button"]').simulate('keydown', { keyCode: 13 });
-  //   expect(handleClick).toHaveBeenCalled();
-  // });
+  test('must call a function on Enter', async () => {
+    const initialState = { theme: { theme: 'dark' } };
+    const store = mockStore(initialState);
+    const handleClick = jest.fn();
+    const component = mount(
+      <Provider store={store}>
+        <MenuButton onClick={handleClick} text="test" />
+      </Provider>
+      ,
+    );
+    component.find('[role="button"]').simulate('keydown', { keyCode: 13 });
+    expect(handleClick).toHaveBeenCalled();
+  });
 });

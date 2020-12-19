@@ -8,8 +8,8 @@ import styles from './GamePage.less';
 import {changeMap, handleStartGame} from '../../../actions/gameActions'
 import { Board } from './Board';
 import { getNewPieces } from '../../../actions/pieceActions';
-import LangSwitcher from '../MainScreenPage/LangSwitcher/LangSwitcher';
-import ColorSwitcher from '../MainScreenPage/ColorSwitcher/ColorSwitcher';
+import LangSwitcher from '../../common/LangSwitcher/LangSwitcher';
+import ColorSwitcher from '../../common/ColorSwitcher/ColorSwitcher';
 
 export const GamePage = ({ match }) => {
   const { room, name } = match.params;
@@ -24,7 +24,7 @@ export const GamePage = ({ match }) => {
   useEffect(() => {
     dispatch(joinRoom(name, room));
     return () => {
-      dispatch(leaveRoom(name, room));
+      dispatch(leaveRoom(room));
     };
   }, [room, name, dispatch]);
 

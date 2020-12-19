@@ -27,7 +27,7 @@ const onJoinRoom = (socket, io, rooms) => {
 };
 
 const onLeaveRoom = (socket, io, rooms) => {
-  socket.on(OUT_LEAVE_ROOM, ({ roomName }) => {
+  socket.on(OUT_LEAVE_ROOM, (roomName) => {
     const currentRoom = rooms.find((room) => room.name === roomName);
     if (currentRoom) {
       currentRoom.removePlayer(socket.id);
