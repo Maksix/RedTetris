@@ -27,27 +27,30 @@ const UsernameModal = () => {
   };
 
   return (
-    <form onSubmit={() => dispatch(setUsername(inputUsername))}>
-      <>
-        <div className={cn(styles.inputBox, styles[theme])}>
-          <input
-            type="text"
-            className={cn(styles.input, styles[theme])}
-            onChange={(e) => onInputChange(e)}
-            onFocus={(e) => onFocus(e)}
-            onBlur={(e) => onFocusOut(e)}
-            value={inputUsername}
-            placeholder={t('main.enterUsername')}
-          />
-          {showHint && <span className={cn(styles.inputRules)}>{t('main.usernameHint')}</span>}
-        </div>
-        <button type="submit" disabled={disableButton} className={cn(styles.enterButton, styles[theme])}>
-          <span className={cn('material-icons', styles.enterIcon)}>
-            play_arrow
-          </span>
-        </button>
-      </>
-    </form>
+    <>
+      <div className={cn(styles.inputBox, styles[theme])}>
+        <input
+          type="text"
+          className={cn(styles.input, styles[theme])}
+          onChange={(e) => onInputChange(e)}
+          onFocus={(e) => onFocus(e)}
+          onBlur={(e) => onFocusOut(e)}
+          value={inputUsername}
+          placeholder={t('main.enterUsername')}
+        />
+        {showHint && <span className={cn(styles.inputRules)}>{t('main.usernameHint')}</span>}
+      </div>
+      <button
+        onClick={() => dispatch(setUsername(inputUsername))}
+        type="submit"
+        disabled={disableButton}
+        className={cn(styles.enterButton, styles[theme])}
+      >
+        <span className={cn('material-icons', styles.enterIcon)}>
+          play_arrow
+        </span>
+      </button>
+    </>
   );
 };
 

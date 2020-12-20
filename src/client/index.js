@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import io from 'socket.io-client';
-import { ErrorBoundary } from 'components/common/ErrorBoundary';
+import { ErrorBoundary } from './components/common/ErrorBoundary/ErrorBoundary';
 import rootReducer from './reducers/rootReducer';
 import App from './containers/App';
 import { socketMiddleware } from './middlewares/socketMiddleware';

@@ -16,7 +16,7 @@ class ErrorBoundary extends React.Component {
     const { children } = this.props;
 
     if (hasError) {
-      return ('УПС');
+      return (<div>An error occurred. Please reload the page</div>);
     }
 
     return children;
