@@ -5,8 +5,9 @@ import CloseButton from '../CloseButton';
 
 describe('<CloseButton />', () => {
   test('должен быть отрендерен', async () => {
+    const handleClick = jest.fn();
     const rendered = shallow(
-      <CloseButton />,
+      <CloseButton onClick={handleClick} />,
     );
     expect(rendered.find('span').text()).toEqual('x');
   });

@@ -17,7 +17,7 @@ function App() {
             render={(props) => <Component {...props} />}
           />
         ))}
-        <Route component={() => <div> not found</div>} />
+        <Route component={() => <div>not found</div>} />
       </Switch>
     </>
   );

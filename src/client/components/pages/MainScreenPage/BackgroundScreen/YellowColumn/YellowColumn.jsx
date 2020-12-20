@@ -15,9 +15,6 @@ const YellowColumn = () => {
     <div
       tabIndex={-1}
       role="button"
-      onKeyDown={(e) => {
-        if (e.keyCode === 13) handleResetAnimation();
-      }}
       style={{ '--duration': `${getAnimationSpeed()}s`, '--delay': `${getAnimationDelay()}s` }}
       className={cn(styles.boxContainer, styles.left60, resetAnimation ? styles.resetAnimation : '')}
       onClick={handleResetAnimation}

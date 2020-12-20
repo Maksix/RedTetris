@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
@@ -33,27 +32,25 @@ const JoinRoom = () => {
   return (
     <>
       <div className={cn(styles.joinBox)}>
-        <form onSubmit={() => joinRoom()}>
-          <div className={cn(styles.inputBox, styles[theme])}>
-            <input
-              type="text"
-              className={cn(styles.input, styles[theme])}
-              onChange={(e) => onRoomNameChange(e)}
-              value={roomName}
-              placeholder={t('main.joinRoom')}
-              onBlur={(e) => onFocusOut(e)}
-              onFocus={(e) => onFocus(e)}
-            />
-            {showHint && <div className={styles.inputTip}>{t('main.usernameHint')}</div>}
-          </div>
-          {showButton && (
+        <div className={cn(styles.inputBox, styles[theme])}>
+          <input
+            type="text"
+            className={cn(styles.input, styles[theme])}
+            onChange={(e) => onRoomNameChange(e)}
+            value={roomName}
+            placeholder={t('main.joinRoom')}
+            onBlur={(e) => onFocusOut(e)}
+            onFocus={(e) => onFocus(e)}
+          />
+          {showHint && <div className={styles.inputTip}>{t('main.usernameHint')}</div>}
+        </div>
+        {showButton && (
           <div className={cn(styles.joinButton, styles[theme])}>
-            <button type="submit" className={cn('material-icons', styles.joinIcon, styles[theme])}>
+            <button onClick={() => joinRoom()} type="submit" className={cn('material-icons', styles.joinIcon, styles[theme])}>
               play_arrow
             </button>
           </div>
-          )}
-        </form>
+        )}
       </div>
     </>
   );
