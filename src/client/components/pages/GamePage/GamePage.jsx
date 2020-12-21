@@ -49,6 +49,19 @@ export const GamePage = ({ match }) => {
       <div className={cn(styles.optionSection)}>
         <ColorSwitcher />
         <LangSwitcher />
+        {role === 'leader' && (
+          <div
+            className={styles.startGameBox}
+            onClick={() => {
+              startGame();
+              getPieces();
+            }}
+          >
+            <span className={cn('material-icons', styles.startGameIcon)}>
+              play_arrow
+            </span>
+          </div>
+        )}
       </div>
       <div className={cn(styles.rightSection)}>
         <span className={styles.title}>Очки: 1515</span>
@@ -56,19 +69,6 @@ export const GamePage = ({ match }) => {
         <span className={styles.text}>Следующая фигура:</span>
         <span className={styles.text}>Поворот фигуры</span>
         <span className={styles.text}>Движения</span>
-        <div onClick={() => dispatch(changeMap(room, ['test', 'keke', name]))}>UPDATE MAP</div>
-        {role === 'leader'
-          && (
-          <div
-            className={styles.title}
-            onClick={() => {
-              startGame();
-              getPieces();
-            }}
-          >
-            Start game
-          </div>
-          )}
       </div>
     </div>
   );
