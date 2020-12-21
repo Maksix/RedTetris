@@ -1,11 +1,11 @@
 /* eslint-disable */
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { joinRoom, leaveRoom } from 'actions/roomActions';
 import styles from './GamePage.less';
-import {changeMap, handleStartGame} from '../../../actions/gameActions'
+import { handleStartGame } from '../../../actions/gameActions';
 import { Board } from './Board';
 import { getNewPieces } from '../../../actions/pieceActions';
 import LangSwitcher from '../../common/LangSwitcher/LangSwitcher';
@@ -18,6 +18,7 @@ export const GamePage = ({ match }) => {
   const players = useSelector((state) => state.playerList.playerList);
   const options = useSelector((state) => state.game.game.options);
   const role = useSelector((state) => state.role.role);
+  const [openModal, setOpenModal] = useState(false);
   const startGame = useCallback(() => dispatch(handleStartGame(options, room)), [options, room]);
   const getPieces = useCallback(() => dispatch(getNewPieces(room)), [room]);
 
