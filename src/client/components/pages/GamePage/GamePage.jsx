@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +10,7 @@ import { Board } from './Board';
 import { getNewPieces } from '../../../actions/pieceActions';
 import LangSwitcher from '../../common/LangSwitcher/LangSwitcher';
 import ColorSwitcher from '../../common/ColorSwitcher/ColorSwitcher';
+import GameModal from "./GameModal/GameModal"
 
 export const GamePage = ({ match }) => {
   const { room, name } = match.params;
@@ -18,7 +19,6 @@ export const GamePage = ({ match }) => {
   const players = useSelector((state) => state.playerList.playerList);
   const options = useSelector((state) => state.game.game.options);
   const role = useSelector((state) => state.role.role);
-  const [openModal, setOpenModal] = useState(false);
   const startGame = useCallback(() => dispatch(handleStartGame(options, room)), [options, room]);
   const getPieces = useCallback(() => dispatch(getNewPieces(room)), [room]);
 
@@ -50,19 +50,7 @@ export const GamePage = ({ match }) => {
       <div className={cn(styles.optionSection)}>
         <ColorSwitcher />
         <LangSwitcher />
-        {role === 'leader' && (
-          <div
-            className={styles.startGameBox}
-            onClick={() => {
-              startGame();
-              getPieces();
-            }}
-          >
-            <span className={cn('material-icons', styles.startGameIcon)}>
-              play_arrow
-            </span>
-          </div>
-        )}
+        {role === 'leader' && (<GameModal />)}
       </div>
       <div className={cn(styles.rightSection)}>
         <span className={styles.title}>Очки: 1515</span>
