@@ -3,9 +3,19 @@
 .startGameBox {
   width: 80px;
   height: 80px;
-  background-color: @purpleDark;
   color: white;
   cursor: pointer;
+  transition: 1s;
+
+  &.dark {
+    background-color: @purpleDark;
+    color: @textColorDark;
+  }
+
+  &.light {
+    background-color: @purpleLight;
+    color: @textColorLight;
+  }
 
   .startGameIcon {
     margin: auto;

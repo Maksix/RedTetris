@@ -1,25 +1,24 @@
 /* eslint-disable */
 import React, { useEffect, useCallback } from 'react';
-import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { joinRoom, leaveRoom } from 'actions/roomActions';
+import { useRouteMatch } from 'react-router-dom';
 import styles from './GamePage.less';
-import { handleStartGame } from '../../../actions/gameActions';
 import { Board } from './Board';
 import { getNewPieces } from '../../../actions/pieceActions';
 import LangSwitcher from '../../common/LangSwitcher/LangSwitcher';
 import ColorSwitcher from '../../common/ColorSwitcher/ColorSwitcher';
-import GameModal from "./GameModal/GameModal"
+import GameModal from './GameModal/GameModal';
 
-export const GamePage = ({ match }) => {
+export const GamePage = () => {
+  const match = useRouteMatch();
   const { room, name } = match.params;
+
   const theme = useSelector((state) => state.theme.theme);
   const dispatch = useDispatch();
   const players = useSelector((state) => state.playerList.playerList);
-  const options = useSelector((state) => state.game.game.options);
   const role = useSelector((state) => state.role.role);
-  const startGame = useCallback(() => dispatch(handleStartGame(options, room)), [options, room]);
   const getPieces = useCallback(() => dispatch(getNewPieces(room)), [room]);
 
   useEffect(() => {
@@ -63,7 +62,4 @@ export const GamePage = ({ match }) => {
   );
 };
 
-GamePage.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  match: PropTypes.any.isRequired,
-};
+export default GamePage;
