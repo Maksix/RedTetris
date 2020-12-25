@@ -6,6 +6,20 @@
     "joinRoomPlaceholder": "Введите имя комнаты",
     "leaderboard": "Топ игроков",
     "enterUsername": "Введите никнейм",
-    "usernameHint": "Разрешены символы a-z, A-Z, 0-9"
+    "usernameHint": "Разрешены символы a-z, A-Z, 0-9",
+    "gamePage": {
+      "room": "Комната",
+      "players": "Игроки:",
+      "score": "Очки:",
+      "level": "Уровень:",
+      "nextFigure": "Следующая фигура:",
+      "rotateFigure": "Поворот фигуры:",
+      "moveFigure": "Движения:",
+      "modal": {
+        "startGame": "Начать игру",
+        "gameOptions": "Настройки",
+        "speed": "Скорость"
+      }
+    }
   }
 }

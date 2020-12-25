@@ -4,6 +4,7 @@ import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { joinRoom, leaveRoom } from 'actions/roomActions';
 import { useRouteMatch } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import styles from './GamePage.less';
 import { Board } from './Board';
 import { getNewPieces } from '../../../actions/pieceActions';
@@ -14,6 +15,7 @@ import GameModal from './GameModal/GameModal';
 export const GamePage = () => {
   const match = useRouteMatch();
   const { room, name } = match.params;
+  const { t } = useTranslation();
 
   const theme = useSelector((state) => state.theme.theme);
   const dispatch = useDispatch();
@@ -32,11 +34,11 @@ export const GamePage = () => {
     <div className={cn(styles.container, styles[theme])}>
       <div className={styles.leftSection}>
         <div className={styles.title}>
-          Комната
+          {t('main.gamePage.room')}
           &nbsp;
           {room}
         </div>
-        <div className={styles.title}>Игроки:</div>
+        <div className={styles.title}>{t('main.gamePage.players')}</div>
         <div>
           {players.map((player) => (
             <div className={styles.text} key={player.id}>{player.name}</div>
@@ -52,11 +54,19 @@ export const GamePage = () => {
         {role === 'leader' && (<GameModal />)}
       </div>
       <div className={cn(styles.rightSection)}>
-        <span className={styles.title}>Очки: 1515</span>
-        <span className={styles.title}>Уровень: 6</span>
-        <span className={styles.text}>Следующая фигура:</span>
-        <span className={styles.text}>Поворот фигуры</span>
-        <span className={styles.text}>Движения</span>
+        <span className={styles.title}>
+          {t('main.gamePage.score')}
+          {' '}
+          1515
+        </span>
+        <span className={styles.title}>
+          {t('main.gamePage.level')}
+          {' '}
+          6
+        </span>
+        <span className={styles.text}>{t('main.gamePage.nextFigure')}</span>
+        <span className={styles.text}>{t('main.gamePage.rotateFigure')}</span>
+        <span className={styles.text}>{t('main.gamePage.moveFigure')}</span>
       </div>
     </div>
   );

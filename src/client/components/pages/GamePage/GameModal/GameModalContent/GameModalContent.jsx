@@ -3,12 +3,14 @@ import cn from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import styles from './GameModalContent.module.less';
 import { handleStartGame } from '../../../../../actions/gameActions';
 
 const GameModalContent = ({ setOpen }) => {
   const dispatch = useDispatch();
   const match = useRouteMatch();
+  const { t } = useTranslation();
   const { room } = match.params;
   const theme = useSelector((state) => state.theme.theme);
   const [speed, setSpeed] = useState(5);
@@ -26,8 +28,8 @@ const GameModalContent = ({ setOpen }) => {
 
   return (
     <div className={styles.content}>
-      <span className={styles.contentTitle}>Game options</span>
-      <span className={styles.speedTitle}>Speed</span>
+      <span className={styles.contentTitle}>{t('main.gamePage.modal.gameOptions')}</span>
+      <span className={styles.speedTitle}>{t('main.gamePage.modal.speed')}</span>
       <div className={styles.contentBody}>
         <div className={styles.speedOption}>
           <div
@@ -58,7 +60,7 @@ const GameModalContent = ({ setOpen }) => {
           onClick={startGame}
           className={cn(styles.startGame, styles[theme])}
         >
-          <span className={cn(styles.buttonText, styles[theme])}>Start game</span>
+          <span className={cn(styles.buttonText, styles[theme])}>{t('main.gamePage.modal.startGame')}</span>
         </div>
       </div>
     </div>
