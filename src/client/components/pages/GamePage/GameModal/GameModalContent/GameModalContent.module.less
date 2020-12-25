@@ -1,0 +1,86 @@
+@import 'styles/fonts.less';
+@import 'styles/colors.less';
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 75px;
+
+  .contentTitle {
+    margin: auto;
+    font-size: @menuFontSize;
+  }
+
+  .speedTitle {
+    margin: 50px auto;
+    font-size: 26px;
+  }
+
+  .contentBody {
+    margin-top: 20px;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+
+    .speedOption {
+      display: flex;
+
+      .speed {
+        font-size: 24px;
+        margin: auto;
+      }
+
+      .arrowBox {
+        cursor: pointer;
+        height: 80px;
+        width: 80px;
+        display: flex;
+
+        &.dark {
+          background-color: #352d40;
+        }
+
+        &.light {
+          background-color: @purpleLight;
+          color: @textColorLight;
+        }
+
+        .arrowUp {
+          color: #148c14;
+        }
+
+        .arrowDown {
+          color: #9c0f0f;
+        }
+
+        .arrow {
+          font-size: 60px;
+          margin: auto;
+        }
+      }
+    }
+
+    .startGame {
+      cursor: pointer;
+      display: flex;
+      margin: 50px auto;
+      width: 250px;
+      height: 80px;
+
+      &.dark {
+        background-color: #352d40;
+        color: @purpleLight;
+      }
+
+      &.light {
+        background-color: @purpleLight;
+        color: @purpleDark;
+      }
+
+      .buttonText {
+        font-size: 26px;
+        margin: auto;
+      }
+    }
+  }
+}
