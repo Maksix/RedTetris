@@ -15,6 +15,7 @@
       "nextFigure": "Next figure:",
       "rotateFigure": "Rotate figure:",
       "moveFigure": "Move figure:",
+      "roomError": "The room is full. Only 4 players allowed for one room.",
       "modal": {
         "startGame": "Start game",
         "gameOptions": "Game options",

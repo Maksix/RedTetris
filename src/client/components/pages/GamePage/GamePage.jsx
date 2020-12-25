@@ -18,6 +18,7 @@ export const GamePage = () => {
   const { t } = useTranslation();
 
   const theme = useSelector((state) => state.theme.theme);
+  const roomError = useSelector((state) => state.room.roomError);
   const dispatch = useDispatch();
   const players = useSelector((state) => state.playerList.playerList);
   const role = useSelector((state) => state.role.role);
@@ -30,45 +31,59 @@ export const GamePage = () => {
     };
   }, [room, name, dispatch]);
 
+  if (roomError) {
+    return (
+      <div className={cn(styles.errorContainer, styles[theme])}>
+        <span className={cn(styles.error, styles[theme])}>
+          {t('main.gamePage.roomError')}
+        </span>
+      </div>
+    );
+  }
+
   return (
-    <div className={cn(styles.container, styles[theme])}>
-      <div className={styles.leftSection}>
-        <div className={styles.title}>
-          {t('main.gamePage.room')}
-          &nbsp;
-          {room}
+    <>
+      {players.length > 0 ? (
+        <div className={cn(styles.container, styles[theme])}>
+          <div className={styles.leftSection}>
+            <div className={styles.title}>
+              {t('main.gamePage.room')}
+              &nbsp;
+              {room}
+            </div>
+            <div className={styles.title}>{t('main.gamePage.players')}</div>
+            <div>
+              {players.map((player) => (
+                <div className={styles.text} key={player.id}>{player.name}</div>
+              ))}
+            </div>
+          </div>
+          <div className={styles.boardSection}>
+            <Board />
+          </div>
+          <div className={cn(styles.optionSection)}>
+            <ColorSwitcher />
+            <LangSwitcher />
+            {role === 'leader' && (<GameModal />)}
+          </div>
+          <div className={cn(styles.rightSection)}>
+            <span className={styles.title}>
+              {t('main.gamePage.score')}
+              {' '}
+              1515
+            </span>
+            <span className={styles.title}>
+              {t('main.gamePage.level')}
+              {' '}
+              6
+            </span>
+            <span className={styles.text}>{t('main.gamePage.nextFigure')}</span>
+            <span className={styles.text}>{t('main.gamePage.rotateFigure')}</span>
+            <span className={styles.text}>{t('main.gamePage.moveFigure')}</span>
+          </div>
         </div>
-        <div className={styles.title}>{t('main.gamePage.players')}</div>
-        <div>
-          {players.map((player) => (
-            <div className={styles.text} key={player.id}>{player.name}</div>
-          ))}
-        </div>
-      </div>
-      <div className={styles.boardSection}>
-        <Board />
-      </div>
-      <div className={cn(styles.optionSection)}>
-        <ColorSwitcher />
-        <LangSwitcher />
-        {role === 'leader' && (<GameModal />)}
-      </div>
-      <div className={cn(styles.rightSection)}>
-        <span className={styles.title}>
-          {t('main.gamePage.score')}
-          {' '}
-          1515
-        </span>
-        <span className={styles.title}>
-          {t('main.gamePage.level')}
-          {' '}
-          6
-        </span>
-        <span className={styles.text}>{t('main.gamePage.nextFigure')}</span>
-        <span className={styles.text}>{t('main.gamePage.rotateFigure')}</span>
-        <span className={styles.text}>{t('main.gamePage.moveFigure')}</span>
-      </div>
-    </div>
+      ) : <div>loading</div>}
+    </>
   );
 };
 
