@@ -17,11 +17,12 @@ export const GamePage = () => {
   const { room, name } = match.params;
   const { t } = useTranslation();
 
+  const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme.theme);
   const roomError = useSelector((state) => state.room.roomError);
-  const dispatch = useDispatch();
   const players = useSelector((state) => state.playerList.playerList);
   const role = useSelector((state) => state.role.role);
+  const score = useSelector((state) => state.game.game.score);
   const getPieces = useCallback(() => dispatch(getNewPieces(room)), [room]);
 
   useEffect(() => {
@@ -70,7 +71,7 @@ export const GamePage = () => {
             <span className={styles.title}>
               {t('main.gamePage.score')}
               {' '}
-              1515
+              {score}
             </span>
             <span className={styles.title}>
               {t('main.gamePage.level')}
@@ -82,7 +83,7 @@ export const GamePage = () => {
             <span className={styles.text}>{t('main.gamePage.moveFigure')}</span>
           </div>
         </div>
-      ) : <div>loading</div>}
+      ) : <div className={styles.loading}>loading</div>}
     </>
   );
 };

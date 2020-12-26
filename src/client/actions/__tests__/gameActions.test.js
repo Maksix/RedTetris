@@ -1,11 +1,11 @@
 import {
-  handleStartGame, startGame, changeMap, blockRow, handleBlockRow,
+  handleStartGame, startGame, changeMap, blockRow, handleBlockRow, addScore,
 } from '../gameActions';
 import {
   START_GAME,
   OUT_START_GAME,
   BLOCK_ROW,
-  OUT_BLOCK_ROW, OUT_CHANGE_MAP,
+  OUT_BLOCK_ROW, OUT_CHANGE_MAP, ADD_SCORE,
 } from '../../reducers/types';
 
 describe('game actions', () => {
@@ -42,6 +42,14 @@ describe('game actions', () => {
       type: BLOCK_ROW,
     };
     expect(blockRow()).toEqual(expectedAction);
+  });
+
+  test('should create an action to add score', () => {
+    const expectedAction = {
+      type: ADD_SCORE,
+      payload: 100,
+    };
+    expect(addScore(100)).toEqual(expectedAction);
   });
 
   test('should create an action to get block row', () => {

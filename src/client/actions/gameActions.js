@@ -2,13 +2,20 @@ import {
   START_GAME,
   OUT_START_GAME,
   BLOCK_ROW,
-  OUT_BLOCK_ROW, OUT_CHANGE_MAP,
+  OUT_BLOCK_ROW, OUT_CHANGE_MAP, ADD_SCORE,
 } from '../reducers/types';
 
 export function handleStartGame(options, roomName) {
   return {
     type: OUT_START_GAME,
     payload: { options, roomName },
+  };
+}
+
+export function addScore(score) {
+  return {
+    type: ADD_SCORE,
+    payload: score,
   };
 }
 
