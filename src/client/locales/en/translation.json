@@ -14,6 +14,7 @@
       "level": "Level:",
       "nextFigure": "Next figure:",
       "rotateFigure": "Rotate figure:",
+      "dropFigure": "Drop figure:",
       "moveFigure": "Move figure:",
       "roomError": "The room is full. Only 4 players allowed for one room.",
       "modal": {

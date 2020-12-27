@@ -10,6 +10,7 @@ import { getNewPieces } from '../../../actions/pieceActions';
 import LangSwitcher from '../../common/LangSwitcher/LangSwitcher';
 import ColorSwitcher from '../../common/ColorSwitcher/ColorSwitcher';
 import GameModal from './GameModal/GameModal';
+import GameHints from './GameHints/GameHints';
 
 export const GamePage = () => {
   const match = useRouteMatch();
@@ -80,9 +81,8 @@ export const GamePage = () => {
               {' '}
               6
             </span>
-            <span className={styles.text}>{t('main.gamePage.nextFigure')}</span>
-            <span className={styles.text}>{t('main.gamePage.rotateFigure')}</span>
-            <span className={styles.text}>{t('main.gamePage.moveFigure')}</span>
+            <span>{t('main.gamePage.nextFigure')}</span>
+            <GameHints />
           </div>
         </div>
       ) : <div className={styles.loading}>loading</div>}
