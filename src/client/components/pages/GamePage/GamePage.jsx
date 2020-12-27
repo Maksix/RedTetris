@@ -1,5 +1,4 @@
-/* eslint-disable */
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { joinRoom, leaveRoom } from 'actions/roomActions';
@@ -11,7 +10,6 @@ import { getNewPieces } from '../../../actions/pieceActions';
 import LangSwitcher from '../../common/LangSwitcher/LangSwitcher';
 import ColorSwitcher from '../../common/ColorSwitcher/ColorSwitcher';
 import GameModal from './GameModal/GameModal';
-import {blockRow, handleBlockRow} from "../../../actions/gameActions"
 
 export const GamePage = () => {
   const match = useRouteMatch();
@@ -24,10 +22,13 @@ export const GamePage = () => {
   const players = useSelector((state) => state.playerList.playerList);
   const role = useSelector((state) => state.role.role);
   const score = useSelector((state) => state.game.game.score);
-  const getPieces = useCallback(() => dispatch(getNewPieces(room)), [room]);
 
   useEffect(() => {
     dispatch(joinRoom(name, room));
+    dispatch(getNewPieces(room));
+    window.onbeforeunload = () => {
+      dispatch(leaveRoom(room));
+    };
     return () => {
       dispatch(leaveRoom(room));
     };

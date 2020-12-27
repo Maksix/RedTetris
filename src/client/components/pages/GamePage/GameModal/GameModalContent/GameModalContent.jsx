@@ -24,7 +24,7 @@ const GameModalContent = ({ setOpen }) => {
     dispatch(handleStartGame({ speed }, room));
     setOpen(false);
   },
-  [speed, room, dispatch]);
+  [speed, room, dispatch, setOpen]);
 
   return (
     <div className={styles.content}>

@@ -37,9 +37,6 @@ export const socketMiddleware = (socket) => (store) => {
     store.dispatch(blockRow());
   });
   return (next) => (action) => {
-    console.log(`action ${action.type} invoked`);
-    console.log('store is', store.getState());
-    // eslint-disable-next-line default-case
     switch (action.type) {
       case OUT_JOIN_ROOM: {
         socket.emit(OUT_JOIN_ROOM, action.payload);
@@ -64,6 +61,9 @@ export const socketMiddleware = (socket) => (store) => {
       case OUT_CHANGE_MAP: {
         socket.emit(OUT_CHANGE_MAP, action.payload);
         break;
+      }
+      default: {
+        return next(action);
       }
     }
     return next(action);
