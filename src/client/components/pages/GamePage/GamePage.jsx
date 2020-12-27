@@ -11,6 +11,7 @@ import { getNewPieces } from '../../../actions/pieceActions';
 import LangSwitcher from '../../common/LangSwitcher/LangSwitcher';
 import ColorSwitcher from '../../common/ColorSwitcher/ColorSwitcher';
 import GameModal from './GameModal/GameModal';
+import {blockRow, handleBlockRow} from "../../../actions/gameActions"
 
 export const GamePage = () => {
   const match = useRouteMatch();
