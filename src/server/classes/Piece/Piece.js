@@ -1,5 +1,3 @@
-// eslint-disable-next-line no-unused-vars
-const _ = require('lodash');
 const rotate = require('matrix-rotate');
 
 const figure1 = [
@@ -49,13 +47,13 @@ const getRandomNumber = (max) => Math.floor(Math.random() * max);
 const figures = [figure1, figure2, figure3, figure4, figure5, figure6, figure7];
 
 module.exports = class {
-  constructor() {
-    this.figure = figures[getRandomNumber(7)];
-    this.rotateFigure();
+  constructor(figureNumber = -1, initialAngleCounter = -1) {
+    this.figure = figureNumber === -1 ? figures[getRandomNumber(7)] : figures[figureNumber];
+    this.rotateFigure(initialAngleCounter);
   }
 
-  rotateFigure() {
-    let angleCounter = getRandomNumber(4);
+  rotateFigure(initialAngleCounter) {
+    let angleCounter = initialAngleCounter === -1 ? getRandomNumber(4) : initialAngleCounter;
     while (angleCounter) {
       rotate(this.figure);
       angleCounter -= 1;

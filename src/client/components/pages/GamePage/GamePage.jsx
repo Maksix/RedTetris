@@ -1,81 +1,95 @@
-/* eslint-disable */
-import React, { useEffect, useCallback } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { joinRoom, leaveRoom } from 'actions/roomActions';
+import { useRouteMatch } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import styles from './GamePage.less';
 import {changeMap, handleStartGame} from 'actions/gameActions'
 import { Board } from './Board';
 import { getNewPieces } from 'actions/pieceActions';
-import LangSwitcher from '../MainScreenPage/LangSwitcher/LangSwitcher';
-import ColorSwitcher from '../MainScreenPage/ColorSwitcher/ColorSwitcher';
+import LangSwitcher from '../../common/LangSwitcher/LangSwitcher';
+import ColorSwitcher from '../../common/ColorSwitcher/ColorSwitcher';
+import GameModal from './GameModal/GameModal';
+import GameHints from './GameHints/GameHints';
 
-export const GamePage = ({ match }) => {
+export const GamePage = () => {
+  const match = useRouteMatch();
   const { room, name } = match.params;
-  const theme = useSelector((state) => state.theme.theme);
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
+  const theme = useSelector((state) => state.theme.theme);
+  const roomError = useSelector((state) => state.room.roomError);
   const players = useSelector((state) => state.playerList.playerList);
-  const options = useSelector((state) => state.game.game.options);
   const role = useSelector((state) => state.role.role);
-  const startGame = useCallback(() => dispatch(handleStartGame(options, room)), [options, room]);
-  const getPieces = useCallback(() => dispatch(getNewPieces(room)), [room]);
+  const score = useSelector((state) => state.game.game.score);
 
   useEffect(() => {
     dispatch(joinRoom(name, room));
+    dispatch(getNewPieces(room));
+    window.onbeforeunload = () => {
+      dispatch(leaveRoom(room));
+    };
     return () => {
-      dispatch(leaveRoom(name, room));
+      dispatch(leaveRoom(room));
     };
   }, [room, name, dispatch]);
   const gameStatus = useSelector((state) => state.game.game.status);
 
+  if (roomError) {
+    return (
+      <div className={cn(styles.errorContainer, styles[theme])}>
+        <span className={cn(styles.error, styles[theme])}>
+          {t('main.gamePage.roomError')}
+        </span>
+      </div>
+    );
+  }
+
   return (
-    <div className={cn(styles.container, styles[theme])}>
-      <div className={styles.leftSection}>
-        <div className={styles.title}>
-          Комната
-          &nbsp;
-          {room}
-        </div>
-        <div className={styles.title}>Игроки:</div>
-        <div>
-          {players.map((player) => (
-            <div className={styles.text} key={player.id}>{player.name}</div>
-          ))}
-        </div>
-      </div>
-      <div className={styles.boardSection}>
-        {gameStatus === 'started' && <Board />}
-      </div>
-      <div className={cn(styles.optionSection)}>
-        <ColorSwitcher />
-        <LangSwitcher />
-      </div>
-      <div className={cn(styles.rightSection)}>
-        <span className={styles.title}>Очки: 1515</span>
-        <span className={styles.title}>Уровень: 6</span>
-        <span className={styles.text}>Следующая фигура:</span>
-        <span className={styles.text}>Поворот фигуры</span>
-        <span className={styles.text}>Движения</span>
-        <div onClick={() => dispatch(changeMap(room, ['test', 'keke', name]))}>UPDATE MAP</div>
-        {role === 'leader'
-          && (
-          <div
-            className={styles.title}
-            onClick={() => {
-              startGame();
-              getPieces();
-            }}
-          >
-            Start game
+    <>
+      {players.length > 0 ? (
+        <div className={cn(styles.container, styles[theme])}>
+          <div className={styles.leftSection}>
+            <div className={styles.title}>
+              {t('main.gamePage.room')}
+              &nbsp;
+              {room}
+            </div>
+            <div className={styles.title}>{t('main.gamePage.players')}</div>
+            <div>
+              {players.map((player) => (
+                <div className={styles.text} key={player.id}>{player.name}</div>
+              ))}
+            </div>
           </div>
-          )}
-      </div>
-    </div>
+          <div className={styles.boardSection}>
+            {gameStatus === 'started' && <Board />}
+          </div>
+          <div className={cn(styles.optionSection)}>
+            <ColorSwitcher />
+            <LangSwitcher />
+            {role === 'leader' && (<GameModal />)}
+          </div>
+          <div className={cn(styles.rightSection)}>
+            <span className={styles.title}>
+              {t('main.gamePage.score')}
+              {' '}
+              {score}
+            </span>
+            <span className={styles.title}>
+              {t('main.gamePage.level')}
+              {' '}
+              6
+            </span>
+            <span>{t('main.gamePage.nextFigure')}</span>
+            <GameHints />
+          </div>
+        </div>
+      ) : <div className={styles.loading}>loading</div>}
+    </>
   );
 };
 
-GamePage.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  match: PropTypes.any.isRequired,
-};
+export default GamePage;

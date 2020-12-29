@@ -6,6 +6,22 @@
     "joinRoomPlaceholder": "Введите имя комнаты",
     "leaderboard": "Топ игроков",
     "enterUsername": "Введите никнейм",
-    "usernameHint": "Разрешены символы a-z, A-Z, 0-9"
+    "usernameHint": "Разрешены символы a-z, A-Z, 0-9",
+    "gamePage": {
+      "room": "Комната",
+      "players": "Игроки:",
+      "score": "Очки:",
+      "level": "Уровень:",
+      "nextFigure": "Следующая фигура:",
+      "rotateFigure": "Поворот фигуры:",
+      "dropFigure": "Опустить фигуру:",
+      "moveFigure": "Движения:",
+      "roomError": "Комната заполнена. Максимальное количество игроков в одной комнате - 4.",
+      "modal": {
+        "startGame": "Начать игру",
+        "gameOptions": "Настройки",
+        "speed": "Скорость"
+      }
+    }
   }
 }

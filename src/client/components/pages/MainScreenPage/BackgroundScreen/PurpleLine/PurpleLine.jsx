@@ -15,9 +15,6 @@ const PurpleLine = () => {
     <div
       tabIndex={-1}
       role="button"
-      onKeyDown={(e) => {
-        if (e.keyCode === 13) handleResetAnimation();
-      }}
       style={{ '--duration': `${getAnimationSpeed()}s`, '--delay': `${getAnimationDelay() + 4}s` }}
       className={cn(styles.boxContainer, styles.left85, resetAnimation ? styles.resetAnimation : '')}
       onClick={handleResetAnimation}

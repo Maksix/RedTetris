@@ -4,8 +4,8 @@ import BackgroundScreen from './BackgroundScreen/BackgroundScreen';
 import Logo from './Logo/Logo';
 import Menu from './Menu/Menu';
 import styles from './MainScreen.module.less';
-import ColorSwitcher from './ColorSwitcher/ColorSwitcher';
-import LangSwitcher from './LangSwitcher/LangSwitcher';
+import ColorSwitcher from '../../common/ColorSwitcher/ColorSwitcher';
+import LangSwitcher from '../../common/LangSwitcher/LangSwitcher';
 
 export const MainScreenPage = () => (
   <>

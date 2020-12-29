@@ -1,13 +1,10 @@
 @import 'styles/colors';
-@import 'styles/fonts';
 
-.switcherBox {
-  outline: none;
-  display: flex;
-  cursor: pointer;
+.startGameBox {
   width: 80px;
   height: 80px;
-  font-size: @menuFontSize;
+  color: white;
+  cursor: pointer;
   transition: 1s;
 
   &.dark {
@@ -20,19 +17,20 @@
     color: @textColorLight;
   }
 
-  .text {
+  .startGameIcon {
     margin: auto;
+    font-size: 80px;
   }
 }
 
-.switcherBox:focus {
-  outline: 1px solid @logoColor;
-}
-
 @media screen and (max-width: 1600px) {
-  .switcherBox {
+  .startGameBox {
     width: 60px;
     height: 60px;
-    font-size: 26px;
+    margin: 0;
+
+    .startGameIcon {
+      font-size: 60px;
+    }
   }
 }

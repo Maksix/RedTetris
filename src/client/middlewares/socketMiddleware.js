@@ -1,4 +1,3 @@
-/* eslint-disable */
 import {
   JOIN_ROOM_ERROR,
   OUT_JOIN_ROOM,
@@ -10,12 +9,12 @@ import {
   OUT_GET_PIECES,
   GET_PIECES,
   BLOCK_ROW,
-  OUT_BLOCK_ROW, OUT_CHANGE_MAP, CHANGE_MAP,
+  OUT_BLOCK_ROW, OUT_CHANGE_MAP,
 } from '../reducers/types';
 import { updatePlayerList } from '../actions/updatePlayerListAction';
 import { joinRoomError } from '../actions/roomActions';
 import { updateRole } from '../actions/updateRoleAction';
-import { startGame, blockRow, handleChangeMap } from '../actions/gameActions';
+import { startGame, blockRow } from '../actions/gameActions';
 import { getPieces } from '../actions/pieceActions';
 
 export const socketMiddleware = (socket) => (store) => {
@@ -38,8 +37,6 @@ export const socketMiddleware = (socket) => (store) => {
     store.dispatch(blockRow());
   });
   return (next) => (action) => {
-    console.log(`action ${action.type} invoked`);
-    console.log('store is', store.getState());
     switch (action.type) {
       case OUT_JOIN_ROOM: {
         socket.emit(OUT_JOIN_ROOM, action.payload);
@@ -64,6 +61,9 @@ export const socketMiddleware = (socket) => (store) => {
       case OUT_CHANGE_MAP: {
         socket.emit(OUT_CHANGE_MAP, action.payload);
         break;
+      }
+      default: {
+        return next(action);
       }
     }
     return next(action);

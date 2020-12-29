@@ -15,9 +15,6 @@ const GreenVerticalZ = () => {
     <div
       tabIndex={-1}
       role="button"
-      onKeyDown={(e) => {
-        if (e.keyCode === 13) handleResetAnimation();
-      }}
       style={{ '--duration': `${getAnimationSpeed()}s`, '--delay': `${getAnimationDelay() + 6}s` }}
       className={cn(styles.boxContainer, styles.left30, resetAnimation ? styles.resetAnimation : '')}
       onClick={handleResetAnimation}

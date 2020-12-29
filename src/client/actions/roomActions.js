@@ -17,12 +17,9 @@ export function joinRoomError(error) {
   };
 }
 
-export function leaveRoom(playerName, roomName) {
+export function leaveRoom(roomName) {
   return {
     type: OUT_LEAVE_ROOM,
-    payload: {
-      playerName,
-      roomName,
-    },
+    payload: roomName,
   };
 }

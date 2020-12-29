@@ -23,7 +23,7 @@ const onStartGame = (socket, io, rooms) => {
 };
 
 const onBLockRow = (socket, io, rooms) => {
-  socket.on(OUT_BLOCK_ROW, ({ roomName }) => {
+  socket.on(OUT_BLOCK_ROW, (roomName) => {
     const currentRoom = rooms.find((room) => room.name === roomName);
     if (currentRoom) {
       socket.to(roomName).emit(BLOCK_ROW);

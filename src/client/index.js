@@ -1,19 +1,22 @@
+/* eslint-disable */
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './i18n';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import io from 'socket.io-client';
-import { ErrorBoundary } from 'components/common/ErrorBoundary';
+import { ErrorBoundary } from './components/common/ErrorBoundary/ErrorBoundary';
 import rootReducer from './reducers/rootReducer';
 import App from './containers/App';
 import { socketMiddleware } from './middlewares/socketMiddleware';
 
 const socket = io('localhost:8000');
 
-const store = createStore(rootReducer, applyMiddleware(thunk, socketMiddleware(socket)));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk, socketMiddleware(socket))));
 ReactDOM.render(
   <ErrorBoundary>
     <React.StrictMode>

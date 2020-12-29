@@ -6,6 +6,22 @@
     "joinRoomPlaceholder": "Enter room name",
     "leaderboard": "Leaderboard",
     "enterUsername": "Please enter your username",
-    "usernameHint": "Only a-z, A-Z, 0-9 symbols allowed"
+    "usernameHint": "Only a-z, A-Z, 0-9 symbols allowed",
+    "gamePage": {
+      "room": "Room",
+      "players": "Players:",
+      "score": "Score:",
+      "level": "Level:",
+      "nextFigure": "Next figure:",
+      "rotateFigure": "Rotate figure:",
+      "dropFigure": "Drop figure:",
+      "moveFigure": "Move figure:",
+      "roomError": "The room is full. Only 4 players allowed for one room.",
+      "modal": {
+        "startGame": "Start game",
+        "gameOptions": "Game options",
+        "speed": "Speed"
+      }
+    }
   }
 }

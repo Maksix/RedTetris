@@ -1,7 +1,35 @@
 @import "styles/colors";
 @import "styles/vars";
 
+.errorContainer {
+  word-spacing: 10px;
+  margin-top: 150px;
+  padding: 100px;
+  display: flex;
+
+  .error {
+    line-height: 50px;
+    margin: auto;
+    font-size: 32px;
+  }
+
+  &.dark {
+    color: @purpleLight;
+  }
+
+  &.light {
+    color: @purpleDark;
+  }
+}
+
+.loading {
+  color: white;
+  font-size: 24px;
+  margin: auto;
+}
+
 .container {
+  word-spacing: 10px;
   display: flex;
   height: 100%;
   padding: @appPaddingSize;
@@ -38,11 +66,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 9%;
-  min-width: 165px;
+  min-width: 280px;
 }
 
-@media screen and (max-width: 1700px) {
+@media screen and (max-width: 1600px) {
   .optionSection {
     flex-direction: column;
     justify-content: flex-start;
@@ -54,8 +81,4 @@
 .title {
   font-size: 18px;
   margin-bottom: 16px;
-}
-
-.text {
-  margin-bottom: 12px;
 }
