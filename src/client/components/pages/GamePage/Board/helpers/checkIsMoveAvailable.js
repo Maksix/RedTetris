@@ -1,10 +1,13 @@
 import { getMinMaxY } from 'components/pages/GamePage/Board/helpers/getMinMaxY';
 import { getMinMaxX } from 'components/pages/GamePage/Board/helpers/getMinMaxX';
+import { getFigureRotated } from 'components/pages/GamePage/Board/helpers/getFigureRotated';
 
 export const checkIsMoveAvailable = (config) => {
   const {
-    board, offsetY, offsetX, figure,
+    board, offsetY, offsetX, figure: prevFigure, rotateAngle,
   } = config;
+  const figureCopy = [...prevFigure];
+  const figure = getFigureRotated({ figure: figureCopy, rotateAngle });
 
   // фигурка еще не появилась на экране, а мы уже хотим ее двигать, непорядок
   if (offsetY === undefined) return false;

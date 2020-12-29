@@ -4,18 +4,18 @@ import { checkIsMoveAvailable } from 'components/pages/GamePage/Board/helpers/ch
 import { changeMap } from 'actions/gameActions';
 import { getFigureStartIndex } from 'components/pages/GamePage/Board/helpers/getFigureStartIndex';
 
-export const getOffsetY = (offsetYConfig) => ([offsetX, prevOffsetY]) => {
+export const getOffsetY = (offsetYConfig) => ([offsetX, prevOffsetY, rotateAngle]) => {
   const {
     board, figure, setBoard, setFigure, setIsOver, isOver, dispatch, room,
   } = offsetYConfig;
   const offsetY = prevOffsetY !== undefined && !isOver ? prevOffsetY + 1 : 0;
 
   const isAvailable = checkIsMoveAvailable({
-    board, figure, offsetX, offsetY,
+    board, figure, offsetX, offsetY, rotateAngle,
   });
 
   if (isAvailable && !isOver) {
-    return [offsetX, offsetY];
+    return [offsetX, offsetY, rotateAngle];
   }
 
   // если не поместилось
@@ -55,5 +55,5 @@ export const getOffsetY = (offsetYConfig) => ([offsetX, prevOffsetY]) => {
   setFigure(newFigure);
   dispatch(changeMap(room, board));
   const newOffsetX = getFigureStartIndex(newFigure);
-  return [newOffsetX, undefined];
+  return [newOffsetX, undefined, rotateAngle];
 };

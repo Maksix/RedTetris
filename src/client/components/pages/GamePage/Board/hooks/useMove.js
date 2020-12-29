@@ -16,17 +16,17 @@ export const useMove = (moveConfig) => {
 
   const figureIndexStart = useMemo(() => getFigureStartIndex(figure), [figure]);
 
-  const [[offsetX, offsetY], setOffset] = useState([figureIndexStart, undefined]);
+  const [[offsetX, offsetY, rotateAngle], setOffset] = useState([figureIndexStart, undefined, 0]);
 
   const moveY = useCallback(() => {
     const offsetYConfig = {
-      board, figure, setBoard, setFigure, setIsOver, isOver, dispatch, room,
+      board, figure, setBoard, setFigure, setIsOver, isOver, dispatch, room, rotateAngle,
     };
     setOffset(getOffsetY(offsetYConfig));
-  }, [board, dispatch, figure, isOver, room, setBoard, setFigure, setIsOver]);
+  }, [board, dispatch, figure, isOver, room, rotateAngle, setBoard, setFigure, setIsOver]);
 
   const moveX = useCallback((e) => {
-    if (e.keyCode === 37 || e.keyCode === 39) {
+    if (e.keyCode === 37 || e.keyCode === 39 || e.keyCode === 38) {
       const checkIfMoveXAvailable = getOffsetX(e.keyCode);
       setOffset(checkIfMoveXAvailable(board, figure));
     }
@@ -36,6 +36,7 @@ export const useMove = (moveConfig) => {
   }, [board, figure, moveY]);
 
   const timerId = useRef();
+
   useEffect(() => {
     if (!isOver) {
       document.addEventListener('keydown', moveX);
@@ -54,5 +55,5 @@ export const useMove = (moveConfig) => {
     return () => clearInterval(timerId.current);
   }, [isOver, moveY, speed]);
 
-  return { offsetX, offsetY };
+  return { offsetX, offsetY, rotateAngle };
 };

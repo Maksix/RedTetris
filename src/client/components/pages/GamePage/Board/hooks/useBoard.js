@@ -10,6 +10,7 @@ import { useDisappearRows } from 'components/pages/GamePage/Board/hooks/useDisap
 // import { useSelector } from 'react-redux';
 // import { getNewPieces } from 'actions/pieceActions';
 // import { useRoomName } from 'hooks/useRoomName';
+import { getFigureRotated } from 'components/pages/GamePage/Board/helpers/getFigureRotated';
 
 const SPEED = {
   NORMAL: 1000,
@@ -40,7 +41,7 @@ export const useBoard = () => {
   const [figure, setFigure] = useState(figures[getRandomInt(7)]);
   const [isOver, setIsOver] = useState(false);
 
-  const { offsetY, offsetX } = useMove({
+  const { offsetY, offsetX, rotateAngle } = useMove({
     speed: SPEED.FAST,
     board,
     setBoard,
@@ -50,20 +51,21 @@ export const useBoard = () => {
     setIsOver,
   });
 
-  /* Вращение не учитывается */
-  // useRotateFigure(setFigure);
+  const figureRotated = useMemo(() => (
+    getFigureRotated({ figure, rotateAngle })
+  ), [figure, rotateAngle]);
 
   const { setDisappearRows } = useDisappearRows(setBoard);
 
   return useMemo(() => board.map((rowItem, rowInd) => {
     if (rowItem.every(Boolean)) {
-      setDisappearRows((prevDisapearRows) => [...prevDisapearRows, rowInd]);
+      setDisappearRows((prevDisappearRows) => [...prevDisappearRows, rowInd]);
     }
     const rowContent = rowItem.map((color, cellInd) => {
       if (!isOver && offsetY !== undefined && rowInd >= offsetY && cellInd >= offsetX) {
         const figureCellIndex = cellInd - offsetX;
         const figureRowIndex = rowInd - offsetY;
-        const newFigureColor = figure[figureRowIndex]?.[figureCellIndex] || color;
+        const newFigureColor = figureRotated[figureRowIndex]?.[figureCellIndex] || color;
 
         return (
           <div className={cn(styles.cell, styles[newFigureColor])} key={cellInd} />
@@ -79,5 +81,5 @@ export const useBoard = () => {
         <div className={styles.row}>{rowContent}</div>
       </div>
     );
-  }), [board, figure, isOver, offsetX, offsetY, setDisappearRows]);
+  }), [board, figureRotated, isOver, offsetX, offsetY, setDisappearRows]);
 };
