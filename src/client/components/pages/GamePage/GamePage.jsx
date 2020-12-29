@@ -5,9 +5,9 @@ import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { joinRoom, leaveRoom } from 'actions/roomActions';
 import styles from './GamePage.less';
-import {changeMap, handleStartGame} from '../../../actions/gameActions'
+import {changeMap, handleStartGame} from 'actions/gameActions'
 import { Board } from './Board';
-import { getNewPieces } from '../../../actions/pieceActions';
+import { getNewPieces } from 'actions/pieceActions';
 import LangSwitcher from '../MainScreenPage/LangSwitcher/LangSwitcher';
 import ColorSwitcher from '../MainScreenPage/ColorSwitcher/ColorSwitcher';
 
@@ -27,6 +27,7 @@ export const GamePage = ({ match }) => {
       dispatch(leaveRoom(name, room));
     };
   }, [room, name, dispatch]);
+  const gameStatus = useSelector((state) => state.game.game.status);
 
   return (
     <div className={cn(styles.container, styles[theme])}>
@@ -44,7 +45,7 @@ export const GamePage = ({ match }) => {
         </div>
       </div>
       <div className={styles.boardSection}>
-        <Board />
+        {gameStatus === 'started' && <Board />}
       </div>
       <div className={cn(styles.optionSection)}>
         <ColorSwitcher />

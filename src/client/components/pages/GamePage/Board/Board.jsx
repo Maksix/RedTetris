@@ -1,6 +1,7 @@
 import React from 'react';
-import { useInitialFocus } from 'components/pages/GamePage/Board/useInitialFocus';
-import { useBoard } from 'components/pages/GamePage/Board/useBoard';
+import { useInitialFocus } from 'components/pages/GamePage/Board/hooks/useInitialFocus';
+import { useBoard } from 'components/pages/GamePage/Board/hooks/useBoard';
+// import { useSelector } from 'react-redux';
 import styles from './Board.less';
 
 export const Board = () => {

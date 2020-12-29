@@ -1,24 +1,13 @@
-const getMinMaxX = ([min, max], item, ind) => {
-  const newMin = item && min === undefined ? ind : min;
-  const newMax = item ? ind : max;
-
-  return [newMin, newMax];
-};
-
-const getMinMaxY = ([min, max], item, ind) => {
-  if (item.every((cell) => !cell)) {
-    const newMin = min === undefined ? ind : min;
-    const newMax = !max || ind > max ? ind : max;
-
-    return [newMin, newMax];
-  }
-  return [min, max];
-};
+import { getMinMaxY } from 'components/pages/GamePage/Board/helpers/getMinMaxY';
+import { getMinMaxX } from 'components/pages/GamePage/Board/helpers/getMinMaxX';
 
 export const checkIsMoveAvailable = (config) => {
   const {
     board, offsetY, offsetX, figure,
   } = config;
+
+  // фигурка еще не появилась на экране, а мы уже хотим ее двигать, непорядок
+  if (offsetY === undefined) return false;
 
   return board.every((rowItem, rowInd) => {
     if (rowInd < offsetY) { // борда выше фигурки

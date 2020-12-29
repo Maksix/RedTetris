@@ -1,10 +1,12 @@
 import { figures } from 'helpers/figures';
 import { getRandomInt } from 'helpers/getRandomInt';
-import { checkIsMoveAvailable } from 'components/pages/GamePage/Board/checkIsMoveAvailable';
+import { checkIsMoveAvailable } from 'components/pages/GamePage/Board/helpers/checkIsMoveAvailable';
+import { changeMap } from 'actions/gameActions';
+import { getFigureStartIndex } from 'components/pages/GamePage/Board/helpers/getFigureStartIndex';
 
 export const getOffsetY = (offsetYConfig) => ([offsetX, prevOffsetY]) => {
   const {
-    board, figure, setBoard, setFigure, setIsOver, isOver,
+    board, figure, setBoard, setFigure, setIsOver, isOver, dispatch, room,
   } = offsetYConfig;
   const offsetY = prevOffsetY !== undefined && !isOver ? prevOffsetY + 1 : 0;
 
@@ -27,7 +29,8 @@ export const getOffsetY = (offsetYConfig) => ([offsetX, prevOffsetY]) => {
     //   gameOverOffset -= 1;
     // }
     setIsOver(true);
-    console.log('send action game over');
+
+    // console.log('send action game over');
 
     // return [offsetX, gameOverOffset];
   }
@@ -48,7 +51,9 @@ export const getOffsetY = (offsetYConfig) => ([offsetX, prevOffsetY]) => {
     return prevBoard[rowInd]; // ниже фигурки
   })));
 
-  setFigure(figures[getRandomInt(7)]);
-  console.log('set action figure done'); // отправлять событие, менять фигуру
-  return [0, undefined];
+  const newFigure = figures[getRandomInt(7)];
+  setFigure(newFigure);
+  dispatch(changeMap(room, board));
+  const newOffsetX = getFigureStartIndex(newFigure);
+  return [newOffsetX, undefined];
 };

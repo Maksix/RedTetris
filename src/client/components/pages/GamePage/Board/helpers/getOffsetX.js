@@ -1,4 +1,4 @@
-import { checkIsMoveAvailable } from 'components/pages/GamePage/Board/checkIsMoveAvailable';
+import { checkIsMoveAvailable } from 'components/pages/GamePage/Board/helpers/checkIsMoveAvailable';
 
 const directions = {
   39: 1,
