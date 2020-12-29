@@ -11,6 +11,7 @@ const GreenVerticalZ = () => {
       setResetAnimation(false);
     }, 0);
   };
+
   return (
     <div
       tabIndex={-1}

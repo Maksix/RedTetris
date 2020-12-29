@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { joinRoom, leaveRoom } from 'actions/roomActions';
 import { useRouteMatch } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import styles from './GamePage.less';
-import {changeMap, handleStartGame} from 'actions/gameActions'
-import { Board } from './Board';
 import { getNewPieces } from 'actions/pieceActions';
+import styles from './GamePage.less';
+// import {changeMap, handleStartGame} from 'actions/gameActions'
+import { Board } from './Board';
 import LangSwitcher from '../../common/LangSwitcher/LangSwitcher';
 import ColorSwitcher from '../../common/ColorSwitcher/ColorSwitcher';
 import GameModal from './GameModal/GameModal';
