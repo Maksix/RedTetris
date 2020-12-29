@@ -6,7 +6,7 @@ export const checkIsMoveAvailable = (config) => {
   const {
     board, offsetY, offsetX, figure: prevFigure, rotateAngle,
   } = config;
-  const figureCopy = [...prevFigure];
+  const figureCopy = prevFigure.slice();
   const figure = getFigureRotated({ figure: figureCopy, rotateAngle });
 
   // фигурка еще не появилась на экране, а мы уже хотим ее двигать, непорядок

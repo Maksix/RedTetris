@@ -12,7 +12,7 @@ export const getOffsetX = (keyCode) => (board, figure) => (
   [prevOffsetX, offsetY, prevRotateAngle],
 ) => {
   const offsetX = keyCode === 38 ? prevOffsetX : prevOffsetX + directions[keyCode];
-  let rotateAngle;
+  let rotateAngle = prevRotateAngle;
   if (keyCode === 38) {
     const ind = rotateAngles.findIndex((angle) => angle === prevRotateAngle) + 1;
     rotateAngle = ind >= rotateAngles.length ? 0 : ind;

@@ -3,6 +3,7 @@ import { getRandomInt } from 'helpers/getRandomInt';
 import { checkIsMoveAvailable } from 'components/pages/GamePage/Board/helpers/checkIsMoveAvailable';
 import { changeMap } from 'actions/gameActions';
 import { getFigureStartIndex } from 'components/pages/GamePage/Board/helpers/getFigureStartIndex';
+import { getFigureRotated } from 'components/pages/GamePage/Board/helpers/getFigureRotated';
 
 export const getOffsetY = (offsetYConfig) => ([offsetX, prevOffsetY, rotateAngle]) => {
   const {
@@ -36,15 +37,16 @@ export const getOffsetY = (offsetYConfig) => ([offsetX, prevOffsetY, rotateAngle
   }
 
   setBoard((prevBoard) => (prevBoard.map((rowItem, rowInd) => {
+    const rotatedFigure = getFigureRotated({ figure, rotateAngle });
     if (rowInd < prevOffsetY) { // выше фигурки
       return prevBoard[rowInd];
     }
 
-    if (rowInd < prevOffsetY + figure.length) { // фигурка
+    if (rowInd < prevOffsetY + rotatedFigure.length) { // фигурка
       return rowItem.map((cellItem, cellInd) => {
         const figureCellIndex = cellInd - offsetX;
         const figureRowIndex = rowInd - prevOffsetY;
-        return figure[figureRowIndex]?.[figureCellIndex] || cellItem;
+        return rotatedFigure[figureRowIndex]?.[figureCellIndex] || cellItem;
       });
     }
 
