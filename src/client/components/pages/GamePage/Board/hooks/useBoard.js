@@ -5,8 +5,12 @@ import { boardInitialMock } from 'helpers/boardInitialMock';
 // import { useRotateFigure } from 'components/pages/GamePage/Board/useRotateFigure';
 import { figures } from 'helpers/figures';
 import { getRandomInt } from 'helpers/getRandomInt';
-import { useMove } from 'components/pages/GamePage/Board/useMove';
-import { useDisappearRows } from 'components/pages/GamePage/Board/useDisappearRows';
+import { useMove } from 'components/pages/GamePage/Board/hooks/useMove';
+import { useDisappearRows } from 'components/pages/GamePage/Board/hooks/useDisappearRows';
+// import { useSelector } from 'react-redux';
+// import { getNewPieces } from 'actions/pieceActions';
+// import { useRoomName } from 'hooks/useRoomName';
+import { getFigureRotated } from 'components/pages/GamePage/Board/helpers/getFigureRotated';
 
 const SPEED = {
   NORMAL: 1000,
@@ -15,11 +19,29 @@ const SPEED = {
 };
 
 export const useBoard = () => {
+  // const pieces = useSelector((state) => state.pieces);
+  // const dispatch = useDispatch();
+  // const room = useRoomName();
+
+  // dispatch(getNewPieces(room));
+  // console.log(pieces);
+  // const gameStatus = useSelector((state) => state.game.game.status);
+  // console.log(gameStatus);
+  // const [testInd, setTestInd] = useState(0);
+  // const room = useRoomName();
+  // const dispatch = useDispatch();
+
+  // const
+  // useEffect(() => {
+  //   dispatch(getNewPieces(room));
+  // }, []);
   const [board, setBoard] = useState(boardInitialMock);
+  // const [figure, setFigure] = useState(pieces[testInd]);
+
   const [figure, setFigure] = useState(figures[getRandomInt(7)]);
   const [isOver, setIsOver] = useState(false);
 
-  const { offsetY, offsetX } = useMove({
+  const { offsetY, offsetX, rotateAngle } = useMove({
     speed: SPEED.FAST,
     board,
     setBoard,
@@ -29,20 +51,21 @@ export const useBoard = () => {
     setIsOver,
   });
 
-  /* Вращение не учитывается */
-  // useRotateFigure(setFigure);
+  const figureRotated = useMemo(() => (
+    getFigureRotated({ figure, rotateAngle })
+  ), [figure, rotateAngle]);
 
   const { setDisappearRows } = useDisappearRows(setBoard);
 
   return useMemo(() => board.map((rowItem, rowInd) => {
     if (rowItem.every(Boolean)) {
-      setDisappearRows((prevDisapearRows) => [...prevDisapearRows, rowInd]);
+      setDisappearRows((prevDisappearRows) => [...prevDisappearRows, rowInd]);
     }
     const rowContent = rowItem.map((color, cellInd) => {
       if (!isOver && offsetY !== undefined && rowInd >= offsetY && cellInd >= offsetX) {
         const figureCellIndex = cellInd - offsetX;
         const figureRowIndex = rowInd - offsetY;
-        const newFigureColor = figure[figureRowIndex]?.[figureCellIndex] || color;
+        const newFigureColor = figureRotated[figureRowIndex]?.[figureCellIndex] || color;
 
         return (
           <div className={cn(styles.cell, styles[newFigureColor])} key={cellInd} />
@@ -58,5 +81,5 @@ export const useBoard = () => {
         <div className={styles.row}>{rowContent}</div>
       </div>
     );
-  }), [board, figure, isOver, offsetX, offsetY, setDisappearRows]);
+  }), [board, figureRotated, isOver, offsetX, offsetY, setDisappearRows]);
 };

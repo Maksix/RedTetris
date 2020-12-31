@@ -11,6 +11,7 @@ const OrangeG = () => {
       setResetAnimation(false);
     }, 0);
   };
+
   return (
     <div
       tabIndex={-1}

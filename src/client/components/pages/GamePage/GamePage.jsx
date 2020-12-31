@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { joinRoom, leaveRoom } from 'actions/roomActions';
 import { useRouteMatch } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { getNewPieces } from 'actions/pieceActions';
 import styles from './GamePage.less';
+// import {changeMap, handleStartGame} from 'actions/gameActions'
 import { Board } from './Board';
-import { getNewPieces } from '../../../actions/pieceActions';
 import LangSwitcher from '../../common/LangSwitcher/LangSwitcher';
 import ColorSwitcher from '../../common/ColorSwitcher/ColorSwitcher';
 import GameModal from './GameModal/GameModal';
@@ -34,6 +35,7 @@ export const GamePage = () => {
       dispatch(leaveRoom(room));
     };
   }, [room, name, dispatch]);
+  const gameStatus = useSelector((state) => state.game.game.status);
 
   if (roomError) {
     return (
@@ -63,7 +65,7 @@ export const GamePage = () => {
             </div>
           </div>
           <div className={styles.boardSection}>
-            <Board />
+            {gameStatus === 'started' && <Board />}
           </div>
           <div className={cn(styles.optionSection)}>
             <ColorSwitcher />
