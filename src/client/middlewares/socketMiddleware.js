@@ -9,13 +9,18 @@ import {
   OUT_GET_PIECES,
   GET_PIECES,
   BLOCK_ROW,
-  OUT_BLOCK_ROW, OUT_CHANGE_MAP,
+  OUT_BLOCK_ROW,
+  OUT_CHANGE_MAP,
+  OUT_END_GAME,
+  OUT_GET_LEADERBOARD,
+  GET_LEADERBOARD,
 } from '../reducers/types';
 import { updatePlayerList } from '../actions/updatePlayerListAction';
 import { joinRoomError } from '../actions/roomActions';
 import { updateRole } from '../actions/updateRoleAction';
 import { startGame, blockRow } from '../actions/gameActions';
 import { getPieces } from '../actions/pieceActions';
+import { getLeaderboard } from '../actions/leaderboardActions';
 
 export const socketMiddleware = (socket) => (store) => {
   socket.on(UPDATE_PLAYER_LIST, (players) => {
@@ -35,6 +40,9 @@ export const socketMiddleware = (socket) => (store) => {
   });
   socket.on(BLOCK_ROW, () => {
     store.dispatch(blockRow());
+  });
+  socket.on(GET_LEADERBOARD, (leaderboard) => {
+    store.dispatch(getLeaderboard(leaderboard));
   });
   return (next) => (action) => {
     switch (action.type) {
@@ -60,6 +68,14 @@ export const socketMiddleware = (socket) => (store) => {
       }
       case OUT_CHANGE_MAP: {
         socket.emit(OUT_CHANGE_MAP, action.payload);
+        break;
+      }
+      case OUT_END_GAME: {
+        socket.emit(OUT_END_GAME, action.payload);
+        break;
+      }
+      case OUT_GET_LEADERBOARD: {
+        socket.emit(OUT_GET_LEADERBOARD);
         break;
       }
       default: {

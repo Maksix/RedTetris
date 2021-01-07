@@ -35,6 +35,6 @@ const setUp = () => {
 describe('<GameModalContent />', () => {
   test('must be rendered', async () => {
     const component = setUp();
-    expect(component.find('.contentTitle').text()).toBe('Game options');
+    expect(component.find('.contentTitle').text()).toBe('main.gamePage.modal.gameOptions');
   });
 });

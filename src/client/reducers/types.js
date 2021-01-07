@@ -13,3 +13,7 @@ export const BLOCK_ROW = 'BLOCK_ROW';
 export const OUT_BLOCK_ROW = 'OUT_BLOCK_ROW';
 export const OUT_CHANGE_MAP = 'OUT_CHANGE_MAP';
 export const ADD_SCORE = 'ADD_SCORE';
+export const OUT_END_GAME = 'OUT_END_GAME';
+export const OUT_ADD_LEADERBOARD = 'OUT_ADD_LEADERBOARD';
+export const OUT_GET_LEADERBOARD = 'OUT_GET_LEADERBOARD';
+export const GET_LEADERBOARD = 'GET_LEADERBOARD';

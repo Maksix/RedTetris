@@ -6,6 +6,7 @@ import roomReducer from './roomReducer';
 import roleReducer from './roleReducer';
 import gameReducer from './gameReducer';
 import pieceReducer from './pieceReducer';
+import leaderboardReducer from './leaderboardReducer';
 
 const rootReducer = combineReducers({
   role: roleReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   playerList: playerListReducer,
   game: gameReducer,
   pieces: pieceReducer,
+  leaderboard: leaderboardReducer,
 });
 
 export default rootReducer;

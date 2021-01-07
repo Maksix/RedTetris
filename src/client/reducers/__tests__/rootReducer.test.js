@@ -7,6 +7,7 @@ import roomReducer from '../roomReducer';
 import roleReducer from '../roleReducer';
 import gameReducer from '../gameReducer';
 import pieceReducer from '../pieceReducer';
+import leaderboardReducer from '../leaderboardReducer';
 
 describe('root reducer', () => {
   test('should return combined reducers', () => {
@@ -18,6 +19,7 @@ describe('root reducer', () => {
       playerList: playerListReducer,
       game: gameReducer,
       pieces: pieceReducer,
+      leaderboard: leaderboardReducer,
     });
     const store = createStore(rootReducer);
     const combinedStore = createStore(combinedReducers);

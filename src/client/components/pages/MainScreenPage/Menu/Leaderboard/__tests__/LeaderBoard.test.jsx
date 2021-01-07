@@ -12,7 +12,7 @@ jest.mock('react-i18next', () => ({
 }));
 
 const setUp = () => {
-  const initialState = { theme: { theme: 'dark' } };
+  const initialState = { theme: { theme: 'dark' }, leaderboard: { leaderboard: [{ name: 'wconnel', score: 2000 }] } };
   const store = mockStore(initialState);
   return mount(
     <Provider store={store}>
@@ -23,20 +23,20 @@ const setUp = () => {
 };
 
 describe('<Leaderboard />', () => {
-  test('should render leaderboard button', () => {
+  test('should render public button', () => {
     const component = setUp();
     const menuBlock = component.find('.button');
     expect(menuBlock.length).toBe(1);
   });
 
-  test('should render leaderboard modal form on click', () => {
+  test('should render public modal form on click', () => {
     const component = setUp();
     component.find('[role="button"]').simulate('click');
     const modalBox = component.find('.modalBox');
     expect(modalBox.length).toBe(1);
   });
 
-  test('should close leaderboard modal form on close button', () => {
+  test('should close public modal form on close button', () => {
     const component = setUp();
     component.find('[role="button"]').simulate('click');
     component.find('.buttonBox').simulate('click');
