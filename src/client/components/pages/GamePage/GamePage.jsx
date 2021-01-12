@@ -5,6 +5,8 @@ import { joinRoom, leaveRoom } from 'actions/roomActions';
 import { useRouteMatch } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { getNewPieces } from 'actions/pieceActions';
+import { boardInitialMock } from 'helpers/boardInitialMock';
+import { BoardDummy } from 'components/pages/GamePage/Board/BoardDummy';
 import styles from './GamePage.less';
 // import {changeMap, handleStartGame} from 'actions/gameActions'
 import { Board } from './Board';
@@ -58,9 +60,12 @@ export const GamePage = () => {
               {room}
             </div>
             <div className={styles.title}>{t('main.gamePage.players')}</div>
-            <div>
-              {players.map((player) => (
-                <div className={styles.text} key={player.id}>{player.name}</div>
+            <div className={styles.playerContainer}>
+              {players.filter((player) => player.name !== name).map((player) => (
+                <div className={styles.player} key={player.id}>
+                  <div className={styles.name}>{player.name}</div>
+                  <BoardDummy board={boardInitialMock} />
+                </div>
               ))}
             </div>
           </div>

@@ -2,7 +2,16 @@
 @import 'styles/colors.less';
 @import "styles/reset";
 
-body {
-  font-family: @tetrisFont;
-  background-color: @bgColorDark;
+:global {
+  body {
+    font-family: @tetrisFont;
+    background-color: @bgColorDark;
+    height: 100vh;
+    overflow: hidden;
+
+    #tetris {
+      height: 100%;
+      overflow: auto;
+    }
+  }
 }

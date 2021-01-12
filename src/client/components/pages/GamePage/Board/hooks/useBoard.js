@@ -1,6 +1,4 @@
-import React, { useMemo, useState } from 'react';
-import cn from 'classnames';
-import styles from 'components/pages/GamePage/Board/Board.less';
+import { useMemo, useState } from 'react';
 import { boardInitialMock } from 'helpers/boardInitialMock';
 // import { useRotateFigure } from 'components/pages/GamePage/Board/useRotateFigure';
 import { figures } from 'helpers/figures';
@@ -11,6 +9,7 @@ import { useDisappearRows } from 'components/pages/GamePage/Board/hooks/useDisap
 // import { getNewPieces } from 'actions/pieceActions';
 // import { useRoomName } from 'hooks/useRoomName';
 import { getFigureRotated } from 'components/pages/GamePage/Board/helpers/getFigureRotated';
+import { useDrawBoard } from 'components/pages/GamePage/Board/hooks/useDrawBoard';
 
 const SPEED = {
   NORMAL: 1000,
@@ -57,29 +56,7 @@ export const useBoard = () => {
 
   const { setDisappearRows } = useDisappearRows(setBoard);
 
-  return useMemo(() => board.map((rowItem, rowInd) => {
-    if (rowItem.every(Boolean)) {
-      setDisappearRows((prevDisappearRows) => [...prevDisappearRows, rowInd]);
-    }
-    const rowContent = rowItem.map((color, cellInd) => {
-      if (!isOver && offsetY !== undefined && rowInd >= offsetY && cellInd >= offsetX) {
-        const figureCellIndex = cellInd - offsetX;
-        const figureRowIndex = rowInd - offsetY;
-        const newFigureColor = figureRotated[figureRowIndex]?.[figureCellIndex] || color;
-
-        return (
-          <div className={cn(styles.cell, styles[newFigureColor])} key={cellInd} />
-        );
-      }
-      return (
-        <div className={cn(styles.cell, styles[color])} key={cellInd} />
-      );
-    });
-
-    return (
-      <div key={rowInd}>
-        <div className={styles.row}>{rowContent}</div>
-      </div>
-    );
-  }), [board, figureRotated, isOver, offsetX, offsetY, setDisappearRows]);
+  return useDrawBoard({
+    board, figureRotated, isOver, offsetX, offsetY, setDisappearRows,
+  });
 };
