@@ -1,7 +1,7 @@
 import React from 'react';
 import { useInitialFocus } from 'components/pages/GamePage/Board/hooks/useInitialFocus';
 import { useBoard } from 'components/pages/GamePage/Board/hooks/useBoard';
-// import { useSelector } from 'react-redux';
+// import PropTypes from 'prop-types';
 import styles from './Board.less';
 
 export const Board = () => {
@@ -14,3 +14,9 @@ export const Board = () => {
     <div className={styles.container} ref={containerRef}>{board}</div>
   );
 };
+
+// Board.propTypes = {
+//   nextFigure: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
+//   updateFigureInd: PropTypes.func.isRequired,
+//   figureInd: PropTypes.number.isRequired,
+// };

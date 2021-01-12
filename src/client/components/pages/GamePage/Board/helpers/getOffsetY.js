@@ -1,5 +1,3 @@
-import { figures } from 'helpers/figures';
-import { getRandomInt } from 'helpers/getRandomInt';
 import { checkIsMoveAvailable } from 'components/pages/GamePage/Board/helpers/checkIsMoveAvailable';
 import { changeMap } from 'actions/gameActions';
 import { getFigureStartIndex } from 'components/pages/GamePage/Board/helpers/getFigureStartIndex';
@@ -7,7 +5,7 @@ import { getFigureRotated } from 'components/pages/GamePage/Board/helpers/getFig
 
 export const getOffsetY = (offsetYConfig) => ([offsetX, prevOffsetY, rotateAngle]) => {
   const {
-    board, figure, setBoard, setFigure, setIsOver, isOver, dispatch, room,
+    board, figure, setBoard, setIsOver, isOver, dispatch, room, updateFigure, nextFigure,
   } = offsetYConfig;
   const offsetY = prevOffsetY !== undefined && !isOver ? prevOffsetY + 1 : 0;
 
@@ -53,9 +51,8 @@ export const getOffsetY = (offsetYConfig) => ([offsetX, prevOffsetY, rotateAngle
     return prevBoard[rowInd]; // ниже фигурки
   })));
 
-  const newFigure = figures[getRandomInt(7)];
-  setFigure(newFigure);
+  updateFigure();
   dispatch(changeMap(room, board));
-  const newOffsetX = getFigureStartIndex(newFigure);
+  const newOffsetX = getFigureStartIndex(nextFigure);
   return [newOffsetX, undefined, rotateAngle];
 };

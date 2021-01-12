@@ -64,7 +64,7 @@ export const GamePage = () => {
               {players.filter((player) => player.name !== name).map((player) => (
                 <div className={styles.player} key={player.id}>
                   <div className={styles.name}>{player.name}</div>
-                  <BoardDummy board={boardInitialMock} />
+                  <BoardDummy board={player.map.length ? player.map : boardInitialMock} />
                 </div>
               ))}
             </div>
