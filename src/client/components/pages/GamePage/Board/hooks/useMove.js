@@ -11,7 +11,7 @@ export const useMove = (moveConfig) => {
   const dispatch = useDispatch();
   const room = useRoomName();
   const {
-    speed = 1000, board, setBoard, figure, setFigure, isOver, setIsOver,
+    speed = 1000, board, setBoard, figure, isOver, setIsOver, updateFigure, nextFigure,
   } = moveConfig;
 
   const figureIndexStart = useMemo(() => getFigureStartIndex(figure), [figure]);
@@ -20,10 +20,20 @@ export const useMove = (moveConfig) => {
 
   const moveY = useCallback(() => {
     const offsetYConfig = {
-      board, figure, setBoard, setFigure, setIsOver, isOver, dispatch, room, rotateAngle,
+      board,
+      figure,
+      setBoard,
+      setIsOver,
+      isOver,
+      dispatch,
+      room,
+      rotateAngle,
+      updateFigure,
+      nextFigure,
     };
     setOffset(getOffsetY(offsetYConfig));
-  }, [board, dispatch, figure, isOver, room, rotateAngle, setBoard, setFigure, setIsOver]);
+  }, [board, figure, setBoard, setIsOver, isOver,
+    dispatch, room, rotateAngle, updateFigure, nextFigure]);
 
   const moveX = useCallback((e) => {
     if (e.keyCode === 37 || e.keyCode === 39 || e.keyCode === 38) {

@@ -7,6 +7,12 @@
 .container {
   margin: auto;
   background-color: @greyColor;
+
+  &.dummy {
+    width: 100px;
+    height: 200px;
+    margin: 0;
+  }
 }
 
 .row {
@@ -17,4 +23,9 @@
   width: @cellSize;
   height: @cellSize;
   border: 1px solid white;
+
+  &.dummy {
+    width: 10px;
+    height: 10px;
+  }
 }
