@@ -11,7 +11,7 @@ const LeaderboardContent = () => {
 
   useEffect(() => {
     dispatch(sendGetLeaderboard());
-  });
+  }, [dispatch]);
 
   return (
     <>

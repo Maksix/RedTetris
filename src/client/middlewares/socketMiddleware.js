@@ -12,6 +12,7 @@ import {
   OUT_BLOCK_ROW,
   OUT_CHANGE_MAP,
   OUT_END_GAME,
+  OUT_ADD_LEADERBOARD,
   OUT_GET_LEADERBOARD,
   GET_LEADERBOARD,
 } from '../reducers/types';
@@ -76,6 +77,10 @@ export const socketMiddleware = (socket) => (store) => {
       }
       case OUT_GET_LEADERBOARD: {
         socket.emit(OUT_GET_LEADERBOARD);
+        break;
+      }
+      case OUT_ADD_LEADERBOARD: {
+        socket.emit(OUT_ADD_LEADERBOARD, action.payload);
         break;
       }
       default: {
