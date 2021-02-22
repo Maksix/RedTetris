@@ -2,7 +2,7 @@ import {
   START_GAME,
   OUT_START_GAME,
   BLOCK_ROW,
-  OUT_BLOCK_ROW, OUT_CHANGE_MAP, ADD_SCORE,
+  OUT_BLOCK_ROW, OUT_CHANGE_MAP, ADD_SCORE, FINISH_GAME,
 } from '../reducers/types';
 
 export function handleStartGame(options, roomName) {
@@ -16,6 +16,12 @@ export function addScore(score) {
   return {
     type: ADD_SCORE,
     payload: score,
+  };
+}
+
+export function endGame() {
+  return {
+    type: FINISH_GAME,
   };
 }
 

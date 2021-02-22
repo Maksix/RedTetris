@@ -1,6 +1,4 @@
-/* eslint-disable */
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
 import { useSelector } from 'react-redux';
 import Modal from '../../../common/Modal/Modal';
@@ -8,7 +6,6 @@ import styles from './GameModal.module.less';
 import GameModalContent from './GameModalContent/GameModalContent';
 
 const GameModal = () => {
-  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const theme = useSelector((state) => state.theme.theme);
 

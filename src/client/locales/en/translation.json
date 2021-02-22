@@ -20,7 +20,11 @@
       "modal": {
         "startGame": "Start game",
         "gameOptions": "Game options",
-        "speed": "Speed"
+        "speed": "Speed",
+        "endGameTitle": "Game over",
+        "endGameButton": "Main menu",
+        "endGameTextPt1": "Congratulations! Your final score is ",
+        "endGameTextPt2": ". Your results will be seen in leaderboard section if your score is high enough. You can return to main page and start a new game!"
       }
     }
   }

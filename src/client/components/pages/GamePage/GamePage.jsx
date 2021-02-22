@@ -7,13 +7,14 @@ import { useTranslation } from 'react-i18next';
 import { getNewPieces } from 'actions/pieceActions';
 import { boardInitialMock } from 'helpers/boardInitialMock';
 import { BoardDummy } from 'components/pages/GamePage/Board/BoardDummy';
-import styles from './GamePage.less';
-// import {changeMap, handleStartGame} from 'actions/gameActions'
+import styles from './GamePage.module.less';
 import { Board } from './Board';
 import LangSwitcher from '../../common/LangSwitcher/LangSwitcher';
 import ColorSwitcher from '../../common/ColorSwitcher/ColorSwitcher';
 import GameModal from './GameModal/GameModal';
 import GameHints from './GameHints/GameHints';
+import Modal from '../../common/Modal/Modal';
+import EndGameModalContent from './EndGameModalContent/EndGameModalContent';
 
 export const GamePage = () => {
   const match = useRouteMatch();
@@ -75,8 +76,9 @@ export const GamePage = () => {
           <div className={cn(styles.optionSection)}>
             <ColorSwitcher />
             <LangSwitcher />
-            {role === 'leader' && (<GameModal />)}
+            {role === 'leader' && gameStatus !== 'started' && (<GameModal />)}
           </div>
+          {gameStatus === 'finished' && <Modal content={<EndGameModalContent />} />}
           <div className={cn(styles.rightSection)}>
             <span className={styles.title}>
               {t('main.gamePage.score')}

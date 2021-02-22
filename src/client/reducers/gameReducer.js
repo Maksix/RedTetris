@@ -1,4 +1,6 @@
-import { ADD_SCORE, BLOCK_ROW, START_GAME } from './types';
+import {
+  ADD_SCORE, BLOCK_ROW, START_GAME, FINISH_GAME,
+} from './types';
 
 const initialState = {
   game: {
@@ -19,6 +21,8 @@ const gameReducer = (state = initialState, action) => {
       return { ...state, game: { ...state.game, blockedRows: state.game.blockedRows + 1 } };
     case ADD_SCORE:
       return { ...state, game: { ...state.game, score: state.game.score + action.payload } };
+    case FINISH_GAME:
+      return { ...state, game: { ...state.game, status: 'finished' } };
     default: return state;
   }
 };

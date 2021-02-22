@@ -1,0 +1,43 @@
+@import 'styles/fonts.less';
+@import 'styles/colors.less';
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 25px 75px 75px;
+
+  .contentTitle {
+    color: @logoColor;
+    font-size: @menuFontSize;
+    margin: 75px auto;
+  }
+
+  .endGameText {
+    line-height: 30px;
+    margin-bottom: 75px;
+  }
+
+  .endGame {
+    cursor: pointer;
+    display: flex;
+    margin: 50px auto;
+    width: 250px;
+    height: 80px;
+
+    &.dark {
+      background-color: #352d40;
+      color: @purpleLight;
+    }
+
+    &.light {
+      background-color: @purpleLight;
+      color: @purpleDark;
+    }
+
+    .buttonText {
+      font-size: 26px;
+      margin: auto;
+    }
+  }
+
+}
