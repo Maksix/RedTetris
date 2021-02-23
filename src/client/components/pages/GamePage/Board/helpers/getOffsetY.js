@@ -1,11 +1,12 @@
 import { checkIsMoveAvailable } from 'components/pages/GamePage/Board/helpers/checkIsMoveAvailable';
-import { changeMap } from 'actions/gameActions';
+import { changeMap, endGame } from 'actions/gameActions';
 import { getFigureStartIndex } from 'components/pages/GamePage/Board/helpers/getFigureStartIndex';
 import { getFigureRotated } from 'components/pages/GamePage/Board/helpers/getFigureRotated';
+import { addLeaderboard } from 'actions/leaderboardActions';
 
 export const getOffsetY = (offsetYConfig) => ([offsetX, prevOffsetY, rotateAngle]) => {
   const {
-    board, figure, setBoard, setIsOver, isOver, dispatch, room, updateFigure, nextFigure,
+    board, figure, setBoard, setIsOver, isOver, dispatch, room, updateFigure, nextFigure, score,
   } = offsetYConfig;
   const offsetY = prevOffsetY !== undefined && !isOver ? prevOffsetY + 1 : 0;
 
@@ -19,19 +20,9 @@ export const getOffsetY = (offsetYConfig) => ([offsetX, prevOffsetY, rotateAngle
 
   // если не поместилось
   if (offsetY <= 0 && !isOver) {
-    // let gameOverOffset = offsetY - 1;
-    // let isAvailableUpper = false;
-    // while (!isAvailableUpper) {
-    //   isAvailableUpper = checkIsMoveAvailable({
-    //     board, figure, offsetX, offsetY: gameOverOffset,
-    //   });
-    //   gameOverOffset -= 1;
-    // }
     setIsOver(true);
-
-    // console.log('send action game over');
-
-    // return [offsetX, gameOverOffset];
+    dispatch(endGame());
+    dispatch(addLeaderboard(room, score));
   }
 
   setBoard((prevBoard) => (prevBoard.map((rowItem, rowInd) => {

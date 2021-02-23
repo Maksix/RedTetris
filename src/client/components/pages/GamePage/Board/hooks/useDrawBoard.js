@@ -5,7 +5,7 @@ import styles from 'components/pages/GamePage/Board/Board.less';
 export const useDrawBoard = ({
   isDummy = false, board, figureRotated, isOver, offsetX, offsetY, setDisappearRows,
 }) => useMemo(() => board.map((rowItem, rowInd) => {
-  if (!isDummy && rowItem.every(Boolean)) {
+  if (!isDummy && rowItem.every((item) => Boolean(item) && !(item === 'black'))) {
     setDisappearRows((prevDisappearRows) => [...prevDisappearRows, rowInd]);
   }
   const rowContent = rowItem.map((color, cellInd) => {

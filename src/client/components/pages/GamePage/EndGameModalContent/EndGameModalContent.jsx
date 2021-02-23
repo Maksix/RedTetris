@@ -1,8 +1,9 @@
 import React, { useCallback } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import cn from 'classnames';
+import { resetGame } from 'actions/gameActions';
 import styles from './EndGameModalContent.module.less';
 
 const EndGameModalContent = () => {
@@ -10,10 +11,11 @@ const EndGameModalContent = () => {
   const score = useSelector((state) => state.game.game.score);
   const theme = useSelector((state) => state.theme.theme);
   const history = useHistory();
-
+  const dispatch = useDispatch();
   const joinRoom = useCallback(() => {
+    dispatch(resetGame());
     history.push('/');
-  }, [history]);
+  }, [dispatch, history]);
 
   return (
     <div className={styles.content}>

@@ -1,5 +1,7 @@
 import gameReducer from '../gameReducer';
-import { ADD_SCORE, BLOCK_ROW, FINISH_GAME, START_GAME } from '../types';
+import {
+  ADD_SCORE, BLOCK_ROW, FINISH_GAME, START_GAME,
+} from '../types';
 
 describe('game reducer', () => {
   test('should return the initial state', () => {
