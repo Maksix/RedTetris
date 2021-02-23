@@ -27,6 +27,7 @@ export const GamePage = () => {
   const players = useSelector((state) => state.playerList.playerList);
   const role = useSelector((state) => state.role.role);
   const score = useSelector((state) => state.game.game.score);
+  const speedLevel = useSelector((state) => state.game.game.options.speed);
 
   useEffect(() => {
     dispatch(joinRoom(name, room));
@@ -88,7 +89,7 @@ export const GamePage = () => {
             <span className={styles.title}>
               {t('main.gamePage.level')}
               {' '}
-              6
+              {speedLevel}
             </span>
             <span>{t('main.gamePage.nextFigure')}</span>
             <GameHints />
