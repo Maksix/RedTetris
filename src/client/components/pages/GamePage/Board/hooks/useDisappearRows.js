@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { handleBlockRow } from 'actions/gameActions';
+import { addScore, handleBlockRow } from 'actions/gameActions';
 import { useRouteMatch } from 'react-router-dom';
 
 const emptyRow = Array(10).fill(null);
@@ -12,16 +12,20 @@ export const useDisappearRows = (setBoard) => {
   const { room } = match.params;
 
   useEffect(() => {
+    // УДАЛИЛИСЬ ЧЕРНЫе
     if (disappearRows.length) {
-      setBoard((prevBpard) => {
-        const newBoard = [...prevBpard];
+      setBoard((prevBoard) => {
+        const newBoard = [...prevBoard];
         disappearRows.forEach((ind) => {
           newBoard.splice(ind, 1);
         });
         const newRows = Array(disappearRows.length).fill(emptyRow);
         return ([...newRows, ...newBoard]);
       });
-      disappearRows.forEach(() => dispatch(handleBlockRow(room)));
+      disappearRows.forEach(() => {
+        dispatch(addScore(10));
+        dispatch(handleBlockRow(room));
+      });
       setDisappearRows([]);
     }
   }, [disappearRows, dispatch, room, setBoard]);

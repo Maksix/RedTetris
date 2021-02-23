@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import { handleStartGame } from 'actions/gameActions';
 import styles from './GameModalContent.module.less';
-import { handleStartGame } from '../../../../../actions/gameActions';
 
 const GameModalContent = ({ setOpen }) => {
   const dispatch = useDispatch();
@@ -13,7 +13,8 @@ const GameModalContent = ({ setOpen }) => {
   const { t } = useTranslation();
   const { room } = match.params;
   const theme = useSelector((state) => state.theme.theme);
-  const [speed, setSpeed] = useState(5);
+  const speedInitial = useSelector((state) => state.game.game.options.speed);
+  const [speed, setSpeed] = useState(speedInitial);
   const handleSpeedUp = useCallback(() => setSpeed(
     (prevSpeed) => (prevSpeed >= 9 ? prevSpeed : prevSpeed + 1),
   ), []);

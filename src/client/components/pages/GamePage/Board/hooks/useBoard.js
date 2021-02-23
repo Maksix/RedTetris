@@ -9,6 +9,8 @@ import { getNewPieces } from 'actions/pieceActions';
 import { useRoomName } from 'hooks/useRoomName';
 import { getFigureRotated } from 'components/pages/GamePage/Board/helpers/getFigureRotated';
 import { useDrawBoard } from 'components/pages/GamePage/Board/hooks/useDrawBoard';
+import { setFigure as setFigureAction } from 'actions/nextFigureAction';
+import { changeMap } from 'actions/gameActions';
 
 const SPEED = {
   NORMAL: 1000,
@@ -18,6 +20,7 @@ const SPEED = {
 
 export const useBoard = () => {
   const { pieces } = useSelector((state) => state.pieces);
+
   const dispatch = useDispatch();
   const room = useRoomName();
   const gameStatus = useSelector((state) => state.game.game.status);
@@ -29,6 +32,7 @@ export const useBoard = () => {
       dispatch(getNewPieces(room));
     }
   }, [dispatch, figureInd, gameStatus, pieces, room]);
+
   const [board, setBoard] = useState(boardInitialMock);
   const [figure, setFigure] = useState(pieces[figureInd]);
   const [isOver, setIsOver] = useState(false);
@@ -36,9 +40,10 @@ export const useBoard = () => {
   const nextFigure = useMemo(() => pieces[figureInd + 1], [figureInd, pieces]);
 
   const updateFigure = useCallback(() => {
+    dispatch(setFigureAction(pieces[figureInd + 1]));
     setFigure(nextFigure);
     setFigureInd((prevInd) => prevInd + 1);
-  }, [nextFigure]);
+  }, [dispatch, figureInd, nextFigure, pieces]);
 
   const { offsetY, offsetX, rotateAngle } = useMove({
     speed: SPEED.FAST,
@@ -56,6 +61,18 @@ export const useBoard = () => {
   ), [figure, rotateAngle]);
 
   const { setDisappearRows } = useDisappearRows(setBoard);
+
+  const blockedRows = useSelector((state) => state.game.game.blockedRows);
+
+  useEffect(() => {
+    setBoard((prevBoard) => prevBoard.map((row, ind) => {
+      if (ind < prevBoard.length - blockedRows) {
+        return row;
+      }
+      return row.map(() => 'black');
+    }));
+    dispatch(changeMap(room, board));
+  }, [blockedRows]); //eslint-disable-line
 
   return useDrawBoard({
     board, figureRotated, isOver, offsetX, offsetY, setDisappearRows,

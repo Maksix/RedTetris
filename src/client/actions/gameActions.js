@@ -2,8 +2,8 @@ import {
   START_GAME,
   OUT_START_GAME,
   BLOCK_ROW,
-  OUT_BLOCK_ROW, OUT_CHANGE_MAP, ADD_SCORE, FINISH_GAME,
-} from '../reducers/types';
+  OUT_BLOCK_ROW, OUT_CHANGE_MAP, ADD_SCORE, FINISH_GAME, RESET_GAME,
+} from 'reducers/types';
 
 export function handleStartGame(options, roomName) {
   return {
@@ -29,6 +29,12 @@ export function startGame(options) {
   return {
     type: START_GAME,
     payload: options,
+  };
+}
+
+export function resetGame() {
+  return {
+    type: RESET_GAME,
   };
 }
 

@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import nextFigureReducer from 'reducers/nextFigureReducer';
 import themeReducer from './themeReducer';
 import usernameReducer from './usernameReducer';
 import playerListReducer from './playerListReducer';
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   game: gameReducer,
   pieces: pieceReducer,
   leaderboard: leaderboardReducer,
+  figure: nextFigureReducer,
 });
 
 export default rootReducer;
