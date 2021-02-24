@@ -7,15 +7,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRoomName } from 'hooks/useRoomName';
 import { getFigureStartIndex } from 'components/pages/GamePage/Board/helpers/getFigureStartIndex';
 
+const SPEED_BASIS = 2000;
+
 export const useMove = (moveConfig) => {
   const dispatch = useDispatch();
   const room = useRoomName();
   const {
-    speed: speedInitial = 2000, board, setBoard, figure,
-    isOver, setIsOver, updateFigure, nextFigure,
+    board, setBoard, figure,
+    isOver, updateFigure, nextFigure,
   } = moveConfig;
   const speedLevel = useSelector((state) => state.game.game.options.speed);
-  const speed = speedInitial / speedLevel;
+  const speed = SPEED_BASIS / speedLevel;
   const figureIndexStart = useMemo(() => getFigureStartIndex(figure), [figure]);
   const score = useSelector((state) => state.game.game.score);
 
@@ -26,7 +28,6 @@ export const useMove = (moveConfig) => {
       board,
       figure,
       setBoard,
-      setIsOver,
       isOver,
       dispatch,
       room,
@@ -36,8 +37,8 @@ export const useMove = (moveConfig) => {
       score,
     };
     setOffset(getOffsetY(offsetYConfig));
-  }, [board, figure, setBoard, setIsOver, isOver, dispatch,
-    room, rotateAngle, updateFigure, nextFigure, score]);
+  }, [board, figure, setBoard, isOver, dispatch, room, rotateAngle,
+    updateFigure, nextFigure, score]);
 
   const moveX = useCallback((e) => {
     if (e.keyCode === 37 || e.keyCode === 39 || e.keyCode === 38) {

@@ -12,12 +12,6 @@ import { useDrawBoard } from 'components/pages/GamePage/Board/hooks/useDrawBoard
 import { setFigure as setFigureAction } from 'actions/nextFigureAction';
 import { changeMap } from 'actions/gameActions';
 
-const SPEED = {
-  NORMAL: 1000,
-  FAST: 700,
-  TEST: 200,
-};
-
 export const useBoard = () => {
   const { pieces } = useSelector((state) => state.pieces);
 
@@ -35,7 +29,6 @@ export const useBoard = () => {
 
   const [board, setBoard] = useState(boardInitialMock);
   const [figure, setFigure] = useState(pieces[figureInd]);
-  const [isOver, setIsOver] = useState(false);
 
   const nextFigure = useMemo(() => pieces[figureInd + 1], [figureInd, pieces]);
 
@@ -46,12 +39,10 @@ export const useBoard = () => {
   }, [dispatch, figureInd, nextFigure, pieces]);
 
   const { offsetY, offsetX, rotateAngle } = useMove({
-    speed: SPEED.FAST,
     board,
     setBoard,
     figure,
-    isOver,
-    setIsOver,
+    isOver: gameStatus === 'finished',
     updateFigure,
     nextFigure,
   });
@@ -75,6 +66,6 @@ export const useBoard = () => {
   }, [blockedRows]); //eslint-disable-line
 
   return useDrawBoard({
-    board, figureRotated, isOver, offsetX, offsetY, setDisappearRows,
+    board, figureRotated, isOver: gameStatus === 'finished', offsetX, offsetY, setDisappearRows,
   });
 };

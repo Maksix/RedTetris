@@ -6,7 +6,7 @@ import { addLeaderboard } from 'actions/leaderboardActions';
 
 export const getOffsetY = (offsetYConfig) => ([offsetX, prevOffsetY, rotateAngle]) => {
   const {
-    board, figure, setBoard, setIsOver, isOver, dispatch, room, updateFigure, nextFigure, score,
+    board, figure, setBoard, isOver, dispatch, room, updateFigure, nextFigure, score,
   } = offsetYConfig;
   const offsetY = prevOffsetY !== undefined && !isOver ? prevOffsetY + 1 : 0;
 
@@ -20,7 +20,6 @@ export const getOffsetY = (offsetYConfig) => ([offsetX, prevOffsetY, rotateAngle
 
   // если не поместилось
   if (offsetY <= 0 && !isOver) {
-    setIsOver(true);
     dispatch(endGame());
     dispatch(addLeaderboard(room, score));
   }
