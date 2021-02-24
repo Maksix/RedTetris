@@ -2,6 +2,7 @@ import React from 'react';
 import configureStore from 'redux-mock-store';
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
+// eslint-disable-next-line import/no-named-as-default
 import GamePage from '../GamePage';
 
 const middlewares = [];
@@ -21,9 +22,13 @@ jest.mock('react-i18next', () => ({
   }),
 }));
 
-const setUp = (roomError, playerList = [{ id: 1, name: 'jjlesch' }, { id: 2, name: 'test' }]) => {
+const setUp = (roomError, playerList = [{ id: 1, name: 'jjlesch', map: [] }, { id: 2, name: 'test', map: [] }]) => {
   const initialState = {
-    theme: { theme: 'dark' }, role: { role: 'leader' }, room: { roomError }, game: { game: { score: 0 } }, playerList: { playerList },
+    theme: { theme: 'dark' },
+    role: { role: 'leader' },
+    room: { roomError },
+    game: { game: { score: 0, options: { speed: 5 } } },
+    playerList: { playerList },
   };
   const store = mockStore(initialState);
   return mount(

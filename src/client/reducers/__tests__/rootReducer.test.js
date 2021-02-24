@@ -1,4 +1,5 @@
 import { combineReducers, createStore } from 'redux';
+import nextFigureReducer from 'reducers/nextFigureReducer';
 import rootReducer from '../rootReducer';
 import themeReducer from '../themeReducer';
 import usernameReducer from '../usernameReducer';
@@ -20,6 +21,7 @@ describe('root reducer', () => {
       game: gameReducer,
       pieces: pieceReducer,
       leaderboard: leaderboardReducer,
+      figure: nextFigureReducer,
     });
     const store = createStore(rootReducer);
     const combinedStore = createStore(combinedReducers);

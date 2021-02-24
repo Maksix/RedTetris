@@ -22,7 +22,7 @@ jest.mock('react-i18next', () => ({
 }));
 
 const setUp = () => {
-  const initialState = { theme: { theme: 'dark' } };
+  const initialState = { theme: { theme: 'dark' }, game: { game: { options: { speed: 5 } } } };
   const store = mockStore(initialState);
   return mount(
     <Provider store={store}>
